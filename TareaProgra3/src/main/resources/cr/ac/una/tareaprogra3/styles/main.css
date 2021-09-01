@@ -1,0 +1,20 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+#mainFxmlClass 
+{
+    
+}
+.button{
+  -fx-background-radius: 100;  
+}
+#btnAdmin
+{
+    -fx-text-fill: white;
+   
+}
+#btnEmpleado
+{   
+  -fx-text-fill: white;
+}

@@ -1,0 +1,24 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.button
+{
+   -fx-background-radius: 100;  
+   -fx-text-fill: white;
+   -fx-background-color: coral;
+}
+/*jfx-text-field*/
+.text-field
+{
+     -fx-background-color: #252b39;
+     -fx-text-fill: white;
+}
+.text-field:focused /*is on  */
+{
+    -fx-background-color: rgba(38,44,58,200);
+    /*-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;*/
+}

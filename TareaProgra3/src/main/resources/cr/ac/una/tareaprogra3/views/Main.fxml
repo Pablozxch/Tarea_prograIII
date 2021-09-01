@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.MainController">
+   <children>
+      <AnchorPane fx:id="mainFxmlClass" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/main.css">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Main.jpg" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnAdmin" contentDisplay="TOP" layoutX="503.0" layoutY="153.0" onAction="#click" prefHeight="250.0" prefWidth="247.0" text="Admin">
+               <graphic>
+                  <ImageView fitHeight="170.0" fitWidth="180.0">
+                     <image>
+                        <Image url="@../resources/Rick.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnEmpleado" contentDisplay="TOP" layoutX="62.0" layoutY="167.0" onAction="#click" prefHeight="248.0" prefWidth="255.0" text="Empleado">
+               <graphic>
+                  <ImageView fitHeight="170.0" fitWidth="180.0">
+                     <image>
+                        <Image url="@../resources/Morty.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
