@@ -113,18 +113,22 @@ public class FlowController {
             stage = this.mainStage;
             controller.setStage(stage);
         }
-        switch (location) {
+        switch (location) 
+        {
             case "Center":
-                 
+                ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().clear();
+                ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().add(loader.getRoot());
                 break;
             case "Top":
+
                 break;
             case "Bottom":
                 break;
             case "Right":
+
                 break;
             case "Left":
-                break;
+  
             default:
                 break;
         }

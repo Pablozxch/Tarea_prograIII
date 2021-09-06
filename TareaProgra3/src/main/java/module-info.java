@@ -10,7 +10,9 @@ module cr.ac.una.tareaprogra3
     requires java.logging;
     
     requires java.base;
-  
+    
+
+    requires java.desktop;
     
     /*
        requires java.instrument;

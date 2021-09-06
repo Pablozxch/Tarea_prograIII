@@ -45,6 +45,8 @@ public class LoginAdminController extends Controller implements Initializable
         if(event.getSource()==btnContinuar)
         {
             System.out.println("Consultar en la base de datos por admins");
+            FlowController.getInstance().goVistas("AgregarEmpleado");
+            
         }
         else
         {

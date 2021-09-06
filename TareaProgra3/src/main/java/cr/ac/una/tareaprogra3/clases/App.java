@@ -8,14 +8,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.*;
+import java.util.*;
+import javafx.animation.*;
 import javafx.scene.image.*;
 
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class App extends Application
+{
 
-   private static Scene scene;
+    private static Scene scene;
+    Calendar calendario = new GregorianCalendar();
 
     @Override
     public void start(Stage stage) throws IOException
@@ -24,7 +29,8 @@ public class App extends Application {
         //stage.getIcons().add(new Image("/cr/ac/una/defender/resources/Logo.png"));
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
-        FlowController.getInstance().goMain();
+        //FlowController.getInstance().goVistas("AgregarEmpleado");
+      FlowController.getInstance().goMain();
     }
 
     static void setRoot(String fxml) throws IOException
@@ -40,6 +46,23 @@ public class App extends Application {
 
     public static void main(String[] args)
     {
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("ss");
+        //System.out.println("Segundos: " + dateFormat.format(date));
+        System.out.println("Segundos "+ dateFormat.format(date));
+//        for(int i = 0; i < 10;)
+//        {
+//
+////Caso 1: obtener la hora y salida por pantalla con formato:
+//            DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+//            System.out.println("Hora: " + hourFormat.format(date));
+//////Caso 2: obtener la fecha y salida por pantalla con formato:
+//
+//////Caso 3: obtenerhora y fecha y salida por pantalla con formato:
+        //DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+////        System.out.println("Hora y fecha: " + hourdateFormat.format(date));
+//        }
+
         launch();
     }
 }
