@@ -1,4 +1,4 @@
-module cr.ac.una.tareaprogra3 
+module cr.ac.una.tareaprogra
 {
     requires javafx.controls;
     requires javafx.fxml;
@@ -14,13 +14,12 @@ module cr.ac.una.tareaprogra3
 
     requires java.desktop;
     
-    /*
-       requires java.instrument;
-        requires java.sql;
-        requires java.persistence;
-        requires org.eclipse.persistence.core;
-        requires java.desktop;
-    */
+    requires java.sql;
+    requires java.persistence;
+    requires net.bytebuddy;
+    requires com.fasterxml.classmate;
+    requires java.xml.bind;
+    requires org.hibernate.orm.core;
     
     opens cr.ac.una.tareaprogra3.controllers to javafx.fxml;
     exports cr.ac.una.tareaprogra3.clases;

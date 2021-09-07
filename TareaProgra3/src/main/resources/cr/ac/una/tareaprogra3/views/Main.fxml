@@ -6,21 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.MainController">
    <children>
       <AnchorPane fx:id="mainFxmlClass" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/main.css">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="800.0" preserveRatio="true">
+            <ImageView fitHeight="600.0" fitWidth="800.0" smooth="false">
                <image>
-                  <Image url="@../resources/Main.jpg" />
+                  <Image url="@../resources/958598.jpg" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnAdmin" contentDisplay="TOP" layoutX="503.0" layoutY="153.0" onAction="#click" prefHeight="250.0" prefWidth="247.0" text="Admin">
+            <JFXButton fx:id="btnAdmin" contentDisplay="TOP" layoutX="400.0" layoutY="69.0" onAction="#click" prefHeight="425.0" prefWidth="344.0" text="Admin">
                <graphic>
-                  <ImageView fitHeight="170.0" fitWidth="180.0">
+                  <ImageView fitHeight="270.0" fitWidth="270.0">
                      <image>
-                        <Image url="@../resources/Rick.png" />
+                        <Image url="@../resources/Admin.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -28,11 +27,11 @@
                   <Font size="25.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btnEmpleado" contentDisplay="TOP" layoutX="62.0" layoutY="167.0" onAction="#click" prefHeight="248.0" prefWidth="255.0" text="Empleado">
+            <JFXButton fx:id="btnEmpleado" contentDisplay="TOP" layoutX="42.0" layoutY="59.0" onAction="#click" prefHeight="425.0" prefWidth="344.0" text="Empleado">
                <graphic>
-                  <ImageView fitHeight="170.0" fitWidth="180.0">
+                  <ImageView fitHeight="270.0" fitWidth="270.0">
                      <image>
-                        <Image url="@../resources/Morty.png" />
+                        <Image url="@../resources/Empleado.png" />
                      </image>
                   </ImageView>
                </graphic>

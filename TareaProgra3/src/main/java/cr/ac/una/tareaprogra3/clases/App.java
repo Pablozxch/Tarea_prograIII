@@ -29,7 +29,6 @@ public class App extends Application
         //stage.getIcons().add(new Image("/cr/ac/una/defender/resources/Logo.png"));
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
-        //FlowController.getInstance().goVistas("AgregarEmpleado");
       FlowController.getInstance().goMain();
     }
 
