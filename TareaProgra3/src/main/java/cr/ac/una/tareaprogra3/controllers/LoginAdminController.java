@@ -6,6 +6,8 @@
 package cr.ac.una.tareaprogra3.controllers;
 
 import com.jfoenix.controls.*;
+import cr.ac.una.tareaprogra3.models.*;
+import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +31,8 @@ public class LoginAdminController extends Controller implements Initializable
     private TextField txtUser;
     @FXML
     private TextField txtPass;
-
+    EmpleadoDto empleadoDto ;
+    EmpleadoService service = new EmpleadoService();
     /**
      * Initializes the controller class.
      */
@@ -44,9 +47,31 @@ public class LoginAdminController extends Controller implements Initializable
     {
         if(event.getSource()==btnContinuar)
         {
-            System.out.println("Consultar en la base de datos por admins");
-            FlowController.getInstance().goVistas("AgregarEmpleado");
-            
+
+            if(txtPass.getText().isEmpty() || txtUser.getText().isEmpty())
+            {
+                new Mensaje().showModal(Alert.AlertType.WARNING , "Usuario " , btnContinuar.getScene().getWindow() , "Faltan Datos");
+            }
+            else
+            {
+                String username=txtUser.getText();
+                String pass=txtPass.getText();
+                Respuesta respuesta = service.getEmpleadoAdmin("E1" , "chupapi", "A");
+                if(respuesta.getEstado())
+                {
+                   // new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
+                    empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin");
+                    System.out.println(empleadoDto.toString());
+                    FlowController.getInstance().goVistas("MenuAdmin");
+                }
+                else
+                {
+                    new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
+                    txtUser.clear();
+                    txtPass.clear();
+                }
+
+            }
         }
         else
         {

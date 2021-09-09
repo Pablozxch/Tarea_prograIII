@@ -7,6 +7,7 @@ package cr.ac.una.tareaprogra3.models;
 
 import java.io.*;
 import java.math.*;
+import java.time.*;
 import java.util.*;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -28,7 +29,8 @@ import javax.xml.bind.annotation.*;
     @NamedQuery(name = "Empleado.findByEmpFolio" , query = "SELECT e FROM Empleado e WHERE e.empFolio = :empFolio") ,
     @NamedQuery(name = "Empleado.findByEmpNacimiento" , query = "SELECT e FROM Empleado e WHERE e.empNacimiento = :empNacimiento") ,
     @NamedQuery(name = "Empleado.findByEmpRol" , query = "SELECT e FROM Empleado e WHERE e.empRol = :empRol") ,
-    @NamedQuery(name = "Empleado.findByEmpContra" , query = "SELECT e FROM Empleado e WHERE e.empContra = :empContra")
+    @NamedQuery(name = "Empleado.findByEmpContra" , query = "SELECT e FROM Empleado e WHERE e.empContra = :empContra") ,
+    @NamedQuery(name = "Empleado.loginAdmin" , query = "SELECT e FROM Empleado e WHERE e.empFolio = :empFolio and e.empContra = :empContra and e.empRol = :empRol")
 })
 public class Empleado implements Serializable
 {
@@ -53,14 +55,14 @@ public class Empleado implements Serializable
     @Basic(optional = false)
     @Lob
     @Column(name = "EMP_FOTO" , nullable = false)
-    private Serializable empFoto;
+    private byte[] empFoto;
     @Basic(optional = false)
     @Column(name = "EMP_FOLIO" , nullable = false , length = 30)
     private String empFolio;
     @Basic(optional = false)
     @Column(name = "EMP_NACIMIENTO" , nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date empNacimiento;
+//    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDate empNacimiento;
     @Basic(optional = false)
     @Column(name = "EMP_ROL" , nullable = false , length = 1)
     private String empRol;
@@ -78,7 +80,7 @@ public class Empleado implements Serializable
         this.empId = empId;
     }
 
-    public Empleado(Long empId , String emNombre , String empApellido , String empCedula , Serializable empFoto , String empFolio , Date empNacimiento , String empRol)
+    public Empleado(Long empId , String emNombre , String empApellido , String empCedula , byte[] empFoto , String empFolio , LocalDate empNacimiento , String empRol)
     {
         this.empId = empId;
         this.emNombre = emNombre;
@@ -91,12 +93,20 @@ public class Empleado implements Serializable
     }
     public Empleado(EmpleadoDto empleadoDto)
     {
+        //para general un empleado nuevo , debe estar lo que no se deberia editar
         this.empId = empleadoDto.getId();
+        //entra un dto sale una entidad---del otro lado en empleado dto pasa lo contrario
         actualizarEmpleado(empleadoDto);
     }
     public void actualizarEmpleado(EmpleadoDto empleadoDto)
     {
-        
+        this.emNombre= empleadoDto.getNombre();
+        this.empApellido = empleadoDto.getApellido();
+        this.empCedula = empleadoDto.getCedula();
+        this.empFoto = empleadoDto.getFoto();
+        this.empFolio = empleadoDto.getFolio();
+        this.empNacimiento = empleadoDto.getNacimiento();
+        this.empRol = empleadoDto.getRol();
     }
     public Long getEmpId()
     {
@@ -138,12 +148,12 @@ public class Empleado implements Serializable
         this.empCedula = empCedula;
     }
 
-    public Serializable getEmpFoto()
+    public byte[] getEmpFoto()
     {
         return empFoto;
     }
 
-    public void setEmpFoto(Serializable empFoto)
+    public void setEmpFoto(byte[] empFoto)
     {
         this.empFoto = empFoto;
     }
@@ -158,12 +168,12 @@ public class Empleado implements Serializable
         this.empFolio = empFolio;
     }
 
-    public Date getEmpNacimiento()
+    public LocalDate getEmpNacimiento()
     {
         return empNacimiento;
     }
 
-    public void setEmpNacimiento(Date empNacimiento)
+    public void setEmpNacimiento(LocalDate empNacimiento)
     {
         this.empNacimiento = empNacimiento;
     }

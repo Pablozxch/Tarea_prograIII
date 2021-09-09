@@ -5,8 +5,9 @@
  */
 package cr.ac.una.tareaprogra3.controllers;
 
-
 import com.jfoenix.controls.*;
+import cr.ac.una.tareaprogra3.services.*;
+import cr.ac.una.tareaprogra3.models.*;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.stage.*;
 import java.awt.image.*;
+import java.time.*;
+import java.util.*;
+import java.util.logging.*;
 import javax.imageio.*;
 
 /**
@@ -39,27 +43,31 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     @FXML
     private JFXCheckBox ckbEmpleado;
     @FXML
+    private ImageView imgEmpleado;
+    @FXML
     private JFXButton btnInsertarImagen;
     @FXML
     private JFXButton BtnTomarFoto;
     @FXML
     private JFXButton btnContinuar;
-    @FXML
-    private ImageView imgEmpleado;
 
     /**
      * Initializes the controller class.
      */
+    EmpleadoDto empleadoDto = new EmpleadoDto();
+    EmpleadoService service = new EmpleadoService();
+    File x;
+
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
         // TODO
-    }    
+    }
 
     @FXML
     private void click(ActionEvent event)
     {
-        if(event.getSource()==btnInsertarImagen)
+        if(event.getSource() == btnInsertarImagen)
         {
             FileChooser file = new FileChooser();
             file.getExtensionFilters().addAll(
@@ -67,22 +75,48 @@ public class AgregarEmpleadoController extends Controller implements Initializab
                       new FileChooser.ExtensionFilter("img" , "*.png") ,
                       new FileChooser.ExtensionFilter("img2" , "*.gif")
             );
-            
+
             File file2 = file.showOpenDialog(null);
             if(file2 != null)
             {
                 Image imagen1 = new Image(file2.toURI().toString());
+                x = file2;
                 imgEmpleado.setImage(imagen1);
             }
         }
-        else if(event.getSource()==BtnTomarFoto)
+        else if(event.getSource() == BtnTomarFoto)
         {
-        
-            
+
         }
-        else if(event.getSource()==btnContinuar)
+        else if(event.getSource() == btnContinuar)
         {
-            
+            String nombre = txtNombre.getText();
+            String apellido = txtApellido.getText();
+            String cedula = txtCedula.getText();
+            empleadoDto.setNombre(nombre);
+            empleadoDto.setApellido(apellido);
+            empleadoDto.setCedula(cedula);
+            empleadoDto.setNacimiento(dteFechaNacimiento.getValue());
+            char folio = apellido.charAt(0);
+            char folio2 = nombre.charAt(0);
+            String FolioV = String.valueOf(folio) + String.valueOf(folio2);
+            empleadoDto.setFolio(FolioV);
+           empleadoDto.setRol("A");
+            try
+            {
+                BufferedImage bufferimage;
+                bufferimage = ImageIO.read(x);
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                ImageIO.write(bufferimage , "jpg" , output);
+                byte[] data = output.toByteArray();
+                 empleadoDto.setFoto(data);
+            }
+            catch(IOException ex)
+            {
+                Logger.getLogger(AgregarEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
+            }
+           service.guardarEmpleado(empleadoDto);
+
         }
     }
 
@@ -91,5 +125,5 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

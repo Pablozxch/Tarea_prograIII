@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.MenuAdminController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.tareaprogra3.controllers.MenuAdminController">
     <stylesheets>
-        <URL value="@/cr/ac/una/tareaprogra3/styles/menuadmin.css"/>
+        <URL value="@/cr/ac/una/tareaprogra3/styles/menuadmin.css" />
     </stylesheets>
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/MenuAdmin.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnVerHistoriales" layoutX="193.0" layoutY="231.0" onAction="#click" style="-fx-background-color: yellow;" text="VerHistoriales" />
+      <JFXButton layoutX="226.0" layoutY="325.0" style="-fx-background-color: green;" text="BuscarHistorial" />
+      <JFXButton fx:id="btnAgregarE" layoutX="101.0" layoutY="155.0" onAction="#click" style="-fx-background-color: RED;" text="AgregarEmpleado" />
+   </children>
 </AnchorPane>

@@ -5,6 +5,8 @@
  */
 package cr.ac.una.tareaprogra3.models;
 
+import java.time.*;
+import java.util.*;
 import javafx.beans.property.*;
 import javax.xml.bind.annotation.*;
 
@@ -18,15 +20,134 @@ public class EmpleadoDto
     @XmlTransient
     public SimpleStringProperty id;
     @XmlTransient
-    public SimpleStringProperty nombre;
+    private SimpleStringProperty nombre;
     @XmlTransient
-    public SimpleStringProperty apellido;
+    private SimpleStringProperty apellido;
     @XmlTransient
-    public SimpleStringProperty cedula;
+    private SimpleStringProperty cedula;
+    @XmlTransient
+    private ObjectProperty<LocalDate> nacimiento;
+    @XmlTransient
+    private ObjectProperty<byte[]> foto;
+    @XmlTransient
+    private SimpleStringProperty folio;
+    @XmlTransient
+    private SimpleStringProperty rol;
 
-    @XmlTransient
-    public SimpleStringProperty folio;
-    @XmlTransient
-    public SimpleStringProperty rol;
+    public EmpleadoDto()
+    {
+        this.id = new SimpleStringProperty();
+        this.nombre = new SimpleStringProperty();
+        this.apellido = new SimpleStringProperty();
+        this.cedula = new SimpleStringProperty();
+        this.nacimiento= new SimpleObjectProperty();
+        this.foto = new SimpleObjectProperty();
+        this.folio = new SimpleStringProperty();
+        this.rol = new SimpleStringProperty();
+    }
+
+    public EmpleadoDto(Empleado empleado)
+    {
+        this();
+        this.id.set(empleado.getEmpId().toString());
+        this.apellido.set(empleado.getEmpApellido());
+        this.cedula.set(empleado.getEmpCedula());
+        this.nacimiento.setValue(empleado.getEmpNacimiento());
+        this.foto.set(empleado.getEmpFoto());
+        this.folio.set(empleado.getEmpFolio());
+        this.rol.set(empleado.getEmpFolio());
+    }
+
+    public void setId(Long id)
+    {
+        this.id.set(id.toString());
+    }
+
+    public Long getId()
+    {
+        if(id.get() != null && !id.get().isEmpty())
+        {
+            return Long.valueOf(id.get());
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public void setNombre(String nombre)//Set de los nombres
+    {
+        this.nombre.set(nombre);
+    }
+
+    public String getNombre()//Get del nombre
+    {
+        return nombre.get();
+    }
+
+    public void setApellido(String apellido)//Set del apellido
+    {
+        this.apellido.set(apellido);
+    }
+
+    public String getApellido()//Get del apellido
+    {
+        return apellido.get();
+    }
+
+    public void setCedula(String cedula)//Set de la cedula
+    {
+        this.cedula.set(cedula);
+    }
+
+    public String getCedula()//Get de la cedula
+    {
+        return cedula.get();
+    }
+
+    public LocalDate getfIngreso()
+    {
+        return nacimiento.getValue();
+    }
+
+    public void setNacimiento(LocalDate nacimiento)
+    {
+        this.nacimiento.setValue(nacimiento);
+    }
+
+    public LocalDate getNacimiento()
+    {
+        return nacimiento.getValue();
+    }
+
+    public void setFoto(byte[] foto)//!Ver bien como hacer un simplebyte
+    {
+        this.foto.set(foto);
+    }
+
+    public byte[] getFoto()
+    {
+        return foto.getValue(); //!Ver bien como hacer un simplebyte
+    }
+
+    public void setFolio(String folio)
+    {
+        this.folio.set(folio);
+    }
+
+    public String getFolio()
+    {
+        return folio.get();
+    }
+
+    public void setRol(String rol)
+    {
+        this.rol.set(rol);
+    }
+
+    public String getRol()
+    {
+        return rol.get();
+    }
 
 }

@@ -7,6 +7,7 @@ package cr.ac.una.tareaprogra3.models;
 
 import java.io.*;
 import java.math.*;
+import java.time.*;
 import java.util.*;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -32,9 +33,11 @@ public class Registro implements Serializable
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "CTRL_REGISTRO_REG_ID_GENERATOR" , sequenceName = "relojuna.CTRL_REGISTRO_SEQ01" , allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "CTRL_REGISTRO_REG_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "REG_ID" , nullable = false , precision = 38 , scale = 0)
-    private BigDecimal regId;
+    private Long regId;
     @Column(name = "REG_ENTRADA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date regEntrada;
@@ -51,17 +54,32 @@ public class Registro implements Serializable
     {
     }
 
-    public Registro(BigDecimal regId)
+    public Registro(Long regId)
     {
         this.regId = regId;
     }
-
-    public BigDecimal getRegId()
+    public Registro(RegistroDto registroDto)
+    {
+        //para general un empleado nuevo , debe estar lo que no se deberia editar
+        this.regId = registroDto.getId();
+        //entra un dto sale una entidad---del otro lado en empleado dto pasa lo contrario
+        actualizarRegistro(registroDto);
+    }
+    public void actualizarRegistro(RegistroDto registroDto)
+    {
+        this.regId= registroDto.getId();
+        this.regEntrada = registroDto.getFechaIngreso();
+        this.regSalida = registroDto.getFechaSalida();
+        this.regCompletado = registroDto.getCompletado();
+    }
+    
+    
+    public Long getRegId()
     {
         return regId;
     }
 
-    public void setRegId(BigDecimal regId)
+    public void setRegId(Long regId)
     {
         this.regId = regId;
     }
