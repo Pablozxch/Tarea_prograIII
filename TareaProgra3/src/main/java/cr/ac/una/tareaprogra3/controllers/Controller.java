@@ -15,43 +15,67 @@ import javafx.stage.Stage;
  *
  * @author jp0151
  */
-public abstract class Controller {
+public abstract class Controller
+{
 
     private Stage stage;
     private String accion;
+    public static String Nfolio=new String();
 
-    public String getAccion() {
+    public String getAccion()
+    {
         return accion;
     }
+    public String getNfolio()
+    {
+        return Nfolio;
+    }
 
-    public void setAccion(String accion) {
+    public void setNfolio(String Nfolio)
+    {
+        this.Nfolio = Nfolio;
+    }
+
+    public void setAccion(String accion)
+    {
         this.accion = accion;
     }
 
-    public void setStage(Stage stage) {
+    public void setStage(Stage stage)
+    {
         this.stage = stage;
     }
 
-    public Stage getStage() {
+    public Stage getStage()
+    {
         return stage;
     }
 
-    public void sendTabEvent(KeyEvent event) {
+    public void sendTabEvent(KeyEvent event)
+    {
         event.consume();
-        KeyEvent keyEvent = new KeyEvent(KeyEvent.KEY_PRESSED, null, null, KeyCode.TAB, false, false, false, false);
+        KeyEvent keyEvent = new KeyEvent(KeyEvent.KEY_PRESSED , null , null , KeyCode.TAB , false , false , false , false);
         ((Control) event.getSource()).fireEvent(keyEvent);
     }
 
-    public boolean validaListaAyuda(KeyEvent event) {
-        if (event.getCode() == KeyCode.F9) {
-            try {
+    public boolean validaListaAyuda(KeyEvent event)
+    {
+        if(event.getCode() == KeyCode.F9)
+        {
+            try
+            {
                 TextInputControl control = (TextInputControl) event.getSource();
                 return control.isEditable() && !control.isDisable();
-            } catch (Exception ex) {
-                try {
+            }
+            catch(Exception ex)
+            {
+                try
+                {
                     Control control = (Control) event.getSource();
                     return !control.isDisable();
-                } catch (Exception exc) {
+                }
+                catch(Exception exc)
+                {
                     return false;
                 }
             }
@@ -60,4 +84,5 @@ public abstract class Controller {
     }
 
     public abstract void initialize();
+
 }

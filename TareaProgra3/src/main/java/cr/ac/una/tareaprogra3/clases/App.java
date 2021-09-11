@@ -29,9 +29,9 @@ public class App extends Application
         //stage.getIcons().add(new Image("/cr/ac/una/defender/resources/Logo.png"));
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
-      //FlowController.getInstance().goMain();
-      FlowController.getInstance().goVistas("BuscarHistorial");
-      //FlowController.getInstance().goVistas("MenuAdmin");
+        FlowController.getInstance().goMain();
+        //FlowController.getInstance().goVistas("AdminControl");
+        //FlowController.getInstance().goVistas("MenuAdmin");
     }
 
     static void setRoot(String fxml) throws IOException

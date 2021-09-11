@@ -35,10 +35,11 @@ public class LoginAdminController extends Controller implements Initializable
     private TextField txtUser;
     @FXML
     private TextField txtPass;
-    EmpleadoDto empleadoDto ;
+    EmpleadoDto empleadoDto;
     EmpleadoService service = new EmpleadoService();
     @FXML
     private ImageView img;
+
     /**
      * Initializes the controller class.
      */
@@ -46,28 +47,43 @@ public class LoginAdminController extends Controller implements Initializable
     public void initialize(URL url , ResourceBundle rb)
     {
         // TODO
-    }    
+    }
 
     @FXML
     private void click(ActionEvent event)
     {
-        if(event.getSource()==btnContinuar)
+        if(event.getSource() == btnContinuar)
         {
+            if(!txtUser.getText().isEmpty())
+            {
+                String username = txtUser.getText();
+                String pass = txtPass.getText();
+                Respuesta respuesta = service.getEmpleadobyFolio(username);
+                System.out.println("Hola");
+                if(respuesta.getEstado())
+                {
+                    empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
+                    System.out.println(empleadoDto.toString());
+                    Image img2 = new Image(new ByteArrayInputStream(empleadoDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+                    img.setImage(img2);
 
-            if(txtPass.getText().isEmpty() || txtUser.getText().isEmpty())
-            {
-                new Mensaje().showModal(Alert.AlertType.WARNING , "Usuario " , btnContinuar.getScene().getWindow() , "Faltan Datos");
+                }
+                else
+                {
+                    txtPass.clear();
+                }
+
             }
-            else
+            if(!txtPass.getText().isEmpty() && !txtUser.getText().isEmpty())
             {
-                String username=txtUser.getText();
-                String pass=txtPass.getText();
-                
-                Respuesta respuesta = service.getEmpleadoAdmin("E1", "chupapi", "A");
+                String username = txtUser.getText();
+                setNfolio(username);
+                String pass = txtPass.getText();
+                Respuesta respuesta = service.getEmpleadoAdmin(username , pass , "A");
                 if(respuesta.getEstado())
                 {
                     new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
-                    empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin"); 
+                    empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin");
                     System.out.println(empleadoDto.toString());
                     FlowController.getInstance().goVistas("MenuAdmin");
                 }
@@ -77,7 +93,10 @@ public class LoginAdminController extends Controller implements Initializable
                     txtUser.clear();
                     txtPass.clear();
                 }
-
+            }
+            if(txtPass.getText().isEmpty())
+            {
+                //new Mensaje().showModal(Alert.AlertType.WARNING , "Usuario " , btnContinuar.getScene().getWindow() , "Faltan Datos");
             }
         }
         else
@@ -86,10 +105,11 @@ public class LoginAdminController extends Controller implements Initializable
             FlowController.getInstance().goMain();
         }
     }
+
     @Override
     public void initialize()
     {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
- 
+
 }

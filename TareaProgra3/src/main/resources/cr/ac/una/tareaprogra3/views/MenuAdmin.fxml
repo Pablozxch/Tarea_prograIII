@@ -64,7 +64,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ImageView fx:id="imgFotoAdmin" fitHeight="150.0" fitWidth="200.0" layoutX="335.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgFotoAdmin" fitHeight="150.0" fitWidth="200.0" layoutX="308.0" layoutY="14.0" pickOnBounds="true" smooth="false" styleClass="imagen-view">
          <image>
             <Image url="@../resources/images.jpg" />
          </image>

@@ -50,12 +50,13 @@ public class EmpleadoDto
     {
         this();
         this.id.set(empleado.getEmpId().toString());
+        this.nombre.set(empleado.getEmNombre());
         this.apellido.set(empleado.getEmpApellido());
         this.cedula.set(empleado.getEmpCedula());
         this.nacimiento.setValue(empleado.getEmpNacimiento());
         this.foto.set(empleado.getEmpFoto());
         this.folio.set(empleado.getEmpFolio());
-        this.rol.set(empleado.getEmpFolio());
+        this.rol.set(empleado.getEmpRol());
     }
 
     public void setId(Long id)
@@ -148,6 +149,22 @@ public class EmpleadoDto
     public String getRol()
     {
         return rol.get();
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("EmpleadoDto{id=").append(id);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", apellido=").append(apellido);
+        sb.append(", cedula=").append(cedula);
+        sb.append(", nacimiento=").append(nacimiento);
+        sb.append(", foto=").append(foto);
+        sb.append(", folio=").append(folio);
+        sb.append(", rol=").append(rol);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

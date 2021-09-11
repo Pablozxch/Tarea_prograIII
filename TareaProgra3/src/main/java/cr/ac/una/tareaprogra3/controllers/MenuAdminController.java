@@ -9,6 +9,7 @@ import com.jfoenix.controls.*;
 import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
+import java.io.*;
 import java.net.URL;
 import java.text.*;
 import java.time.*;
@@ -44,6 +45,9 @@ public class MenuAdminController extends Controller implements Initializable
 //    EmpleadoDto empleadoDto ;
     List<RegistroDto> registroDto = new ArrayList<RegistroDto>();
     RegistroService service = new RegistroService();
+    EmpleadoService service2 = new EmpleadoService();
+
+    EmpleadoDto empleadoDto = new EmpleadoDto();
 
     /**
      * Initializes the controller class.
@@ -51,6 +55,7 @@ public class MenuAdminController extends Controller implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
+        llenarCentro();
         registroDto = service.getRegistrosbyIdemp(1L);
         DateFormat hourdateFormat = new SimpleDateFormat("hh:mm:ss ");
         DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,18 +67,17 @@ public class MenuAdminController extends Controller implements Initializable
             System.out.println("Fehca Actual " + date.format(t.getFechaIngreso()));
             System.out.println("INGRESO: " + hourdateFormat.format(t.getFechaIngreso()));
             System.out.println("SALIDA: " + hourdateFormat.format(t.getFechaSalida()));
-            Long resta=t.getFechaSalida().getTime()-t.getFechaIngreso().getTime();
-            System.out.println("La resta es "+ resta);
-            if(  t.getFechaSalida().getTime()-t.getFechaIngreso().getTime() > 28800000L)//comparacion de tiempo para poder colocar el completado e incompleto obteniendo los milisegundos desde 1 enero del 70
+            Long resta = t.getFechaSalida().getTime() - t.getFechaIngreso().getTime();
+            System.out.println("La resta es " + resta);
+            if(t.getFechaSalida().getTime() - t.getFechaIngreso().getTime() > 28800000L)//comparacion de tiempo para poder colocar el completado e incompleto obteniendo los milisegundos desde 1 enero del 70
             {
-                  System.out.println("Incompleto");
+                System.out.println("Incompleto");
             }
             else
             {
                 System.out.println("Completado");
-           
+
             }
-                  
 
         });
     }
@@ -88,9 +92,35 @@ public class MenuAdminController extends Controller implements Initializable
     private void click(ActionEvent event)
     {
 
-        if(event.getSource() == btnAgregarE)
+        if(event.getSource() == btnAgregarEmpleado)
         {
             FlowController.getInstance().goVistas("AgregarEmpleado");
+        }
+        if(event.getSource() == btnSalir)
+        {
+            FlowController.getInstance().goVistas("LoginAdmin");
+        }
+        if(event.getSource() == btnMantenimiento)
+        {
+             FlowController.getInstance().goVistas("AdminControl");
+        }
+        if(event.getSource()==btnBuscarHistorial)
+        {
+            FlowController.getInstance().goVistas("BuscarHistorial");
+        }
+    }
+
+    public void llenarCentro()
+    {
+        System.out.println("bnuenasdasd " + getNfolio());
+        Respuesta respuesta = service2.getEmpleadobyFolio(Nfolio);
+        if(respuesta.getEstado())
+        {
+            empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
+            System.out.println(empleadoDto.toString());
+            Image img2 = new Image(new ByteArrayInputStream(empleadoDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+            imgFotoAdmin.setImage(img2);
+
         }
     }
 

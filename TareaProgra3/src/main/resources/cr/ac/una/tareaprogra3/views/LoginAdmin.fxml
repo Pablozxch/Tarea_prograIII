@@ -20,13 +20,13 @@
             </ImageView>
             <JFXButton fx:id="btnContinuar" layoutX="99.0" layoutY="482.0" onAction="#click" prefHeight="65.0" prefWidth="160.0" text="Continuar" />
             <JFXButton fx:id="BtnRegresar" layoutX="370.0" layoutY="482.0" onAction="#click" prefHeight="65.0" prefWidth="160.0" text="Regresar" />
-            <TextField fx:id="txtUser" layoutX="140.0" layoutY="120.0" prefHeight="30.0" prefWidth="240.0" promptText="Usuario">
+            <TextField fx:id="txtUser" layoutX="32.0" layoutY="190.0" prefHeight="30.0" prefWidth="240.0" promptText="Usuario">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="txtPass" layoutX="140.0" layoutY="200.0" prefHeight="30.0" prefWidth="240.0" promptText="Contraseña" />
-            <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="494.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+            <PasswordField fx:id="txtPass" layoutX="32.0" layoutY="270.0" prefHeight="30.0" prefWidth="240.0" promptText="Contraseña" />
+            <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="330.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </center>

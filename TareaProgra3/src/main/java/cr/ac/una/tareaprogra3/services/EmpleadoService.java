@@ -47,7 +47,6 @@ public class EmpleadoService
             return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
         }
     }
-
     public Respuesta getEmpleadobyFolio(String folio)
     {
         try
@@ -55,7 +54,7 @@ public class EmpleadoService
             Query gryEmpleado = em.createNamedQuery("Empleado.findByEmpFolio" , Empleado.class);
             gryEmpleado.setParameter("empFolio" , folio);
 
-            return new Respuesta(true , "" , "" , "Empleado" , new EmpleadoDto((Empleado) gryEmpleado.getSingleResult()));
+            return new Respuesta(true , "" , "" , "EmpleadoFolio" , new EmpleadoDto((Empleado) gryEmpleado.getSingleResult()));
 
         }
         catch(NoResultException ex)

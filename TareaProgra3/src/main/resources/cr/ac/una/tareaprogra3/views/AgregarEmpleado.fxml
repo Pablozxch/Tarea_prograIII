@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -46,11 +47,16 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <DatePicker fx:id="dteFechaNacimiento" layoutX="73.0" layoutY="217.0" prefHeight="25.0" prefWidth="160.0" promptText="Fecha de Nacimiento" />
-      <JFXButton fx:id="btnRetroceder" layoutX="37.0" layoutY="543.0" prefHeight="39.0" prefWidth="149.0" text="Retroceder">
+      <DatePicker fx:id="dteFechaNacimiento" layoutX="73.0" layoutY="217.0" prefHeight="27.0" prefWidth="149.0" promptText="Fecha de Nacimiento" />
+      <JFXButton fx:id="btnRetroceder" layoutX="37.0" layoutY="543.0" onAction="#click" prefHeight="39.0" prefWidth="149.0" text="Retroceder">
          <font>
             <Font size="22.0" />
          </font>
       </JFXButton>
+      <JFXCheckBox fx:id="chckAdmin" layoutX="73.0" layoutY="262.0" onAction="#click" text="Administrador" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXCheckBox>
    </children>
 </AnchorPane>

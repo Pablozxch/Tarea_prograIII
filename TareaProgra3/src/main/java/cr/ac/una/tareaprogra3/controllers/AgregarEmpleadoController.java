@@ -8,6 +8,7 @@ package cr.ac.una.tareaprogra3.controllers;
 import com.jfoenix.controls.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.models.*;
+import cr.ac.una.tareaprogra3.utils.*;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,15 +47,18 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     private JFXButton BtnTomarFoto;
     @FXML
     private JFXButton btnContinuar;
-
+    @FXML
+    private JFXButton btnRetroceder;
+    @FXML
+    private JFXCheckBox chckAdmin;
     /**
      * Initializes the controller class.
      */
     EmpleadoDto empleadoDto = new EmpleadoDto();
     EmpleadoService service = new EmpleadoService();
     File x;
-    @FXML
-    private JFXButton btnRetroceder;
+
+    String rol = "E";
 
     @Override
     public void initialize(URL url , ResourceBundle rb)
@@ -65,6 +69,10 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     @FXML
     private void click(ActionEvent event)
     {
+        if(event.getSource() == chckAdmin)
+        {
+            String rol = chckAdmin.isSelected() ? "A" : "E";
+        }
         if(event.getSource() == btnInsertarImagen)
         {
             FileChooser file = new FileChooser();
@@ -94,7 +102,7 @@ public class AgregarEmpleadoController extends Controller implements Initializab
             empleadoDto.setNombre(nombre);
             empleadoDto.setApellido(apellido);
             empleadoDto.setCedula(cedula);
-           //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
+            //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
             LocalDate localDate = dteFechaNacimiento.getValue();
             Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
             Date date = Date.from(instant);
@@ -104,7 +112,7 @@ public class AgregarEmpleadoController extends Controller implements Initializab
             char folio2 = nombre.charAt(0);
             String FolioV = String.valueOf(folio) + String.valueOf(folio2);
             empleadoDto.setFolio(FolioV);
-           empleadoDto.setRol("A");
+            empleadoDto.setRol(rol);
             try
             {
                 BufferedImage bufferimage;
@@ -112,14 +120,19 @@ public class AgregarEmpleadoController extends Controller implements Initializab
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
                 ImageIO.write(bufferimage , "jpg" , output);
                 byte[] data = output.toByteArray();
-                 empleadoDto.setFoto(data);
+                empleadoDto.setFoto(data);
             }
             catch(IOException ex)
             {
                 Logger.getLogger(AgregarEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
             }
-           service.guardarEmpleado(empleadoDto);
+            service.guardarEmpleado(empleadoDto);
+            FlowController.getInstance().goVistas("MenuAdmin");
 
+        }
+        if(event.getSource() == btnRetroceder)
+        {
+            FlowController.getInstance().goVistas("MenuAdmin");
         }
     }
 
