@@ -9,11 +9,15 @@ import com.jfoenix.controls.*;
 import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
+import java.awt.image.*;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javax.imageio.*;
 
 /**
  * FXML Controller class
@@ -33,6 +37,8 @@ public class LoginAdminController extends Controller implements Initializable
     private TextField txtPass;
     EmpleadoDto empleadoDto ;
     EmpleadoService service = new EmpleadoService();
+    @FXML
+    private ImageView img;
     /**
      * Initializes the controller class.
      */
@@ -56,11 +62,12 @@ public class LoginAdminController extends Controller implements Initializable
             {
                 String username=txtUser.getText();
                 String pass=txtPass.getText();
-                Respuesta respuesta = service.getEmpleadoAdmin("E1" , "chupapi", "A");
+                
+                Respuesta respuesta = service.getEmpleadoAdmin("E1", "chupapi", "A");
                 if(respuesta.getEstado())
                 {
-                   // new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
-                    empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin");
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
+                    empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin"); 
                     System.out.println(empleadoDto.toString());
                     FlowController.getInstance().goVistas("MenuAdmin");
                 }
@@ -79,7 +86,6 @@ public class LoginAdminController extends Controller implements Initializable
             FlowController.getInstance().goMain();
         }
     }
-   
     @Override
     public void initialize()
     {

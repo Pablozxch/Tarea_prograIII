@@ -62,7 +62,7 @@ public class Empleado implements Serializable
     @Basic(optional = false)
     @Column(name = "EMP_NACIMIENTO" , nullable = false)
 //    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDate empNacimiento;
+    private Date empNacimiento;
     @Basic(optional = false)
     @Column(name = "EMP_ROL" , nullable = false , length = 1)
     private String empRol;
@@ -80,7 +80,7 @@ public class Empleado implements Serializable
         this.empId = empId;
     }
 
-    public Empleado(Long empId , String emNombre , String empApellido , String empCedula , byte[] empFoto , String empFolio , LocalDate empNacimiento , String empRol)
+    public Empleado(Long empId , String emNombre , String empApellido , String empCedula , byte[] empFoto , String empFolio , Date empNacimiento , String empRol)
     {
         this.empId = empId;
         this.emNombre = emNombre;
@@ -168,12 +168,12 @@ public class Empleado implements Serializable
         this.empFolio = empFolio;
     }
 
-    public LocalDate getEmpNacimiento()
+    public Date getEmpNacimiento()
     {
         return empNacimiento;
     }
 
-    public void setEmpNacimiento(LocalDate empNacimiento)
+    public void setEmpNacimiento(Date empNacimiento)
     {
         this.empNacimiento = empNacimiento;
     }

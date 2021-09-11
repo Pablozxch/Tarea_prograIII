@@ -39,10 +39,6 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     @FXML
     private DatePicker dteFechaNacimiento;
     @FXML
-    private JFXCheckBox ckbAdministrador;
-    @FXML
-    private JFXCheckBox ckbEmpleado;
-    @FXML
     private ImageView imgEmpleado;
     @FXML
     private JFXButton btnInsertarImagen;
@@ -57,6 +53,8 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     EmpleadoDto empleadoDto = new EmpleadoDto();
     EmpleadoService service = new EmpleadoService();
     File x;
+    @FXML
+    private JFXButton btnRetroceder;
 
     @Override
     public void initialize(URL url , ResourceBundle rb)
@@ -96,7 +94,12 @@ public class AgregarEmpleadoController extends Controller implements Initializab
             empleadoDto.setNombre(nombre);
             empleadoDto.setApellido(apellido);
             empleadoDto.setCedula(cedula);
-            empleadoDto.setNacimiento(dteFechaNacimiento.getValue());
+           //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
+            LocalDate localDate = dteFechaNacimiento.getValue();
+            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            Date date = Date.from(instant);
+            //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
+            empleadoDto.setNacimiento(date);
             char folio = apellido.charAt(0);
             char folio2 = nombre.charAt(0);
             String FolioV = String.valueOf(folio) + String.valueOf(folio2);

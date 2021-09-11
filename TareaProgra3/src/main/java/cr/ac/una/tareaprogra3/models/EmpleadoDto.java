@@ -26,11 +26,11 @@ public class EmpleadoDto
     @XmlTransient
     private SimpleStringProperty cedula;
     @XmlTransient
-    private ObjectProperty<LocalDate> nacimiento;
+    private ObjectProperty<Date> nacimiento;
     @XmlTransient
     private ObjectProperty<byte[]> foto;
     @XmlTransient
-    private SimpleStringProperty folio;
+    public SimpleStringProperty folio;
     @XmlTransient
     private SimpleStringProperty rol;
 
@@ -105,17 +105,17 @@ public class EmpleadoDto
         return cedula.get();
     }
 
-    public LocalDate getfIngreso()
+    public Date getfIngreso()
     {
         return nacimiento.getValue();
     }
 
-    public void setNacimiento(LocalDate nacimiento)
+    public void setNacimiento(Date nacimiento)
     {
         this.nacimiento.setValue(nacimiento);
     }
 
-    public LocalDate getNacimiento()
+    public Date getNacimiento()
     {
         return nacimiento.getValue();
     }

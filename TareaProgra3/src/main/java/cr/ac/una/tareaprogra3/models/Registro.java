@@ -7,7 +7,9 @@ package cr.ac.una.tareaprogra3.models;
 
 import java.io.*;
 import java.math.*;
+import java.text.*;
 import java.time.*;
+import java.time.format.*;
 import java.util.*;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
@@ -25,7 +27,13 @@ import javax.xml.bind.annotation.*;
     @NamedQuery(name = "Registro.findByRegId" , query = "SELECT r FROM Registro r WHERE r.regId = :regId") ,
     @NamedQuery(name = "Registro.findByRegEntrada" , query = "SELECT r FROM Registro r WHERE r.regEntrada = :regEntrada") ,
     @NamedQuery(name = "Registro.findByRegSalida" , query = "SELECT r FROM Registro r WHERE r.regSalida = :regSalida") ,
-    @NamedQuery(name = "Registro.findByRegCompletado" , query = "SELECT r FROM Registro r WHERE r.regCompletado = :regCompletado")
+    @NamedQuery(name = "Registro.findByRegCompletado" , query = "SELECT r FROM Registro r WHERE r.regCompletado = :regCompletado"),
+    @NamedQuery(name="Registro.todo",query = "SELECT r FROM Registro r JOIN r.empId e WHERE e.empId = :empId"),
+    @NamedQuery(name="Registro.findbyFolio",query = "SELECT r FROM Registro r JOIN r.empId e WHERE e.empFolio = :empFolio"),//consulto otra tabla viajando por el id pero sin hacer uso de el
+  //"SELECT t FROM TipoPlanilla t Join t.empleados e WHERE UPPER(t.codigo) like :codigo and  UPPER(e.cedula) like :cedula and UPPER(e.id) like :idemp"),
+          //    select t Join t.empleados WHERE t.codigo=:codigo
+          //, hints = @QueryHint(name = "eclipselink.refresh", value = "true"
+
 })
 public class Registro implements Serializable
 {
@@ -39,10 +47,10 @@ public class Registro implements Serializable
     @Column(name = "REG_ID" , nullable = false , precision = 38 , scale = 0)
     private Long regId;
     @Column(name = "REG_ENTRADA")
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date regEntrada;
     @Column(name = "REG_SALIDA")
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Date regSalida;
     @Column(name = "REG_COMPLETADO" , length = 1)
     private String regCompletado;
@@ -151,7 +159,16 @@ public class Registro implements Serializable
     @Override
     public String toString()
     {
-        return "cr.ac.una.tareaprogra3.models.Registro[ regId=" + regId + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("Registro{regId=").append(regId);
+        sb.append(", regEntrada=").append(regEntrada);
+        sb.append(", regSalida=").append(regSalida);
+        sb.append(", regCompletado=").append(regCompletado);
+        sb.append(", empId=").append(empId);
+        sb.append('}');
+        return sb.toString();
     }
+
+
     
 }

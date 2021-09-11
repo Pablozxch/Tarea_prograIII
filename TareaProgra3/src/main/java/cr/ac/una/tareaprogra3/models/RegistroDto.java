@@ -20,11 +20,11 @@ public class RegistroDto
     @XmlTransient
     public SimpleStringProperty id;
     @XmlTransient
-    private ObjectProperty<Date> fechaIngreso;
+    public ObjectProperty<Date> fechaIngreso;
     @XmlTransient
-    private ObjectProperty<Date> fechaSalida;
+    public ObjectProperty<Date> fechaSalida;
     @XmlTransient
-    private SimpleStringProperty completado;
+    public SimpleStringProperty completado;
 
     //verificar si es necesario el empleado
     public RegistroDto()
@@ -89,6 +89,18 @@ public class RegistroDto
     public void setCompletado(String completado)
     {
         this.completado.set(completado);
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("RegistroDto{id=").append(id);
+        sb.append(", fechaIngreso=").append(fechaIngreso);
+        sb.append(", fechaSalida=").append(fechaSalida);
+        sb.append(", completado=").append(completado);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

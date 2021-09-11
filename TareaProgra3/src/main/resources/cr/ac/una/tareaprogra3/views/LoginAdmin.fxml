@@ -7,32 +7,27 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.LoginAdminController">
-   <children>
-      <BorderPane>
-         <center>
-            <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/loginadmin.css">
-               <children>
-                  <ImageView fitHeight="600.0" fitWidth="800.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <image>
-                        <Image url="@../resources/LoginFondo.jpg" />
-                     </image>
-                  </ImageView>
-                  <JFXButton fx:id="btnContinuar" layoutX="99.0" layoutY="482.0" onAction="#click" prefHeight="65.0" prefWidth="160.0" text="Continuar" />
-                  <JFXButton fx:id="BtnRegresar" layoutX="370.0" layoutY="482.0" onAction="#click" prefHeight="65.0" prefWidth="160.0" text="Regresar" />
-                  <TextField fx:id="txtUser" layoutX="140.0" layoutY="120.0" prefHeight="30.0" prefWidth="240.0" promptText="Usuario">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField fx:id="txtPass" layoutX="140.0" layoutY="200.0" prefHeight="30.0" prefWidth="240.0" promptText="Contraseña" />
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
-   </children>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.LoginAdminController">
+   <center>
+      <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/loginadmin.css">
+         <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" layoutY="7.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../resources/LoginFondo.jpg" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnContinuar" layoutX="99.0" layoutY="482.0" onAction="#click" prefHeight="65.0" prefWidth="160.0" text="Continuar" />
+            <JFXButton fx:id="BtnRegresar" layoutX="370.0" layoutY="482.0" onAction="#click" prefHeight="65.0" prefWidth="160.0" text="Regresar" />
+            <TextField fx:id="txtUser" layoutX="140.0" layoutY="120.0" prefHeight="30.0" prefWidth="240.0" promptText="Usuario">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="txtPass" layoutX="140.0" layoutY="200.0" prefHeight="30.0" prefWidth="240.0" promptText="Contraseña" />
+            <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="494.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

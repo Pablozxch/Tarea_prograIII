@@ -1,0 +1,4 @@
+Image img2 = new Image(new ByteArrayInputStream(empleadoDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+img.setImage(img2);
+
+Las 2 lineas de codigo superior son para retornar una imagen dsede la base de datos
