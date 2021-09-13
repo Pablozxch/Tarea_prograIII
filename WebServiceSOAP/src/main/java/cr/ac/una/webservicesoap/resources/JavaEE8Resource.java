@@ -12,10 +12,9 @@ import javax.ws.rs.core.Response;
 public class JavaEE8Resource {
     
     @GET
-    @Path("ping2")
     public Response ping(){
         return Response
-                .ok("asdvoiuhbguysdfgiusdafihgbsfadsifdhbugp")
+                .ok("ping")
                 .build();
     }
 }
