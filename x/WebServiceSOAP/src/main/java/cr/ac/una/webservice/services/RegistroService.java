@@ -1,0 +1,112 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cr.ac.una.webservice.services;
+
+import cr.ac.una.webservice.utils.Respuesta;
+import cr.ac.una.webservice.models.*;
+
+import java.util.*;
+import java.util.logging.*;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author jp015
+ */
+public class RegistroService
+{
+
+    private static final Logger LOG = Logger.getLogger(EmpleadoService.class.getName());
+
+    //TODO
+    @PersistenceContext(unitName = "WebServiceSoap")
+    EntityManager em;
+
+    public Respuesta getRegistro(Long id)
+    {
+        try
+        {
+            Query gryRegistro = em.createNamedQuery("Registro.findByRegId" , Registro.class);
+            gryRegistro.setParameter("regId" , id);
+
+            return new Respuesta(true , "" , "" , "Registro" , new RegistroDto((Registro) gryRegistro.getSingleResult()));
+
+        }
+        catch(NoResultException ex)
+        {
+            return new Respuesta(false , "No existe un registro con las credenciales ingresadas." , "validarUsuario NoResultException");
+        }
+        catch(NonUniqueResultException ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el registro." , "validarUsuario NonUniqueResultException");
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el registro." , "validarUsuario " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getRegistrosbyIdemp(Long Idemp)
+    {
+
+        try
+        {
+            Query qryRegistros = em.createNamedQuery("Registro.todo" , Registro.class);
+            qryRegistros.setParameter("Idemp" , Idemp);
+            List<Registro> registros = qryRegistros.getResultList();
+            List<RegistroDto> registrosDto = new ArrayList<>();
+            registros.forEach(Registros1 ->
+            {
+                registrosDto.add(new RegistroDto(Registros1));
+            });
+            return new Respuesta(true , "" , "" , "RegistroById" , registrosDto);
+
+        }
+        catch(NoResultException ex)
+        {
+            return new Respuesta(false , "No existen empleados con los criterios ingresados." , "getEmpleados NoResultException");
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el empleado." , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado " + ex.getMessage());
+        }
+
+    }
+
+    public Respuesta getRegistrofindByFolio(String empFolio)
+    {
+
+        try
+        {
+            Query qryRegistros = em.createNamedQuery("Registro.findbyFolio" , Registro.class);
+            qryRegistros.setParameter("empFolio" , empFolio);
+            List<Registro> registros = qryRegistros.getResultList();
+            List<RegistroDto> registrosDto = new ArrayList<>();
+            registros.forEach(Registros1 ->
+            {
+                registrosDto.add(new RegistroDto(Registros1));
+            });
+            return new Respuesta(true , "" , "" , "RegistrobyFolio" , registrosDto);
+        }
+        catch(NoResultException ex)
+        {
+            return new Respuesta(false , "No existen empleados con los criterios ingresados." , "getEmpleados NoResultException");
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el empleado." , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado " + ex.getMessage());
+        }
+    }
+
+}

@@ -38,7 +38,7 @@ public class RegistroDto
     public RegistroDto(Registro registro)
     {
         this();
-        this.id.set(registro.getEmpId().toString());
+        this.id.set(registro.getRegId().toString());
         this.fechaIngreso.set(registro.getRegEntrada());
         this.fechaSalida.set(registro.getRegSalida());
         this.completado.set(registro.getRegCompletado());
