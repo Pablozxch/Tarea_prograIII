@@ -46,7 +46,8 @@ public class LoginAdminController extends Controller implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        // TODO
+        System.out.println("Bienvenidos");
+        service.getEmpleado(1L);
     }
 
     @FXML

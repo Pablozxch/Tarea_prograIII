@@ -17,30 +17,15 @@ import javax.persistence.*;
 public class EmpleadoService
 {
 
-    public Respuesta getEmpleado(Long id)
+    
+
+    public String getEmpleado(Long id)
     {
-        try
-        {
+        SoapWS soapWS = new SoapWS_Service().getSoapWSPort();
+        System.out.println("ejecutando servicio listar personas ws");
+        soapWS.empleadoFolio("EP");
+        return "El valor del empleado en el service es ";
 
-            return null;
-
-        }
-        catch(NoResultException ex)
-        {
-            return new Respuesta(false , "No existe un empleado con el codigo ingresado." , "getEmpleado NoResultException");
-
-        }
-        catch(NonUniqueResultException ex)
-        {
-            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Ocurrio un error al consultar el empleado" , ex);
-            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado  NonUniqueResultException ");
-
-        }
-        catch(Exception ex)
-        {
-            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Error obteniendo el empleado [" + id + "]" , ex);
-            return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
-        }
     }
 
     public Respuesta getEmpleadobyFolio(String folio)
