@@ -35,7 +35,7 @@ public class LoginAdminController extends Controller implements Initializable
     private TextField txtUser;
     @FXML
     private TextField txtPass;
-    EmpleadoDto empleadoDto;
+    EmpleadoClienteDto empleadoClienteDto;
     EmpleadoService service = new EmpleadoService();
     @FXML
     private ImageView img;
@@ -62,9 +62,9 @@ public class LoginAdminController extends Controller implements Initializable
                 System.out.println("Hola");
                 if(respuesta.getEstado())
                 {
-                    empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
-                    System.out.println(empleadoDto.toString());
-                    Image img2 = new Image(new ByteArrayInputStream(empleadoDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
+                    System.out.println(empleadoClienteDto.toString());
+                    Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
                     img.setImage(img2);
 
                 }
@@ -83,8 +83,8 @@ public class LoginAdminController extends Controller implements Initializable
                 if(respuesta.getEstado())
                 {
                     new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
-                    empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin");
-                    System.out.println(empleadoDto.toString());
+                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Admin");
+                    System.out.println(empleadoClienteDto.toString());
                     FlowController.getInstance().goVistas("MenuAdmin");
                 }
                 else

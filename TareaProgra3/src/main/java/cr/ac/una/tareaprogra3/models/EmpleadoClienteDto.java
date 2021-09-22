@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
  *
  * @author jp015
  */
-public class EmpleadoDto
+public class EmpleadoClienteDto
 {
 
     @XmlTransient
@@ -34,7 +34,7 @@ public class EmpleadoDto
     @XmlTransient
     private SimpleStringProperty rol;
 
-    public EmpleadoDto()
+    public EmpleadoClienteDto()
     {
         this.id = new SimpleStringProperty();
         this.nombre = new SimpleStringProperty();
@@ -46,18 +46,6 @@ public class EmpleadoDto
         this.rol = new SimpleStringProperty();
     }
 
-    public EmpleadoDto(Empleado empleado)
-    {
-        this();
-        this.id.set(empleado.getEmpId().toString());
-        this.nombre.set(empleado.getEmNombre());
-        this.apellido.set(empleado.getEmpApellido());
-        this.cedula.set(empleado.getEmpCedula());
-        this.nacimiento.setValue(empleado.getEmpNacimiento());
-        this.foto.set(empleado.getEmpFoto());
-        this.folio.set(empleado.getEmpFolio());
-        this.rol.set(empleado.getEmpRol());
-    }
 
     public void setId(Long id)
     {

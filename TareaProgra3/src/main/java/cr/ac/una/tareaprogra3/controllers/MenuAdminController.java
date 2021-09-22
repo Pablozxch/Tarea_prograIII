@@ -42,12 +42,12 @@ public class MenuAdminController extends Controller implements Initializable
     private JFXButton btnSalir;
     @FXML
     private ImageView imgFotoAdmin;
-//    EmpleadoDto empleadoDto ;
-    List<RegistroDto> registroDto = new ArrayList<RegistroDto>();
+//    EmpleadoDto empleadoClienteDto ;
+    List<RegistroClienteDto> registroClienteDto = new ArrayList<RegistroClienteDto>();
     RegistroService service = new RegistroService();
     EmpleadoService service2 = new EmpleadoService();
 
-    EmpleadoDto empleadoDto = new EmpleadoDto();
+    EmpleadoClienteDto empleadoClienteDto = new EmpleadoClienteDto();
 
     /**
      * Initializes the controller class.
@@ -56,13 +56,13 @@ public class MenuAdminController extends Controller implements Initializable
     public void initialize(URL url , ResourceBundle rb)
     {
         llenarCentro();
-        registroDto = service.getRegistrosbyIdemp(1L);
+        //registroClienteDto = service.getRegistrosbyIdemp(1L);
         DateFormat hourdateFormat = new SimpleDateFormat("hh:mm:ss ");
         DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat horas = new SimpleDateFormat("hh");
         DateFormat minutos = new SimpleDateFormat("mm");
         DateFormat segundos = new SimpleDateFormat("ss");
-        registroDto.forEach((t) ->
+        registroClienteDto.forEach((t) ->
         {
             System.out.println("Fehca Actual " + date.format(t.getFechaIngreso()));
             System.out.println("INGRESO: " + hourdateFormat.format(t.getFechaIngreso()));
@@ -116,9 +116,9 @@ public class MenuAdminController extends Controller implements Initializable
         Respuesta respuesta = service2.getEmpleadobyFolio(Nfolio);
         if(respuesta.getEstado())
         {
-            empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
-            System.out.println(empleadoDto.toString());
-            Image img2 = new Image(new ByteArrayInputStream(empleadoDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+            empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
+            System.out.println(empleadoClienteDto.toString());
+            Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
             imgFotoAdmin.setImage(img2);
 
         }

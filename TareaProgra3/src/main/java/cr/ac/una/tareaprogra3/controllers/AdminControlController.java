@@ -55,7 +55,7 @@ public class AdminControlController extends Controller implements Initializable
     @FXML
     private JFXButton btnBuscar;
     File x;
-    EmpleadoDto empleadoDto;
+    EmpleadoClienteDto empleadoClienteDto;
     EmpleadoService service = new EmpleadoService();
     @FXML
     private TextField txtFolo;
@@ -88,21 +88,21 @@ public class AdminControlController extends Controller implements Initializable
             Respuesta respuesta = service.getEmpleadobyFolio(txtFolo.getText());
             if(respuesta.getEstado())
             {
-                empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
-                System.out.println(empleadoDto.toString());
-                Image img2 = new Image(new ByteArrayInputStream(empleadoDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+                empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
+                System.out.println(empleadoClienteDto.toString());
+                Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
                 imgEmpleado.setImage(img2);
-                txtNombre.setText(empleadoDto.getNombre());
-                txtApellido.setText(empleadoDto.getApellido());
-                txtCedula.setText(empleadoDto.getCedula());
+                txtNombre.setText(empleadoClienteDto.getNombre());
+                txtApellido.setText(empleadoClienteDto.getApellido());
+                txtCedula.setText(empleadoClienteDto.getCedula());
 
                 ZoneId defaultZoneId = ZoneId.systemDefault();
-                Instant instant = empleadoDto.getfIngreso().toInstant();
+                Instant instant = empleadoClienteDto.getfIngreso().toInstant();
                 LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
 
                 //TOMA EL Date y lo va a psar a algo
                 dteFechaNacimiento.setValue(localDate);
-                if("A".equals(empleadoDto.getRol()))
+                if("A".equals(empleadoClienteDto.getRol()))
                 {
                     System.out.println("El empleado es un admin");
                      rol = "A";
@@ -139,25 +139,25 @@ public class AdminControlController extends Controller implements Initializable
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
             String cedula = txtCedula.getText();
-            empleadoDto.setNombre(nombre);
-            empleadoDto.setApellido(apellido);
-            empleadoDto.setCedula(cedula);
+            empleadoClienteDto.setNombre(nombre);
+            empleadoClienteDto.setApellido(apellido);
+            empleadoClienteDto.setCedula(cedula);
             //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
             LocalDate localDate = dteFechaNacimiento.getValue();
             Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
             Date date = Date.from(instant);
             //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
-            empleadoDto.setNacimiento(date);
+            empleadoClienteDto.setNacimiento(date);
             char folio = apellido.charAt(0);
             char folio2 = nombre.charAt(0);
             String FolioV = String.valueOf(folio) + String.valueOf(folio2);
-            empleadoDto.setFolio(FolioV);
-            empleadoDto.setRol(rol);
+            empleadoClienteDto.setFolio(FolioV);
+            empleadoClienteDto.setRol(rol);
             try
             {
-                if(empleadoDto.getFoto() != null)
+                if(empleadoClienteDto.getFoto() != null)
                 {
-                    empleadoDto.setFoto(empleadoDto.getFoto());
+                    empleadoClienteDto.setFoto(empleadoClienteDto.getFoto());
                 }
                 if (x!=null)
                 {
@@ -166,7 +166,7 @@ public class AdminControlController extends Controller implements Initializable
                     ByteArrayOutputStream output = new ByteArrayOutputStream();
                     ImageIO.write(bufferimage , "jpg" , output);//POR EL MOMENTO SOLO SE PUEDE METE UN X TIPO DE FOTO
                     byte[] data = output.toByteArray();
-                    empleadoDto.setFoto(data);
+                    empleadoClienteDto.setFoto(data);
                 }
 
             }
@@ -174,7 +174,7 @@ public class AdminControlController extends Controller implements Initializable
             {
                 Logger.getLogger(AgregarEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
             }
-            service.guardarEmpleado(empleadoDto);
+           // service.guardarEmpleado(empleadoClienteDto);
 
             FlowController.getInstance().goVistas("MenuAdmin");
         }

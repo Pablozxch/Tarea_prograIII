@@ -54,7 +54,7 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     /**
      * Initializes the controller class.
      */
-    EmpleadoDto empleadoDto = new EmpleadoDto();
+    EmpleadoClienteDto empleadoClienteDto = new EmpleadoClienteDto();
     EmpleadoService service = new EmpleadoService();
     File x;
 
@@ -99,20 +99,20 @@ public class AgregarEmpleadoController extends Controller implements Initializab
             String nombre = txtNombre.getText();
             String apellido = txtApellido.getText();
             String cedula = txtCedula.getText();
-            empleadoDto.setNombre(nombre);
-            empleadoDto.setApellido(apellido);
-            empleadoDto.setCedula(cedula);
+            empleadoClienteDto.setNombre(nombre);
+            empleadoClienteDto.setApellido(apellido);
+            empleadoClienteDto.setCedula(cedula);
             //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
             LocalDate localDate = dteFechaNacimiento.getValue();
             Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
             Date date = Date.from(instant);
             //TOMA EL DATEPICKER Y LO TRANSFORMA EN UN DATE
-            empleadoDto.setNacimiento(date);
+            empleadoClienteDto.setNacimiento(date);
             char folio = apellido.charAt(0);
             char folio2 = nombre.charAt(0);
             String FolioV = String.valueOf(folio) + String.valueOf(folio2);
-            empleadoDto.setFolio(FolioV);
-            empleadoDto.setRol(rol);
+            empleadoClienteDto.setFolio(FolioV);
+            empleadoClienteDto.setRol(rol);
             try
             {
                 BufferedImage bufferimage;
@@ -120,13 +120,13 @@ public class AgregarEmpleadoController extends Controller implements Initializab
                 ByteArrayOutputStream output = new ByteArrayOutputStream();
                 ImageIO.write(bufferimage , "jpg" , output);
                 byte[] data = output.toByteArray();
-                empleadoDto.setFoto(data);
+                empleadoClienteDto.setFoto(data);
             }
             catch(IOException ex)
             {
                 Logger.getLogger(AgregarEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
             }
-            service.guardarEmpleado(empleadoDto);
+          //  service.guardarEmpleado(empleadoClienteDto);
             FlowController.getInstance().goVistas("MenuAdmin");
 
         }

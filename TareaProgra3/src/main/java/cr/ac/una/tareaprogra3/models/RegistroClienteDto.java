@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.*;
  *
  * @author jp015
  */
-public class RegistroDto
+public class RegistroClienteDto
 {
 
     @XmlTransient
@@ -27,7 +27,7 @@ public class RegistroDto
     public SimpleStringProperty completado;
 
     //verificar si es necesario el empleado
-    public RegistroDto()
+    public RegistroClienteDto()
     {
         this.id = new SimpleStringProperty();
         this.fechaIngreso = new SimpleObjectProperty();
@@ -35,14 +35,6 @@ public class RegistroDto
         this.completado = new SimpleStringProperty();
     }
 
-    public RegistroDto(Registro registro)
-    {
-        this();
-        this.id.set(registro.getRegId().toString());
-        this.fechaIngreso.set(registro.getRegEntrada());
-        this.fechaSalida.set(registro.getRegSalida());
-        this.completado.set(registro.getRegCompletado());
-    }
 
     public void setId(Long id)
     {

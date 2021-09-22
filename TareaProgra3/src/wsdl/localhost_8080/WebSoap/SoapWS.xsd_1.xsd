@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3.payara-p5 (2.4.3.payara-maintenance-5307578; 2021-04-22T12:36:46+0100) JAXWS-RI/2.3.2.payara-p4 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://websoap.una.ac.cr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://websoap.una.ac.cr/">
+
+<xs:element name="EmpleadoAdmin" type="tns:EmpleadoAdmin"/>
+
+<xs:element name="EmpleadoAdminResponse" type="tns:EmpleadoAdminResponse"/>
+
+<xs:element name="EmpleadoFolio" type="tns:EmpleadoFolio"/>
+
+<xs:element name="EmpleadoFolioResponse" type="tns:EmpleadoFolioResponse"/>
+
+<xs:element name="SaveEmpleado" type="tns:SaveEmpleado"/>
+
+<xs:element name="SaveEmpleadoResponse" type="tns:SaveEmpleadoResponse"/>
+
+<xs:complexType name="EmpleadoFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleadoDto">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="foto" type="xs:base64Binary" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="nacimiento" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="rol" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoAdmin">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="pas" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoAdminResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveEmpleado">
+<xs:sequence>
+<xs:element name="employee" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveEmpleadoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
