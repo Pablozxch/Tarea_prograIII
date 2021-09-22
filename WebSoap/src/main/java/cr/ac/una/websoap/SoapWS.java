@@ -24,10 +24,13 @@ public class SoapWS
     @EJB
     EmpleadoService empleadoService;
 
+    @EJB
+    RegistroService registroService;
 
     EmpleadoDto empleadoDto;
     RegistroDto registroDto;
 
+//    METODOS SOAP DEL EMPLEADO
     @WebMethod(operationName = "EmpleadoFolio")
     public EmpleadoDto getEmpleadoFolio(@WebParam(name = "folio") String fol)
     {
@@ -43,4 +46,26 @@ public class SoapWS
         empleadoDto = (EmpleadoDto) respuesta.getResultado("Admin");
         return empleadoDto;
     }
+
+//    guardarEmpleado(EmpleadoDto empleadoDto)
+    @WebMethod(operationName = "SaveEmpleado")
+    public String saveEmpleado(@WebParam(name = "employee") EmpleadoDto empDto)
+    {
+        Respuesta respuesta = empleadoService.guardarEmpleado(empDto);
+        String s;
+        if(respuesta.getEstado())
+        {
+            s = "Empleado guardado correctamente";
+        }
+        else
+        {
+            s = "Error al  guardado el empleado";
+        }
+        return s;
+    }
+//    METODOS SOAP DEL EMPLEADO
+
+    
+    
+    //    METODOS SOAP DEL REGISTRO
 }

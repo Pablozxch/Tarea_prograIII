@@ -10,6 +10,7 @@ import cr.ac.una.websoap.utils.Respuesta;
 
 import java.util.*;
 import java.util.logging.*;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -20,14 +21,15 @@ import javax.persistence.Query;
  *
  * @author jp015
  */
+@Stateless
+@LocalBean
 public class RegistroService
 {
 
     private static final Logger LOG = Logger.getLogger(EmpleadoService.class.getName());
 
-    //TODO
     @PersistenceContext(unitName = "WebServiceSoap")
-    EntityManager em;
+    private EntityManager em;
 
     public Respuesta getRegistro(Long id)
     {
