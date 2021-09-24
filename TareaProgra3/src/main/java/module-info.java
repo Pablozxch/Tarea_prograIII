@@ -12,19 +12,15 @@ module cr.ac.una.tareaprogra
 
     requires java.desktop;
 
-    requires java.sql;
-
-    requires java.xml.bind;
-//    
     requires java.instrument;
-    requires java.xml.ws;
-
-    requires java.persistence;
+   
     
-        requires java.jws;
+ 
+    
     opens cr.ac.una.tareaprogra3.controllers to javafx.fxml;
     exports cr.ac.una.tareaprogra3.clases;
-    exports cr.ac.una.tareaprogra3.utils;
+    exports cr.ac.una.tareaprogra3.models;
+    exports cr.ac.una.tareaprogra3.services;
 
 
 }

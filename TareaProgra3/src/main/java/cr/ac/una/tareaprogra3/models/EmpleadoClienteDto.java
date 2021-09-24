@@ -8,7 +8,7 @@ package cr.ac.una.tareaprogra3.models;
 import java.time.*;
 import java.util.*;
 import javafx.beans.property.*;
-import javax.xml.bind.annotation.*;
+
 
 /**
  *
@@ -17,21 +17,21 @@ import javax.xml.bind.annotation.*;
 public class EmpleadoClienteDto
 {
 
-    @XmlTransient
+//    @XmlTransient
     public SimpleStringProperty id;
-    @XmlTransient
+//    @XmlTransient
     private SimpleStringProperty nombre;
-    @XmlTransient
+//    @XmlTransient
     private SimpleStringProperty apellido;
-    @XmlTransient
+//    @XmlTransient
     private SimpleStringProperty cedula;
-    @XmlTransient
+//    @XmlTransient
     private ObjectProperty<Date> nacimiento;
-    @XmlTransient
+//    @XmlTransient
     private ObjectProperty<byte[]> foto;
-    @XmlTransient
+//    @XmlTransient
     public SimpleStringProperty folio;
-    @XmlTransient
+//    @XmlTransient
     private SimpleStringProperty rol;
 
     public EmpleadoClienteDto()

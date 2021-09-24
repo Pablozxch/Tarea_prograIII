@@ -8,7 +8,7 @@ package cr.ac.una.tareaprogra3.models;
 import java.time.*;
 import java.util.*;
 import javafx.beans.property.*;
-import javax.xml.bind.annotation.*;
+//import javax.xml.bind.annotation.*;
 
 /**
  *
@@ -17,13 +17,13 @@ import javax.xml.bind.annotation.*;
 public class RegistroClienteDto
 {
 
-    @XmlTransient
+//    @XmlTransient
     public SimpleStringProperty id;
-    @XmlTransient
+//    @XmlTransient
     public ObjectProperty<Date> fechaIngreso;
-    @XmlTransient
+//    @XmlTransient
     public ObjectProperty<Date> fechaSalida;
-    @XmlTransient
+//    @XmlTransient
     public SimpleStringProperty completado;
 
     //verificar si es necesario el empleado

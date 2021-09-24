@@ -46,8 +46,7 @@ public class LoginAdminController extends Controller implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        System.out.println("Bienvenidos");
-        service.getEmpleado(1L);
+
     }
 
     @FXML
@@ -55,45 +54,47 @@ public class LoginAdminController extends Controller implements Initializable
     {
         if(event.getSource() == btnContinuar)
         {
+                System.out.println("Bienvenidos");
+                service.getEmpleado(1L);
             if(!txtUser.getText().isEmpty())
             {
-                String username = txtUser.getText();
-                String pass = txtPass.getText();
-                Respuesta respuesta = service.getEmpleadobyFolio(username);
-                System.out.println("Hola");
-                if(respuesta.getEstado())
-                {
-                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
-                    System.out.println(empleadoClienteDto.toString());
-                    Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
-                    img.setImage(img2);
-
-                }
-                else
-                {
-                    txtPass.clear();
-                }
-
-            }
-            if(!txtPass.getText().isEmpty() && !txtUser.getText().isEmpty())
-            {
-                String username = txtUser.getText();
-                setNfolio(username);
-                String pass = txtPass.getText();
-                Respuesta respuesta = service.getEmpleadoAdmin(username , pass , "A");
-                if(respuesta.getEstado())
-                {
-                    new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
-                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Admin");
-                    System.out.println(empleadoClienteDto.toString());
-                    FlowController.getInstance().goVistas("MenuAdmin");
-                }
-                else
-                {
-                    new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
-                    txtUser.clear();
-                    txtPass.clear();
-                }
+//                String username = txtUser.getText();
+//                String pass = txtPass.getText();
+//                Respuesta respuesta = service.getEmpleadobyFolio(username);
+//                System.out.println("Hola");
+//                if(respuesta.getEstado())
+//                {
+//                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
+//                    System.out.println(empleadoClienteDto.toString());
+//                    Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+//                    img.setImage(img2);
+//
+//                }
+//                else
+//                {
+//                    txtPass.clear();
+//                }
+//
+//            }
+//            if(!txtPass.getText().isEmpty() && !txtUser.getText().isEmpty())
+//            {
+//                String username = txtUser.getText();
+//                setNfolio(username);
+//                String pass = txtPass.getText();
+//                Respuesta respuesta = service.getEmpleadoAdmin(username , pass , "A");
+//                if(respuesta.getEstado())
+//                {
+//                    new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
+//                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Admin");
+//                    System.out.println(empleadoClienteDto.toString());
+//                    FlowController.getInstance().goVistas("MenuAdmin");
+//                }
+//                else
+//                {
+//                    new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
+//                    txtUser.clear();
+//                    txtPass.clear();
+//                }
             }
             if(txtPass.getText().isEmpty())
             {

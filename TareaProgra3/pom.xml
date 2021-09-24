@@ -10,6 +10,7 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     <dependencies>
+        <!--NECESARIAS JAVAFX-->
         <!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
         <dependency>
             <groupId>com.jfoenix</groupId>
@@ -27,23 +28,18 @@
             <artifactId>javafx-fxml</artifactId>
             <version>11.0.2</version>
         </dependency>
+        <!--NECESARIAS JAVAFX-->
+        
         <dependency>
-            <groupId>jakarta.xml.ws</groupId>
-            <artifactId>jakarta.xml.ws-api</artifactId>
-            <version>2.3.3</version>
-            <type>jar</type>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>8.0.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>2.2.3</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.jws</groupId>
-            <artifactId>jakarta.jws-api</artifactId>
-            <version>2.1.0</version>
-            <type>jar</type>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
     <build>
@@ -145,6 +141,16 @@
                         <groupId>javax.xml</groupId>
                         <artifactId>webservices-api</artifactId>
                         <version>2.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax</groupId>
+                        <artifactId>javaee-api</artifactId>
+                        <version>8.0.1</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.jws</groupId>
+                        <artifactId>javax.jws-api</artifactId>
+                        <version>1.1</version>
                     </dependency>
                 </dependencies>
                 <configuration>

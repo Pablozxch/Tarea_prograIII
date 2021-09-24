@@ -112,16 +112,16 @@ public class MenuAdminController extends Controller implements Initializable
 
     public void llenarCentro()
     {
-        System.out.println("bnuenasdasd " + getNfolio());
-        Respuesta respuesta = service2.getEmpleadobyFolio(Nfolio);
-        if(respuesta.getEstado())
-        {
-            empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
-            System.out.println(empleadoClienteDto.toString());
-            Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
-            imgFotoAdmin.setImage(img2);
-
-        }
+//        System.out.println("bnuenasdasd " + getNfolio());
+//        Respuesta respuesta = service2.getEmpleadobyFolio(Nfolio);
+//        if(respuesta.getEstado())
+//        {
+//            empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
+//            System.out.println(empleadoClienteDto.toString());
+//            Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+//            imgFotoAdmin.setImage(img2);
+//
+//        }
     }
 
 }
