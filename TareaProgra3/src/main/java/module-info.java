@@ -21,6 +21,6 @@ module cr.ac.una.tareaprogra
     opens cr.ac.una.tareaprogra3.controllers to javafx.fxml;
     exports cr.ac.una.tareaprogra3.clases;
     exports cr.ac.una.tareaprogra3.models;
-    exports cr.ac.una.tareaprogra3.services;
+    opens cr.ac.una.tareaprogra3.services;
 
 }
