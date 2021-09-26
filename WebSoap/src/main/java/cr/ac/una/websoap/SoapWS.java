@@ -36,6 +36,7 @@ public class SoapWS
     {
         Respuesta respuesta = empleadoService.getEmpleadobyFolio(fol);
         empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
+        System.out.println("El valor es "+empleadoDto.toString());
         return empleadoDto;
     }
 
