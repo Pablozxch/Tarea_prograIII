@@ -12,7 +12,7 @@ import java.math.*;
 import java.time.*;
 import java.util.*;
 import javax.persistence.*;
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 
 /**
  *

@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 
-module WebSoap10
+module WebSoap
 {
     requires java.jws;
     requires jakarta.activation;
-    requires jakarta.xml.bind;
+
+    
     requires javaee.api;
     requires java.logging;
 
@@ -17,7 +18,8 @@ module WebSoap10
     requires java.desktop;
 
     requires java.instrument;
-
+    requires java.xml.bind;
     exports cr.ac.una.websoap.models;
     opens cr.ac.una.websoap.services;
+ 
 }

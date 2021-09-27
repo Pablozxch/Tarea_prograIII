@@ -15,9 +15,9 @@ public class EmpleadoService
     public String getEmpleado(Long id)
     {
         System.out.println("ejecutando servicio listar personas ws");
-        SoapWS_Service service = new SoapWS_Service();
-        SoapWS port=service.getSoapWSPort();
-        port.empleadoFolio("EP");
+        SoapWS_Service service= new SoapWS_Service();
+        SoapWS soap= service.getSoapWSPort();
+        soap.empleadoFolio("EP");
         String a="El valor del empleado en el service es ";
         return a;
 
