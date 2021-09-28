@@ -5,7 +5,6 @@
  */
 package cr.ac.una.tareaprogra3.models;
 
-import java.time.*;
 import java.util.*;
 import javafx.beans.property.*;
 

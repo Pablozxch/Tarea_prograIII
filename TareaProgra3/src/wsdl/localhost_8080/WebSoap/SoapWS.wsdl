@@ -4,11 +4,11 @@
 <xsd:import namespace="http://websoap.una.ac.cr/" schemaLocation="http://localhost:8080/WebSoap/SoapWS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="EmpleadoAdmin">
-<part name="parameters" element="tns:EmpleadoAdmin"/>
+<message name="EmpleadoFolio">
+<part name="parameters" element="tns:EmpleadoFolio"/>
 </message>
-<message name="EmpleadoAdminResponse">
-<part name="parameters" element="tns:EmpleadoAdminResponse"/>
+<message name="EmpleadoFolioResponse">
+<part name="parameters" element="tns:EmpleadoFolioResponse"/>
 </message>
 <message name="SaveEmpleado">
 <part name="parameters" element="tns:SaveEmpleado"/>
@@ -16,29 +16,29 @@
 <message name="SaveEmpleadoResponse">
 <part name="parameters" element="tns:SaveEmpleadoResponse"/>
 </message>
-<message name="EmpleadoFolio">
-<part name="parameters" element="tns:EmpleadoFolio"/>
+<message name="EmpleadoAdmin">
+<part name="parameters" element="tns:EmpleadoAdmin"/>
 </message>
-<message name="EmpleadoFolioResponse">
-<part name="parameters" element="tns:EmpleadoFolioResponse"/>
+<message name="EmpleadoAdminResponse">
+<part name="parameters" element="tns:EmpleadoAdminResponse"/>
 </message>
 <portType name="SoapWS">
-<operation name="EmpleadoAdmin">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
+<operation name="EmpleadoFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
 </operation>
 <operation name="SaveEmpleado">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoRequest" message="tns:SaveEmpleado"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoResponse" message="tns:SaveEmpleadoResponse"/>
 </operation>
-<operation name="EmpleadoFolio">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
+<operation name="EmpleadoAdmin">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
 </operation>
 </portType>
 <binding name="SoapWSPortBinding" type="tns:SoapWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="EmpleadoAdmin">
+<operation name="EmpleadoFolio">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -56,7 +56,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="EmpleadoFolio">
+<operation name="EmpleadoAdmin">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
