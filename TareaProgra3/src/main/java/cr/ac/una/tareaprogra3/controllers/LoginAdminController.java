@@ -54,29 +54,28 @@ public class LoginAdminController extends Controller implements Initializable
     {
         if(event.getSource() == btnContinuar)
         {
-                System.out.println("Bienvenidos");
             if(!txtUser.getText().isEmpty())
             {
-//                String username = txtUser.getText();
-//                String pass = txtPass.getText();
-//                Respuesta respuesta = service.getEmpleadobyFolio(username);
-//                System.out.println("Hola");
-//                if(respuesta.getEstado())
-//                {
-//                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
-//                    System.out.println(empleadoClienteDto.toString());
-//                    Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
-//                    img.setImage(img2);
-//
-//                }
-//                else
-//                {
-//                    txtPass.clear();
-//                }
-//
-//            }
-//            if(!txtPass.getText().isEmpty() && !txtUser.getText().isEmpty())
-//            {
+                String username = txtUser.getText();
+                String pass = txtPass.getText();
+                Respuesta respuesta = service.getEmpleadobyFolio(username);
+                if(respuesta.getEstado())
+                {
+                    System.out.println("Enos dias");
+                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
+                    System.out.println(empleadoClienteDto.toString());
+                    Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+                    img.setImage(img2);
+
+                }
+                else
+                {
+                    txtPass.clear();
+                }
+
+            }
+            if(!txtPass.getText().isEmpty() && !txtUser.getText().isEmpty())
+            {
 //                String username = txtUser.getText();
 //                setNfolio(username);
 //                String pass = txtPass.getText();

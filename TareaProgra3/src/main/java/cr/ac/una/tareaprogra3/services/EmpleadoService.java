@@ -7,6 +7,7 @@ package cr.ac.una.tareaprogra3.services;
 
 import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.utils.*;
+import java.util.logging.*;
 
 /**
  *
@@ -19,19 +20,19 @@ public class EmpleadoService
     {
         try
         {
-
             System.out.println("ejecutando servicio listar personas ws");
             cr.ac.una.tareaprogra3.services.SoapWS_Service service = new cr.ac.una.tareaprogra3.services.SoapWS_Service();
             cr.ac.una.tareaprogra3.services.SoapWS port = service.getSoapWSPort();
-            EmpleadoDto emp = (EmpleadoDto) port.empleadoFolio("folio");
-            return new Respuesta(true , "" , "" , "User" , new EmpleadoClienteDto((emp)));
-
+            EmpleadoDto emp = (EmpleadoDto) port.empleadoFolio(folio);
+            EmpleadoClienteDto empC = new EmpleadoClienteDto(emp);
+            System.out.println("El valor del empleado en el service es " + empC.toString());
+            return new Respuesta(true , "" , "" , "Empleado" , empC);
         }
         catch(Exception ex)
         {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Error obteniendo el deporte [" + folio + "]" , ex);
             return new Respuesta(false , "Error obteniendo el deporte ." , "getUser " + ex.getMessage());
         }
 
     }
-
 }
