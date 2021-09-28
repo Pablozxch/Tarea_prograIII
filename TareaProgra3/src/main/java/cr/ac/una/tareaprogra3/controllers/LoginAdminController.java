@@ -55,7 +55,6 @@ public class LoginAdminController extends Controller implements Initializable
         if(event.getSource() == btnContinuar)
         {
                 System.out.println("Bienvenidos");
-                service.getEmpleado(1L);
             if(!txtUser.getText().isEmpty())
             {
 //                String username = txtUser.getText();

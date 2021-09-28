@@ -32,7 +32,7 @@ public class SoapWS
 
 //    METODOS SOAP DEL EMPLEADO
     @WebMethod(operationName = "EmpleadoFolio")
-    public EmpleadoDto getEmpleadoFolio(@WebParam(name = "folio") String fol)
+    public Object getEmpleadoFolio(@WebParam(name = "folio") String fol)
     {
         Respuesta respuesta = empleadoService.getEmpleadobyFolio(fol);
         empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
