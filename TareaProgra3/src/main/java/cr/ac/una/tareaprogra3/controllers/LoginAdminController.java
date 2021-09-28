@@ -76,27 +76,27 @@ public class LoginAdminController extends Controller implements Initializable
             }
             if(!txtPass.getText().isEmpty() && !txtUser.getText().isEmpty())
             {
-//                String username = txtUser.getText();
-//                setNfolio(username);
-//                String pass = txtPass.getText();
-//                Respuesta respuesta = service.getEmpleadoAdmin(username , pass , "A");
-//                if(respuesta.getEstado())
-//                {
-//                    new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
-//                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Admin");
-//                    System.out.println(empleadoClienteDto.toString());
-//                    FlowController.getInstance().goVistas("MenuAdmin");
-//                }
-//                else
-//                {
-//                    new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
-//                    txtUser.clear();
-//                    txtPass.clear();
-//                }
+                String username = txtUser.getText();
+                setNfolio(username);
+                String pass = txtPass.getText();
+                Respuesta respuesta = service.getEmpleadoAdmin(username , pass , "A");
+                if(respuesta.getEstado())
+                {
+                    //new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
+                    empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
+                    System.out.println(empleadoClienteDto.toString());
+                    FlowController.getInstance().goVistas("MenuAdmin");
+                }
+                else
+                {
+                    //new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
+                    txtUser.clear();
+                    txtPass.clear();
+                }
             }
             if(txtPass.getText().isEmpty())
             {
-                //new Mensaje().showModal(Alert.AlertType.WARNING , "Usuario " , btnContinuar.getScene().getWindow() , "Faltan Datos");
+               new Mensaje().showModal(Alert.AlertType.WARNING , "Usuario " , btnContinuar.getScene().getWindow() , "Faltan Datos");
             }
         }
         else
