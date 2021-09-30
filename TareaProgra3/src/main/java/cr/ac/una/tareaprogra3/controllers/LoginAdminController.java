@@ -82,14 +82,14 @@ public class LoginAdminController extends Controller implements Initializable
                 Respuesta respuesta = service.getEmpleadoAdmin(username , pass , "A");
                 if(respuesta.getEstado())
                 {
-                    //new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
                     empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
                     System.out.println(empleadoClienteDto.toString());
                     FlowController.getInstance().goVistas("MenuAdmin");
                 }
                 else
                 {
-                    //new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
+                    new Mensaje().showModal(Alert.AlertType.ERROR , "Usuario " , btnContinuar.getScene().getWindow() , "Datos incorrectos");
                     txtUser.clear();
                     txtPass.clear();
                 }

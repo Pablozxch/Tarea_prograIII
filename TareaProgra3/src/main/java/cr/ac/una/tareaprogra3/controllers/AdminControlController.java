@@ -85,37 +85,37 @@ public class AdminControlController extends Controller implements Initializable
         }
         if(event.getSource() == btnBuscar)
         {
-//            Respuesta respuesta = service.getEmpleadobyFolio(txtFolo.getText());
-//            if(respuesta.getEstado())
-//            {
-//                empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("EmpleadoFolio");
-//                System.out.println(empleadoClienteDto.toString());
-//                Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
-//                imgEmpleado.setImage(img2);
-//                txtNombre.setText(empleadoClienteDto.getNombre());
-//                txtApellido.setText(empleadoClienteDto.getApellido());
-//                txtCedula.setText(empleadoClienteDto.getCedula());
-//
-//                ZoneId defaultZoneId = ZoneId.systemDefault();
-//                Instant instant = empleadoClienteDto.getfIngreso().toInstant();
-//                LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
-//
-//                //TOMA EL Date y lo va a psar a algo
-//                dteFechaNacimiento.setValue(localDate);
-//                if("A".equals(empleadoClienteDto.getRol()))
-//                {
-//                    System.out.println("El empleado es un admin");
-//                     rol = "A";
-//                    chckAdmin.setIndeterminate(true);
-//                }
-//                else
-//                {
-//                    rol = "E";
-//                    System.out.println("El empleado no un admin");
-//                    chckAdmin.setIndeterminate(false);
-//                }
-//
-//            }
+            Respuesta respuesta = service.getEmpleadobyFolio(txtFolo.getText());
+            if(respuesta.getEstado())
+            {
+                empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
+                System.out.println(empleadoClienteDto.toString());
+                Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+                imgEmpleado.setImage(img2);
+                txtNombre.setText(empleadoClienteDto.getNombre());
+                txtApellido.setText(empleadoClienteDto.getApellido());
+                txtCedula.setText(empleadoClienteDto.getCedula());
+
+                ZoneId defaultZoneId = ZoneId.systemDefault();
+                Instant instant = empleadoClienteDto.getfIngreso().toInstant();
+                LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
+
+                //TOMA EL Date y lo va a psar a algo
+                dteFechaNacimiento.setValue(localDate);
+                if("A".equals(empleadoClienteDto.getRol()))
+                {
+                    System.out.println("El empleado es un admin");
+                     rol = "A";
+                    chckAdmin.setIndeterminate(true);
+                }
+                else
+                {
+                    rol = "E";
+                    System.out.println("El empleado no un admin");
+                    chckAdmin.setIndeterminate(false);
+                }
+
+            }
         }
         if(event.getSource() == btnInsertarImagen)
         {
@@ -174,8 +174,7 @@ public class AdminControlController extends Controller implements Initializable
             {
                 Logger.getLogger(AgregarEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
             }
-           // service.guardarEmpleado(empleadoClienteDto);
-
+           service.guardarEmpleado(empleadoClienteDto);
             FlowController.getInstance().goVistas("MenuAdmin");
         }
         if(event.getSource() == btnRetroceder)

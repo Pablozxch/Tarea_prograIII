@@ -31,7 +31,7 @@ public class RegistroService
     @PersistenceContext(unitName = "WebServiceSoap")
     private EntityManager em;
 
-    public Respuesta getRegistro(Long id)
+    public Respuesta getRegistro(Long id)//UNICO REGRISTRO
     {
         try
         {
@@ -57,7 +57,7 @@ public class RegistroService
         }
     }
 
-    public Respuesta getRegistrosbyIdemp(Long Idemp)
+    public Respuesta getRegistrosbyIdemp(Long Idemp)//LISTA DE REGRISTROS POR IDEMP 
     {
 
         try
@@ -85,7 +85,7 @@ public class RegistroService
 
     }
 
-    public Respuesta getRegistrofindByFolio(String empFolio)
+    public Respuesta getRegistrofindByFolio(String empFolio)//POR FOLIO
     {
 
         try

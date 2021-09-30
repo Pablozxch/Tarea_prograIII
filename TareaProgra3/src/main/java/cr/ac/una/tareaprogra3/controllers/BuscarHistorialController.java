@@ -6,6 +6,7 @@
 package cr.ac.una.tareaprogra3.controllers;
 
 import com.jfoenix.controls.*;
+import static cr.ac.una.tareaprogra3.controllers.Controller.Nfolio;
 import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
@@ -30,7 +31,7 @@ public class BuscarHistorialController implements Initializable
     private TextField lblFolio;
     @FXML
     private JFXButton btnBuscar;
-    List<RegistroClienteDto> registroDto = new ArrayList<RegistroClienteDto>();
+    List<RegistroClienteDto> registroDto = new ArrayList<>();
     RegistroService service = new RegistroService();
     private Object resultado;
     @FXML
@@ -42,6 +43,10 @@ public class BuscarHistorialController implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
+        TableColumn<RegistroClienteDto , String> idEmp = new TableColumn<>("Fecha Entrada");
+        idEmp.setPrefWidth(192);
+        idEmp.setCellValueFactory(cd -> cd.getValue().empId);
+        idEmp.setResizable(false);
 
         TableColumn<RegistroClienteDto , Date> fechaEntrada = new TableColumn<>("Fecha Entrada");
         fechaEntrada.setPrefWidth(192);
@@ -58,6 +63,7 @@ public class BuscarHistorialController implements Initializable
         diaci.setCellValueFactory(cd -> cd.getValue().completado);
         diaci.setResizable(false);
 
+        tblHistorial.getColumns().add(idEmp);
         tblHistorial.getColumns().add(fechaEntrada);
         tblHistorial.getColumns().add(fechaSalida);
         tblHistorial.getColumns().add(diaci);
@@ -71,18 +77,20 @@ public class BuscarHistorialController implements Initializable
         if(event.getSource() == btnBuscar)
         {
             String folioaBuscar = lblFolio.getText();
-           // registroDto = service.getRegistrofindByFolio(folioaBuscar);
+            Respuesta respuesta = service.getRegistrofindByFolio(folioaBuscar);
+
+            registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
             ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);
 
             tblHistorial.setItems(empleados);
             tblHistorial.refresh();
         }
-        else if(event.getSource()==btnRegresar)
+        else if(event.getSource() == btnRegresar)
         {
-             resultado = tblHistorial.getSelectionModel().getSelectedItem();
-             RegistroClienteDto r= new RegistroClienteDto();
-             r=(RegistroClienteDto) resultado;
-             System.out.println("El resultado es " + r.toString());
+            resultado = tblHistorial.getSelectionModel().getSelectedItem();
+            RegistroClienteDto r = new RegistroClienteDto();
+            r = (RegistroClienteDto) resultado;
+            System.out.println("El resultado es " + r.toString());
         }
 
     }

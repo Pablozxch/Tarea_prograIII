@@ -59,10 +59,10 @@ public class EmpleadoService
     {
         try
         {
-            System.out.println("Los valores que vienen del empleado son "+empleadoClienteDto.toString());
+            System.out.println("Los valores que vienen del empleado son " + empleadoClienteDto.toString());
             SoapWS_Service service = new SoapWS_Service();
             SoapWS port = service.getSoapWSPort();
-            System.out.println("El valor es "+port);
+            System.out.println("El valor es " + port);
             EmpleadoDto emp = empleadoClienteDto.getEmpleadoToService();
             System.out.println("El id es " + emp.getId());
             System.out.println("El nombre es " + emp.getNombre());
@@ -70,9 +70,8 @@ public class EmpleadoService
             System.out.println("La foto es " + emp.getFoto());
             System.out.println("El folio es " + emp.getFolio());
             System.out.println("La foto es " + emp.getRol());
-      
-            
-            port.saveEmpleado(emp);     
+
+            port.saveEmpleado(emp);
             return new Respuesta(true , "" , "" , "user" , emp);
         }
         catch(Exception ex)
@@ -80,5 +79,17 @@ public class EmpleadoService
             return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
         }
     }
+
+//    public Respuesta eliminarEmpleado(String folio)
+//    {
+//        try
+//        {
+//             //return new Respuesta(true , "" , "" , "user" , EmpleadoClienteDto emp);
+//        }
+//        catch(Exception ex)
+//        {
+//            return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
+//        }
+//    }
 
 }

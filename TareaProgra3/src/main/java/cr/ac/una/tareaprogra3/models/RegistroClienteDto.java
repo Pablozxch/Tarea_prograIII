@@ -5,6 +5,7 @@
  */
 package cr.ac.una.tareaprogra3.models;
 
+import cr.ac.una.tareaprogra3.services.*;
 import java.time.*;
 import java.util.*;
 import javafx.beans.property.*;
@@ -25,7 +26,7 @@ public class RegistroClienteDto
     public ObjectProperty<Date> fechaSalida;
 //    @XmlTransient
     public SimpleStringProperty completado;
-
+    public SimpleStringProperty empId;
     //verificar si es necesario el empleado
     public RegistroClienteDto()
     {
@@ -35,6 +36,16 @@ public class RegistroClienteDto
         this.completado = new SimpleStringProperty();
     }
 
+    public RegistroClienteDto(RegistroDto registro)
+    {
+        this();
+        this.id.set(registro.getId().toString());
+        Date fingreso = registro.getFechaIngreso().toGregorianCalendar().getTime();
+        Date fsalida = registro.getFechaSalida().toGregorianCalendar().getTime();
+        this.fechaIngreso.set(fingreso);
+        this.fechaSalida.set(fsalida);
+        this.completado.set(registro.getCompletado());
+    }
 
     public void setId(Long id)
     {
@@ -81,6 +92,23 @@ public class RegistroClienteDto
     public void setCompletado(String completado)
     {
         this.completado.set(completado);
+    }
+
+    public Long getEmpId()
+    {
+         if(empId.get() != null && !empId.get().isEmpty())
+        {
+            return Long.valueOf(empId.get());
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public void setEmpId(String empId)
+    {
+        this.empId.set(empId);
     }
 
     @Override

@@ -20,8 +20,8 @@ public abstract class Controller
 
     private Stage stage;
     private String accion;
-    public static String Nfolio=new String();
-
+    public static String Nfolio=new String();//Para obtener la imagen del admin es la parte del menu admin
+    
     public String getAccion()
     {
         return accion;

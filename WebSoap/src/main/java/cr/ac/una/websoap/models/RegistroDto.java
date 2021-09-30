@@ -19,6 +19,7 @@ public class RegistroDto
     private Date fechaIngreso;
     private Date fechaSalida;
     private String completado;
+    private int empId;
 
     //verificar si es necesario el empleado
     public RegistroDto()
@@ -32,14 +33,14 @@ public class RegistroDto
     {
         this();
         this.id = registro.getRegId();
-        this.fechaIngreso=registro.getRegEntrada();
-        this.fechaSalida=registro.getRegSalida();
-        this.completado=registro.getRegCompletado();
+        this.fechaIngreso = registro.getRegEntrada();
+        this.fechaSalida = registro.getRegSalida();
+        this.completado = registro.getRegCompletado();
     }
 
     public void setId(Long id)
     {
-        this.id= id;
+        this.id = id;
     }
 
     public Long getId()
@@ -54,7 +55,7 @@ public class RegistroDto
 
     public void setFechaIngreso(Date fechaIngreso)
     {
-        this.fechaIngreso =fechaIngreso;
+        this.fechaIngreso = fechaIngreso;
     }
 
     public Date getFechaSalida()
@@ -64,7 +65,7 @@ public class RegistroDto
 
     public void setFechaSalida(Date fechaSalida)
     {
-        this.fechaSalida= fechaSalida;
+        this.fechaSalida = fechaSalida;
     }
 
     public String getCompletado()
@@ -74,7 +75,17 @@ public class RegistroDto
 
     public void setCompletado(String completado)
     {
-        this.completado=completado;
+        this.completado = completado;
+    }
+
+    public int getEmpId()
+    {
+        return empId;
+    }
+
+    public void setEmpId(int empId)
+    {
+        this.empId = empId;
     }
 
     @Override
