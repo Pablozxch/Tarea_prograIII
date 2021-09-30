@@ -22,8 +22,10 @@ public class EmpleadoService
 
     private static final Logger LOG = Logger.getLogger(EmpleadoService.class.getName());
 
-    @PersistenceContext(unitName="WebServiceSoap") private EntityManager em;
-   public Respuesta getEmpleado(Long id)
+    @PersistenceContext(unitName = "WebServiceSoap")
+    private EntityManager em;
+
+    public Respuesta getEmpleado(Long id)
     {
         try
         {
@@ -50,6 +52,7 @@ public class EmpleadoService
             return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
         }
     }
+
     public Respuesta getEmpleadobyFolio(String folio)
     {
         try
@@ -73,14 +76,17 @@ public class EmpleadoService
         }
         catch(Exception ex)
         {
-            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Error obteniendo el empleado [" + folio+ "]" , ex);
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Error obteniendo el empleado [" + folio + "]" , ex);
             return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
         }
     }
-     public Respuesta getEmpleadoAdmin(String folio, String pass,String rol)
-     {
-         
-           try
+
+
+
+    public Respuesta getEmpleadoAdmin(String folio , String pass , String rol)
+    {
+
+        try
         {
             Query gryEmpleado = em.createNamedQuery("Empleado.loginAdmin" , Empleado.class);
             gryEmpleado.setParameter("empFolio" , folio);
@@ -102,10 +108,11 @@ public class EmpleadoService
         }
         catch(Exception ex)
         {
-            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Error obteniendo el admin [" + folio+ "]" , ex);
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Error obteniendo el admin [" + folio + "]" , ex);
             return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
-        }      
-     }
+        }
+    }
+
     public Respuesta guardarEmpleado(EmpleadoDto empleadoDto)
     {
         try

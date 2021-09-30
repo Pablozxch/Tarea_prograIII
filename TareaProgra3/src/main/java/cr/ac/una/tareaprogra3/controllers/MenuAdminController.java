@@ -108,6 +108,10 @@ public class MenuAdminController extends Controller implements Initializable
         {
             FlowController.getInstance().goVistas("BuscarHistorial");
         }
+           if(event.getSource()==btnVerHistoriales)
+        {
+            FlowController.getInstance().goVistas("viewHistoriales");
+        }
     }
 
     public void llenarCentro()

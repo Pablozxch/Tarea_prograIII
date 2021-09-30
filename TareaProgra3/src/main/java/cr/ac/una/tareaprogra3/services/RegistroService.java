@@ -16,22 +16,47 @@ import java.util.*;
 public class RegistroService
 {
 
+    public Respuesta getAll()
+    {
+        try
+        {
+            List<RegistroClienteDto> registtroClienteDto = new ArrayList<>();
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            List<RegistroDto> emp= port.regtodo();
+            emp.forEach(empDto ->
+            {
+
+                registtroClienteDto.add(new RegistroClienteDto(empDto));
+            });
+            registtroClienteDto.forEach(t ->
+            {
+                System.out.println("Los valores del del cliente en sus registros on " + t.toString());
+            });
+            return new Respuesta(true , "" , "" , "Registro" , registtroClienteDto);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
+        }
+    }
+
     public Respuesta getRegistrofindByFolio(String folioaBuscar)
     {
         try
         {
-            List<RegistroClienteDto> registtroClienteDto=new ArrayList<>();
+            List<RegistroClienteDto> registtroClienteDto = new ArrayList<>();
             SoapWS_Service service = new SoapWS_Service();
             SoapWS port = service.getSoapWSPort();
-            List<RegistroDto> emp=port.registroFolio(folioaBuscar);
-            emp.forEach(empDto->
+            List<RegistroDto> emp = port.registroFolio(folioaBuscar);
+            emp.forEach(empDto ->
             {
-                
+
                 registtroClienteDto.add(new RegistroClienteDto(empDto));
             });
-            registtroClienteDto.forEach(t->
+            registtroClienteDto.forEach(t ->
             {
-                System.out.println("Los valores del del cliente en sus registros on "+t.toString());
+                System.out.println("Los valores del del cliente en sus registros on " + t.toString());
             });
             return new Respuesta(true , "" , "" , "Registro" , registtroClienteDto);
         }

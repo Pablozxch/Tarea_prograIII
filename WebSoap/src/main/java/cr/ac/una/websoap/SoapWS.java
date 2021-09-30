@@ -54,12 +54,11 @@ public class SoapWS
     public void saveEmpleado(@WebParam(name = "emp") EmpleadoDto emp)
     {
         String a;
-        System.out.println("Los valores que vienen llegando son "+emp.toString());
+        System.out.println("Los valores que vienen llegando son " + emp.toString());
         Respuesta respuesta = empleadoService.guardarEmpleado(emp);
     }
-    
-//    METODOS SOAP DEL EMPLEADO
 
+//    METODOS SOAP DEL EMPLEADO
     //    METODOS SOAP DEL REGISTRO
     @WebMethod(operationName = "RegistroFolio")//WORKEA
     public List<RegistroDto> getRegistroFolio(@WebParam(name = "folio") String fol)
@@ -82,6 +81,13 @@ public class SoapWS
     /**
      * Web service operation
      */
- 
+    @WebMethod(operationName = "regtodo")
+    public List<RegistroDto> getregtodo()
+    {
 
+        Respuesta respuesta = registroService.getAll();
+
+        registrolist = (List<RegistroDto>) respuesta.getResultado("Registro");
+        return registrolist;
+    }
 }

@@ -20,6 +20,10 @@
 
 <xs:element name="SaveEmpleadoResponse" type="tns:SaveEmpleadoResponse"/>
 
+<xs:element name="regtodo" type="tns:regtodo"/>
+
+<xs:element name="regtodoResponse" type="tns:regtodoResponse"/>
+
 <xs:complexType name="RegistrosbyId">
 <xs:sequence>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
@@ -64,6 +68,16 @@
 <xs:complexType name="EmpleadoFolioResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="regtodo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="regtodoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:registroDto" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

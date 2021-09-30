@@ -4,6 +4,12 @@
 <xsd:import namespace="http://websoap.una.ac.cr/" schemaLocation="http://localhost:8080/WebSoap/SoapWS?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="regtodo">
+<part name="parameters" element="tns:regtodo"/>
+</message>
+<message name="regtodoResponse">
+<part name="parameters" element="tns:regtodoResponse"/>
+</message>
 <message name="EmpleadoAdmin">
 <part name="parameters" element="tns:EmpleadoAdmin"/>
 </message>
@@ -35,6 +41,10 @@
 <part name="parameters" element="tns:RegistroFolioResponse"/>
 </message>
 <portType name="SoapWS">
+<operation name="regtodo">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/regtodoRequest" message="tns:regtodo"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/regtodoResponse" message="tns:regtodoResponse"/>
+</operation>
 <operation name="EmpleadoAdmin">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
@@ -58,6 +68,15 @@
 </portType>
 <binding name="SoapWSPortBinding" type="tns:SoapWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="regtodo">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="EmpleadoAdmin">
 <soap:operation soapAction=""/>
 <input>

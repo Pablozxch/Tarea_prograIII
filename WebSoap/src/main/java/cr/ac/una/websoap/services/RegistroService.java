@@ -31,6 +31,37 @@ public class RegistroService
     @PersistenceContext(unitName = "WebServiceSoap")
     private EntityManager em;
 
+    public Respuesta getAll()
+    {
+        try
+        {
+            Query qryRegistros = em.createNamedQuery("Registro.findAll" , Empleado.class);
+            List<Registro> registros = qryRegistros.getResultList();
+            List<RegistroDto> registrosDto = new ArrayList<>();
+            registros.forEach(Registros1 ->
+            {
+                registrosDto.add(new RegistroDto(Registros1));
+            });
+            return new Respuesta(true , "" , "" , "Registro" , registrosDto);
+
+        }
+        catch(NoResultException ex)
+        {
+            return new Respuesta(false , "No existe un admin con el codigo ingresado." , "getEmpleadoAdmin NoResultException");
+
+        }
+        catch(NonUniqueResultException ex)
+        {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Ocurrio un error al consultar el empleado" , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado  NonUniqueResultException ");
+
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
+        }
+    }
+
     public Respuesta getRegistro(Long id)//UNICO REGRISTRO
     {
         try
