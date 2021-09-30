@@ -126,7 +126,7 @@ public class AgregarEmpleadoController extends Controller implements Initializab
             {
                 Logger.getLogger(AgregarEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
             }
-          //  service.guardarEmpleado(empleadoClienteDto);
+            service.guardarEmpleado(empleadoClienteDto);
             FlowController.getInstance().goVistas("MenuAdmin");
 
         }

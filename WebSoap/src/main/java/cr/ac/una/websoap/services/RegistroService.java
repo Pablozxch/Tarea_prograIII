@@ -63,14 +63,14 @@ public class RegistroService
         try
         {
             Query qryRegistros = em.createNamedQuery("Registro.todo" , Registro.class);
-            qryRegistros.setParameter("Idemp" , Idemp);
+            qryRegistros.setParameter("empId" , Idemp);
             List<Registro> registros = qryRegistros.getResultList();
             List<RegistroDto> registrosDto = new ArrayList<>();
             registros.forEach(Registros1 ->
             {
                 registrosDto.add(new RegistroDto(Registros1));
             });
-            return new Respuesta(true , "" , "" , "RegistroById" , registrosDto);
+            return new Respuesta(true , "" , "" , "Registro" , registrosDto);
 
         }
         catch(NoResultException ex)
@@ -98,7 +98,7 @@ public class RegistroService
             {
                 registrosDto.add(new RegistroDto(Registros1));
             });
-            return new Respuesta(true , "" , "" , "RegistrobyFolio" , registrosDto);
+            return new Respuesta(true , "" , "" , "Registro" , registrosDto);
         }
         catch(NoResultException ex)
         {

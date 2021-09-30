@@ -4,11 +4,17 @@
 <xsd:import namespace="http://websoap.una.ac.cr/" schemaLocation="http://localhost:8080/WebSoap/SoapWS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="EmpleadoFolio">
-<part name="parameters" element="tns:EmpleadoFolio"/>
+<message name="EmpleadoAdmin">
+<part name="parameters" element="tns:EmpleadoAdmin"/>
 </message>
-<message name="EmpleadoFolioResponse">
-<part name="parameters" element="tns:EmpleadoFolioResponse"/>
+<message name="EmpleadoAdminResponse">
+<part name="parameters" element="tns:EmpleadoAdminResponse"/>
+</message>
+<message name="RegistroFolio">
+<part name="parameters" element="tns:RegistroFolio"/>
+</message>
+<message name="RegistroFolioResponse">
+<part name="parameters" element="tns:RegistroFolioResponse"/>
 </message>
 <message name="SaveEmpleado">
 <part name="parameters" element="tns:SaveEmpleado"/>
@@ -16,29 +22,52 @@
 <message name="SaveEmpleadoResponse">
 <part name="parameters" element="tns:SaveEmpleadoResponse"/>
 </message>
-<message name="EmpleadoAdmin">
-<part name="parameters" element="tns:EmpleadoAdmin"/>
+<message name="EmpleadoFolio">
+<part name="parameters" element="tns:EmpleadoFolio"/>
 </message>
-<message name="EmpleadoAdminResponse">
-<part name="parameters" element="tns:EmpleadoAdminResponse"/>
+<message name="EmpleadoFolioResponse">
+<part name="parameters" element="tns:EmpleadoFolioResponse"/>
+</message>
+<message name="RegistrosbyId">
+<part name="parameters" element="tns:RegistrosbyId"/>
+</message>
+<message name="RegistrosbyIdResponse">
+<part name="parameters" element="tns:RegistrosbyIdResponse"/>
 </message>
 <portType name="SoapWS">
-<operation name="EmpleadoFolio">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
+<operation name="EmpleadoAdmin">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
+</operation>
+<operation name="RegistroFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioRequest" message="tns:RegistroFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioResponse" message="tns:RegistroFolioResponse"/>
 </operation>
 <operation name="SaveEmpleado">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoRequest" message="tns:SaveEmpleado"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoResponse" message="tns:SaveEmpleadoResponse"/>
 </operation>
-<operation name="EmpleadoAdmin">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
+<operation name="EmpleadoFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
+</operation>
+<operation name="RegistrosbyId">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdRequest" message="tns:RegistrosbyId"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdResponse" message="tns:RegistrosbyIdResponse"/>
 </operation>
 </portType>
 <binding name="SoapWSPortBinding" type="tns:SoapWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="EmpleadoFolio">
+<operation name="EmpleadoAdmin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="RegistroFolio">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -56,7 +85,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="EmpleadoAdmin">
+<operation name="EmpleadoFolio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="RegistrosbyId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

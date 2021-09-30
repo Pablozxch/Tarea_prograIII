@@ -30,7 +30,7 @@ public class App extends Application
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
         FlowController.getInstance().goMain();
-        //FlowController.getInstance().goVistas("AdminControl");
+       //FlowController.getInstance().goVistas("AdminControl");
         //FlowController.getInstance().goVistas("MenuAdmin");
     }
 

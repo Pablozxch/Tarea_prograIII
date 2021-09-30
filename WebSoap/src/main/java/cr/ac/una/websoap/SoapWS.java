@@ -8,6 +8,7 @@ package cr.ac.una.websoap;
 import cr.ac.una.websoap.models.*;
 import cr.ac.una.websoap.services.*;
 import cr.ac.una.websoap.utils.*;
+import java.util.*;
 import javax.ejb.*;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -27,16 +28,16 @@ public class SoapWS
     @EJB
     RegistroService registroService;
 
+    List<RegistroDto> registrolist = new ArrayList<RegistroDto>();
     EmpleadoDto empleadoDto;
     RegistroDto registroDto;
 
 //    METODOS SOAP DEL EMPLEADO
     @WebMethod(operationName = "EmpleadoFolio")
-    public Object getEmpleadoFolio(@WebParam(name = "folio") String fol)
+    public EmpleadoDto getEmpleadoFolio(@WebParam(name = "folio") String fol)
     {
         Respuesta respuesta = empleadoService.getEmpleadobyFolio(fol);
         empleadoDto = (EmpleadoDto) respuesta.getResultado("EmpleadoFolio");
-        System.out.println("El valor es "+empleadoDto.toString());
         return empleadoDto;
     }
 
@@ -50,23 +51,47 @@ public class SoapWS
 
 //    guardarEmpleado(EmpleadoDto empleadoDto)
     @WebMethod(operationName = "SaveEmpleado")
-    public String saveEmpleado(@WebParam(name = "employee") EmpleadoDto empDto)
+    public String saveEmpleado(@WebParam(name = "emp") EmpleadoDto emp)
     {
-        Respuesta respuesta = empleadoService.guardarEmpleado(empDto);
-        String s;
+        String a;
+        System.out.println("Los valores que vienen llegando son "+emp.toString());
+        Respuesta respuesta = empleadoService.guardarEmpleado(emp);
         if(respuesta.getEstado())
         {
-            s = "Empleado guardado correctamente";
+             a = "done";
         }
         else
         {
-            s = "Error al  guardado el empleado";
+             a = "not done";
         }
-        return s;
+        return a;
     }
+    
 //    METODOS SOAP DEL EMPLEADO
 
-    
-    
     //    METODOS SOAP DEL REGISTRO
+    @WebMethod(operationName = "RegistroFolio")//WORKEA
+    public List<RegistroDto> getRegistroFolio(@WebParam(name = "folio") String fol)
+    {
+
+        Respuesta respuesta = registroService.getRegistrofindByFolio(fol);
+        registrolist = (List<RegistroDto>) respuesta.getResultado("Registro");
+        return registrolist;
+    }
+
+    @WebMethod(operationName = "RegistrosbyId")
+    public List<RegistroDto> getRegistrosById(@WebParam(name = "id") Long id)
+    {
+
+        Respuesta respuesta = registroService.getRegistrosbyIdemp(id);
+
+        registrolist = (List<RegistroDto>) respuesta.getResultado("Registro");
+        return registrolist;
+    }
+
+    /**
+     * Web service operation
+     */
+ 
+
 }

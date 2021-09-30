@@ -7,8 +7,9 @@ package cr.ac.una.tareaprogra3.models;
 
 import cr.ac.una.tareaprogra3.services.*;
 import java.util.*;
+import java.util.logging.*;
 import javafx.beans.property.*;
-
+import javax.xml.datatype.*;
 
 /**
  *
@@ -40,11 +41,12 @@ public class EmpleadoClienteDto
         this.nombre = new SimpleStringProperty();
         this.apellido = new SimpleStringProperty();
         this.cedula = new SimpleStringProperty();
-        this.nacimiento= new SimpleObjectProperty();
+        this.nacimiento = new SimpleObjectProperty();
         this.foto = new SimpleObjectProperty();
         this.folio = new SimpleStringProperty();
         this.rol = new SimpleStringProperty();
     }
+
     public EmpleadoClienteDto(EmpleadoDto empleado)
     {
         this();
@@ -52,7 +54,8 @@ public class EmpleadoClienteDto
         this.nombre.set(empleado.getNombre());
         this.apellido.set(empleado.getApellido());
         this.cedula.set(empleado.getCedula());
-        //this.nacimiento.set(empleado.getNacimiento().);
+        Date date = empleado.getNacimiento().toGregorianCalendar().getTime();
+        this.nacimiento.set(date);
         this.foto.set(empleado.getFoto());
         this.folio.set(empleado.getFolio());
         this.rol.set(empleado.getRol());
@@ -150,12 +153,38 @@ public class EmpleadoClienteDto
         return rol.get();
     }
 
+    public EmpleadoDto getEmpleadoToService()
+    {
+        EmpleadoDto emp = new EmpleadoDto();
+        emp.setId(this.getId());
+        emp.setNombre(this.getNombre());
+        emp.setApellido(this.getApellido());
+        emp.setCedula(this.getCedula());
+        GregorianCalendar c = new GregorianCalendar();
+        c.setTime(this.getNacimiento());
+        XMLGregorianCalendar date2;
+        try
+        {
+            date2 = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+            emp.setNacimiento(date2);
+
+        }
+        catch(DatatypeConfigurationException ex)
+        {
+            Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
+        }
+
+        emp.setFoto(this.getFoto());
+        emp.setFolio(this.getFolio());
+        emp.setRol(this.getRol());
+
+        return emp;
+    }
+
     @Override
     public String toString()
     {
         return "EmpleadoClienteDto{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", nacimiento=" + nacimiento + ", foto=" + foto + ", folio=" + folio + ", rol=" + rol + '}';
     }
-
-
 
 }
