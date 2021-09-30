@@ -31,7 +31,7 @@ public class RegistroService
             });
             registtroClienteDto.forEach(t->
             {
-                System.out.println("Los valores del cliente son "+t.toString());
+                System.out.println("Los valores del del cliente en sus registros on "+t.toString());
             });
             return new Respuesta(true , "" , "" , "Registro" , registtroClienteDto);
         }

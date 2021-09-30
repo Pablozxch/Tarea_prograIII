@@ -43,27 +43,27 @@ public class BuscarHistorialController implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        TableColumn<RegistroClienteDto , String> idEmp = new TableColumn<>("Fecha Entrada");
-        idEmp.setPrefWidth(192);
-        idEmp.setCellValueFactory(cd -> cd.getValue().empId);
+        TableColumn<RegistroClienteDto , String> idEmp = new TableColumn<>("Folio");
+        idEmp.setPrefWidth(50);
+        idEmp.setCellValueFactory(cd -> cd.getValue().empId.get().folio);
         idEmp.setResizable(false);
 
         TableColumn<RegistroClienteDto , Date> fechaEntrada = new TableColumn<>("Fecha Entrada");
-        fechaEntrada.setPrefWidth(192);
+        fechaEntrada.setPrefWidth(200);
         fechaEntrada.setCellValueFactory(cd -> cd.getValue().fechaIngreso);
         fechaEntrada.setResizable(false);
 
         TableColumn<RegistroClienteDto , Date> fechaSalida = new TableColumn<>("Fecha Salida");
-        fechaSalida.setPrefWidth(193.33);
+        fechaSalida.setPrefWidth(200);
         fechaSalida.setCellValueFactory(cd -> cd.getValue().fechaSalida);
         fechaSalida.setResizable(false);
 
         TableColumn<RegistroClienteDto , String> diaci = new TableColumn<>("Dia Completado");
-        diaci.setPrefWidth(192);
+        diaci.setPrefWidth(138);
         diaci.setCellValueFactory(cd -> cd.getValue().completado);
         diaci.setResizable(false);
 
-        tblHistorial.getColumns().add(idEmp);
+       tblHistorial.getColumns().add(idEmp);
         tblHistorial.getColumns().add(fechaEntrada);
         tblHistorial.getColumns().add(fechaSalida);
         tblHistorial.getColumns().add(diaci);

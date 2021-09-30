@@ -35,21 +35,10 @@
 <xs:complexType name="registroDto">
 <xs:sequence>
 <xs:element name="completado" type="xs:string" minOccurs="0"/>
+<xs:element name="empId" type="tns:empleadoDto" minOccurs="0"/>
 <xs:element name="fechaIngreso" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="fechaSalida" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="EmpleadoFolio">
-<xs:sequence>
-<xs:element name="folio" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="EmpleadoFolioResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -63,6 +52,18 @@
 <xs:element name="nacimiento" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="rol" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -98,8 +99,6 @@
 </xs:complexType>
 
 <xs:complexType name="SaveEmpleadoResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
+<xs:sequence/>
 </xs:complexType>
 </xs:schema>

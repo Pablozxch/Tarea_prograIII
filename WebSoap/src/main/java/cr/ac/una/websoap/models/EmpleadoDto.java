@@ -26,25 +26,25 @@ public class EmpleadoDto
 
     public EmpleadoDto()
     {
-       this.nacimiento=new Date();
+        this.nacimiento = new Date();
     }
 
     public EmpleadoDto(Empleado empleado)
     {
         this();
         this.id = empleado.getEmpId();
-        this.nombre= empleado.getEmNombre();
-        this.apellido=empleado.getEmpApellido();
-        this.cedula=empleado.getEmpCedula();
-        this.nacimiento=empleado.getEmpNacimiento();
-        this.foto=empleado.getEmpFoto();
-        this.folio=empleado.getEmpFolio();
-        this.rol=empleado.getEmpRol();
+        this.nombre = empleado.getEmNombre();
+        this.apellido = empleado.getEmpApellido();
+        this.cedula = empleado.getEmpCedula();
+        this.nacimiento = empleado.getEmpNacimiento();
+        this.foto = empleado.getEmpFoto();
+        this.folio = empleado.getEmpFolio();
+        this.rol = empleado.getEmpRol();
     }
 
     public void setId(Long id)
     {
-        this.id= id;
+        this.id = id;
     }
 
     public Long getId()
@@ -54,7 +54,7 @@ public class EmpleadoDto
 
     public void setNombre(String nombre)//Set de los nombres
     {
-        this.nombre=nombre;
+        this.nombre = nombre;
     }
 
     public String getNombre()//Get del nombre
@@ -64,7 +64,7 @@ public class EmpleadoDto
 
     public void setApellido(String apellido)//Set del apellido
     {
-        this.apellido=apellido;
+        this.apellido = apellido;
     }
 
     public String getApellido()//Get del apellido
@@ -74,7 +74,7 @@ public class EmpleadoDto
 
     public void setCedula(String cedula)//Set de la cedula
     {
-        this.cedula=cedula;
+        this.cedula = cedula;
     }
 
     public String getCedula()//Get de la cedula
@@ -89,7 +89,7 @@ public class EmpleadoDto
 
     public void setNacimiento(Date nacimiento)
     {
-        this.nacimiento=nacimiento;
+        this.nacimiento = nacimiento;
     }
 
     public Date getNacimiento()
@@ -109,7 +109,7 @@ public class EmpleadoDto
 
     public void setFolio(String folio)
     {
-        this.folio=folio;
+        this.folio = folio;
     }
 
     public String getFolio()
@@ -119,7 +119,7 @@ public class EmpleadoDto
 
     public void setRol(String rol)
     {
-        this.rol=rol;
+        this.rol = rol;
     }
 
     public String getRol()
@@ -127,12 +127,12 @@ public class EmpleadoDto
         return rol;
     }
 
+
+
     @Override
     public String toString()
     {
         return "EmpleadoDto{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", nacimiento=" + nacimiento + ", foto=" + foto + ", folio=" + folio + ", rol=" + rol + '}';
     }
-
-
 
 }

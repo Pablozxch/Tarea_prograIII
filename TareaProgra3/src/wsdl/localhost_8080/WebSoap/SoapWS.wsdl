@@ -10,11 +10,11 @@
 <message name="EmpleadoAdminResponse">
 <part name="parameters" element="tns:EmpleadoAdminResponse"/>
 </message>
-<message name="RegistroFolio">
-<part name="parameters" element="tns:RegistroFolio"/>
+<message name="EmpleadoFolio">
+<part name="parameters" element="tns:EmpleadoFolio"/>
 </message>
-<message name="RegistroFolioResponse">
-<part name="parameters" element="tns:RegistroFolioResponse"/>
+<message name="EmpleadoFolioResponse">
+<part name="parameters" element="tns:EmpleadoFolioResponse"/>
 </message>
 <message name="SaveEmpleado">
 <part name="parameters" element="tns:SaveEmpleado"/>
@@ -22,38 +22,38 @@
 <message name="SaveEmpleadoResponse">
 <part name="parameters" element="tns:SaveEmpleadoResponse"/>
 </message>
-<message name="EmpleadoFolio">
-<part name="parameters" element="tns:EmpleadoFolio"/>
-</message>
-<message name="EmpleadoFolioResponse">
-<part name="parameters" element="tns:EmpleadoFolioResponse"/>
-</message>
 <message name="RegistrosbyId">
 <part name="parameters" element="tns:RegistrosbyId"/>
 </message>
 <message name="RegistrosbyIdResponse">
 <part name="parameters" element="tns:RegistrosbyIdResponse"/>
 </message>
+<message name="RegistroFolio">
+<part name="parameters" element="tns:RegistroFolio"/>
+</message>
+<message name="RegistroFolioResponse">
+<part name="parameters" element="tns:RegistroFolioResponse"/>
+</message>
 <portType name="SoapWS">
 <operation name="EmpleadoAdmin">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
 </operation>
-<operation name="RegistroFolio">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioRequest" message="tns:RegistroFolio"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioResponse" message="tns:RegistroFolioResponse"/>
+<operation name="EmpleadoFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
 </operation>
 <operation name="SaveEmpleado">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoRequest" message="tns:SaveEmpleado"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoResponse" message="tns:SaveEmpleadoResponse"/>
 </operation>
-<operation name="EmpleadoFolio">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
-</operation>
 <operation name="RegistrosbyId">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdRequest" message="tns:RegistrosbyId"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdResponse" message="tns:RegistrosbyIdResponse"/>
+</operation>
+<operation name="RegistroFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioRequest" message="tns:RegistroFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioResponse" message="tns:RegistroFolioResponse"/>
 </operation>
 </portType>
 <binding name="SoapWSPortBinding" type="tns:SoapWS">
@@ -67,7 +67,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="RegistroFolio">
+<operation name="EmpleadoFolio">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -85,7 +85,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="EmpleadoFolio">
+<operation name="RegistrosbyId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -94,7 +94,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="RegistrosbyId">
+<operation name="RegistroFolio">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

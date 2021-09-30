@@ -153,6 +153,8 @@ public class EmpleadoClienteDto
         return rol.get();
     }
 
+
+
     public EmpleadoDto getEmpleadoToService()
     {
         EmpleadoDto emp = new EmpleadoDto();
@@ -184,7 +186,17 @@ public class EmpleadoClienteDto
     @Override
     public String toString()
     {
-        return "EmpleadoClienteDto{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", nacimiento=" + nacimiento + ", foto=" + foto + ", folio=" + folio + ", rol=" + rol + '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("EmpleadoClienteDto{id=").append(id);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", apellido=").append(apellido);
+        sb.append(", cedula=").append(cedula);
+        sb.append(", nacimiento=").append(nacimiento);
+        sb.append(", foto=").append(foto);
+        sb.append(", folio=").append(folio);
+        sb.append(", rol=").append(rol);
+        sb.append('}');
+        return sb.toString();
     }
 
 }

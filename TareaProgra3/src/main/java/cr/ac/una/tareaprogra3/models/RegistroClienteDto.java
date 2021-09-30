@@ -26,7 +26,7 @@ public class RegistroClienteDto
     public ObjectProperty<Date> fechaSalida;
 //    @XmlTransient
     public SimpleStringProperty completado;
-    public SimpleStringProperty empId;
+    public ObjectProperty<EmpleadoClienteDto> empId;
     //verificar si es necesario el empleado
     public RegistroClienteDto()
     {
@@ -34,6 +34,7 @@ public class RegistroClienteDto
         this.fechaIngreso = new SimpleObjectProperty();
         this.fechaSalida = new SimpleObjectProperty();
         this.completado = new SimpleStringProperty();
+        this.empId = new SimpleObjectProperty();
     }
 
     public RegistroClienteDto(RegistroDto registro)
@@ -45,6 +46,7 @@ public class RegistroClienteDto
         this.fechaIngreso.set(fingreso);
         this.fechaSalida.set(fsalida);
         this.completado.set(registro.getCompletado());
+        this.empId.set(new EmpleadoClienteDto(registro.getEmpId()));
     }
 
     public void setId(Long id)
@@ -94,19 +96,12 @@ public class RegistroClienteDto
         this.completado.set(completado);
     }
 
-    public Long getEmpId()
+    public EmpleadoClienteDto getEmpId()
     {
-         if(empId.get() != null && !empId.get().isEmpty())
-        {
-            return Long.valueOf(empId.get());
-        }
-        else
-        {
-            return null;
-        }
+        return this.empId.get();
     }
 
-    public void setEmpId(String empId)
+    public void setEmpId(EmpleadoClienteDto empId)
     {
         this.empId.set(empId);
     }
@@ -119,6 +114,7 @@ public class RegistroClienteDto
         sb.append(", fechaIngreso=").append(fechaIngreso);
         sb.append(", fechaSalida=").append(fechaSalida);
         sb.append(", completado=").append(completado);
+        sb.append(", empleado").append(empId.toString());
         sb.append('}');
         return sb.toString();
     }

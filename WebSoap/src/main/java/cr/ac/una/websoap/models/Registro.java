@@ -82,6 +82,7 @@ public class Registro implements Serializable
         this.regEntrada = registroDto.getFechaIngreso();
         this.regSalida = registroDto.getFechaSalida();
         this.regCompletado = registroDto.getCompletado();
+        this.empId=new Empleado(registroDto.getEmpId());
     }
     
     
