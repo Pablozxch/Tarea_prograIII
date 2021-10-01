@@ -53,9 +53,13 @@ public class SoapWS
     @WebMethod(operationName = "SaveEmpleado")
     public void saveEmpleado(@WebParam(name = "emp") EmpleadoDto emp)
     {
-        String a;
-        System.out.println("Los valores que vienen llegando son " + emp.toString());
         Respuesta respuesta = empleadoService.guardarEmpleado(emp);
+    }
+    //guardar registro
+    @WebMethod(operationName = "SaveRegistro")
+     public void saveRegistro(@WebParam(name = "reg") RegistroDto reg)
+    {
+        Respuesta respuesta = registroService.saveRegistro(reg);
     }
 
 //    METODOS SOAP DEL EMPLEADO

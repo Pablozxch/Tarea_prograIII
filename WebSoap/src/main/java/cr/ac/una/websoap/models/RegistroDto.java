@@ -36,7 +36,7 @@ public class RegistroDto
         this.fechaIngreso = registro.getRegEntrada();
         this.fechaSalida = registro.getRegSalida();
         this.completado = registro.getRegCompletado();
-        this.empId=new EmpleadoDto(registro.getEmpId());
+        this.empId=new EmpleadoDto(registro.getEmpId());//aqui busca el objeto empleado y lo manda 
     }
 
     public void setId(Long id)

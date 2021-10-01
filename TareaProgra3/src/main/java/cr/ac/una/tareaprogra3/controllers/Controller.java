@@ -5,6 +5,7 @@
  */
 package cr.ac.una.tareaprogra3.controllers;
 
+import cr.ac.una.tareaprogra3.models.*;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
@@ -21,7 +22,7 @@ public abstract class Controller
     private Stage stage;
     private String accion;
     public static String Nfolio=new String();//Para obtener la imagen del admin es la parte del menu admin
-    
+    public static EmpleadoClienteDto emp=new EmpleadoClienteDto();
     public String getAccion()
     {
         return accion;
@@ -84,5 +85,15 @@ public abstract class Controller
     }
 
     public abstract void initialize();
+
+    public EmpleadoClienteDto getEmp()
+    {
+        return emp;
+    }
+
+    public void setEmp(EmpleadoClienteDto emp)
+    {
+        this.emp = emp;
+    }
 
 }

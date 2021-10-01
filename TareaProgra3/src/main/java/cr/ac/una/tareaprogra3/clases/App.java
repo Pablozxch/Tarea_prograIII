@@ -30,7 +30,7 @@ public class App extends Application
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
         FlowController.getInstance().goMain();
-       //FlowController.getInstance().goVistas("MarcaEmpleados");
+        //FlowController.getInstance().goVistas("MarcaEmpleados");
         //FlowController.getInstance().goVistas("MenuAdmin");
     }
 
@@ -47,22 +47,13 @@ public class App extends Application
 
     public static void main(String[] args)
     {
-//        Date date = new Date();
-//        DateFormat dateFormat = new SimpleDateFormat("ss");
-//        //System.out.println("Segundos: " + dateFormat.format(date));
-//        System.out.println("Segundos "+ dateFormat.format(date));
-////        for(int i = 0; i < 10;)
-////        {
-////
-//////Caso 1: obtener la hora y salida por pantalla con formato:
-////            DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
-////            System.out.println("Hora: " + hourFormat.format(date));
-////////Caso 2: obtener la fecha y salida por pantalla con formato:
-////
-////////Caso 3: obtenerhora y fecha y salida por pantalla con formato:
-//        //DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-//////        System.out.println("Hora y fecha: " + hourdateFormat.format(date));
-////        }
+
+        Date date = new Date();
+        date.setHours(22);
+        date.setMinutes(20);
+        date.setSeconds(50);
+        DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        System.out.println("La fecha es "+hourFormat.format(date));
 
         launch();
     }

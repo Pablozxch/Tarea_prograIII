@@ -23,7 +23,7 @@ public class RegistroService
             List<RegistroClienteDto> registtroClienteDto = new ArrayList<>();
             SoapWS_Service service = new SoapWS_Service();
             SoapWS port = service.getSoapWSPort();
-            List<RegistroDto> emp= port.regtodo();
+            List<RegistroDto> emp = port.regtodo();
             emp.forEach(empDto ->
             {
 
@@ -59,6 +59,24 @@ public class RegistroService
                 System.out.println("Los valores del del cliente en sus registros on " + t.toString());
             });
             return new Respuesta(true , "" , "" , "Registro" , registtroClienteDto);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
+        }
+    }
+
+    public Respuesta saveRegistro(RegistroClienteDto registroClienteDto,EmpleadoClienteDto emp)
+    {
+        try
+        {
+           
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            RegistroDto reg= registroClienteDto.getRegistroToService(emp);
+             System.out.println("Registro guardado con extio");
+             port.saveRegistro(reg);
+            return new Respuesta(true , "" , "" , "user" , reg);
         }
         catch(Exception ex)
         {

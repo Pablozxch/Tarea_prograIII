@@ -26,7 +26,7 @@ import javax.persistence.Query;
 public class RegistroService
 {
 
-    private static final Logger LOG = Logger.getLogger(EmpleadoService.class.getName());
+    private static final Logger LOG = Logger.getLogger(RegistroService.class.getName());
 
     @PersistenceContext(unitName = "WebServiceSoap")
     private EntityManager em;
@@ -35,7 +35,7 @@ public class RegistroService
     {
         try
         {
-            Query qryRegistros = em.createNamedQuery("Registro.findAll" , Empleado.class);
+            Query qryRegistros = em.createNamedQuery("Registro.findAll" , Registro.class);
             List<Registro> registros = qryRegistros.getResultList();
             List<RegistroDto> registrosDto = new ArrayList<>();
             registros.forEach(Registros1 ->
@@ -47,18 +47,18 @@ public class RegistroService
         }
         catch(NoResultException ex)
         {
-            return new Respuesta(false , "No existe un admin con el codigo ingresado." , "getEmpleadoAdmin NoResultException");
+            return new Respuesta(false , "No existe un admin con el codigo ingresado." , "getRegistroAdmin NoResultException");
 
         }
         catch(NonUniqueResultException ex)
         {
-            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE , "Ocurrio un error al consultar el empleado" , ex);
-            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado  NonUniqueResultException ");
+            Logger.getLogger(RegistroService.class.getName()).log(Level.SEVERE , "Ocurrio un error al consultar el registro" , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el registro." , "getRegistro  NonUniqueResultException ");
 
         }
         catch(Exception ex)
         {
-            return new Respuesta(false , "Error obteniendo el deporte ." , "getEmpleado " + ex.getMessage());
+            return new Respuesta(false , "Error obteniendo el deporte ." , "getRegistro " + ex.getMessage());
         }
     }
 
@@ -106,12 +106,12 @@ public class RegistroService
         }
         catch(NoResultException ex)
         {
-            return new Respuesta(false , "No existen empleados con los criterios ingresados." , "getEmpleados NoResultException");
+            return new Respuesta(false , "No existen registros con los criterios ingresados." , "getRegistros NoResultException");
         }
         catch(Exception ex)
         {
-            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el empleado." , ex);
-            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado " + ex.getMessage());
+            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el registro." , "getRegistro " + ex.getMessage());
         }
 
     }
@@ -133,13 +133,43 @@ public class RegistroService
         }
         catch(NoResultException ex)
         {
-            return new Respuesta(false , "No existen empleados con los criterios ingresados." , "getEmpleados NoResultException");
+            return new Respuesta(false , "No existen registros con los criterios ingresados." , "getRegistros NoResultException");
         }
         catch(Exception ex)
         {
-            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el empleado." , ex);
-            return new Respuesta(false , "Ocurrio un error al consultar el empleado." , "getEmpleado " + ex.getMessage());
+            LOG.log(Level.SEVERE , "Ocurrio un error al consultar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al consultar el registro." , "getRegistro " + ex.getMessage());
         }
+    }
+    public Respuesta saveRegistro(RegistroDto registroDto)
+    {
+       try
+        {
+            Registro registro;
+            if(registroDto.getId() != null && registroDto.getId() > 0)
+            {
+                registro = em.find(Registro.class , registroDto.getId());
+                if(registro == null)
+                {
+                    return new Respuesta(false , "No se encrontró el registro a modificar." , "guardarRegistro NoResultException");
+                }
+                registro.actualizarRegistro(registroDto);
+                registro = em.merge(registro);
+            }
+            else
+            {
+                registro = new Registro(registroDto);
+                em.persist(registro);
+            }
+            em.flush();
+            System.out.println("El registro se guardo con exito"+registroDto.toString());
+            return new Respuesta(true , "" , "" , "Registro" , new RegistroDto(registro));
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al guardar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al guardar el registro." , "guardarRegistro " + ex.getMessage());
+        } 
     }
 
 }

@@ -50,7 +50,7 @@ public class MainController extends Controller implements Initializable
         else if(event.getSource()==btnEmpleado)
         {
             System.out.println("Empleado");
-            
+             FlowController.getInstance().goVistas("LoginEmpleado");
         }
     }
 

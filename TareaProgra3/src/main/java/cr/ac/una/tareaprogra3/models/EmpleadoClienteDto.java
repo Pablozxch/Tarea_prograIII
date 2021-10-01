@@ -15,7 +15,7 @@ import javax.xml.datatype.*;
  *
  * @author jp015
  */
-public class EmpleadoClienteDto
+ public class EmpleadoClienteDto
 {
 
 //    @XmlTransient

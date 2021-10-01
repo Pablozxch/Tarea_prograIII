@@ -214,6 +214,20 @@
                         <id>debug</id>
                         <configuration>
                             <options>
+                                <options>
+                                    <option>--add-exports</option>
+                                    <option>javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix</option>
+                                    <option>--add-exports</option>
+                                    <option>javafx.controls/com.sun.javafx.scene.control=com.jfoenix</option>
+                                    <option>--add-exports</option>
+                                    <option>javafx.base/com.sun.javafx.binding=com.jfoenix</option>
+                                    <option>--add-exports</option>
+                                    <option>javafx.graphics/com.sun.javafx.stage=com.jfoenix</option>
+                                    <option>--add-exports</option>
+                                    <option>javafx.base/com.sun.javafx.event=com.jfoenix</option>
+                                    <option>--add-opens</option>
+                                    <option>java.base/java.lang.reflect=com.jfoenix</option>
+                                </options>       
                                 <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:8000</option>
                             </options>
                         </configuration>
@@ -261,9 +275,9 @@
             <artifactId>jaxws-maven-plugin</artifactId>
             <version>2.6</version>-->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <version>2.6</version>
+ <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxws-maven-plugin</artifactId>
+            <version>2.6</version>
                 <executions>
                     <execution>
                         <goals>
