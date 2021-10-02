@@ -11,7 +11,11 @@ import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
 import java.io.*;
 import java.net.URL;
+import java.text.*;
+import java.time.*;
 import java.util.*;
+import java.util.logging.*;
+import java.util.stream.*;
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
@@ -38,6 +42,14 @@ public class ViewHistorialesController extends Controller implements Initializab
     private JFXButton btnSalir;
     @FXML
     private JFXButton btnEliminar;
+    @FXML
+    private DatePicker dtpEntrdadaR;
+    @FXML
+    private DatePicker dtpSalidaR;
+    @FXML
+    private JFXButton btnFilter;
+    @FXML
+    private JFXCheckBox chkES;
 
     /**
      * Initializes the controller class.
@@ -45,6 +57,7 @@ public class ViewHistorialesController extends Controller implements Initializab
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
+        chkES.setSelected(true);
         TableColumn<RegistroClienteDto , String> idEmp = new TableColumn<>("Folio");
         idEmp.setPrefWidth(50);
         idEmp.setCellValueFactory(cd -> cd.getValue().empId.get().folio);
@@ -70,34 +83,123 @@ public class ViewHistorialesController extends Controller implements Initializab
         tblHistorial.getColumns().add(fechaSalida);
         tblHistorial.getColumns().add(diaci);
         tblHistorial.refresh();
-        x();
+        actualizarDatosInicales();
 
     }
 
-    public void x()
+    public Date rangoEntrada()
+    {
+        LocalDate localDate = dtpEntrdadaR.getValue();
+        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        Date dateFE = Date.from(instant);
+        return dateFE;
+    }
+
+    public Date rangoSalida()
+    {
+        LocalDate localDate = dtpSalidaR.getValue();
+        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        Date dateFE = Date.from(instant);
+        return dateFE;
+    }
+
+    public void actualizarDatosInicales()
     {
         Respuesta respuesta = service.getAll();
 
         registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
-        ArrayList<ArrayList<Object>> lista1 = new ArrayList<>();//lista principal
-        ArrayList<Object> lista2 = new ArrayList();
 
-        registroDto.forEach(t ->
-        {
-            ArrayList<Object> a = new ArrayList<Object>();
-            a.add(t.getEmpId().getFolio());
-            a.add(t.getFechaIngreso());
-            a.add(t.getFechaSalida());
-            a.add(t.getCompletado());
-            lista1.add(a);
-            System.out.println("Registro completado e ingresado");
-
-        });
-
-        System.out.println("El valor en es " + lista1.get(0).get(0));
-        System.out.println("El valor en es " + lista1.get(1).get(0));
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);
 
+        tblHistorial.setItems(empleados);
+        tblHistorial.refresh();
+    }
+
+    public void actualizarDatosSoloEntradaDespues()//solo tienen el primero con datos
+    {
+        Date FRE = rangoEntrada();
+        List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
+                  .stream().filter(t -> t.getFechaIngreso().after(FRE))
+                  .collect(Collectors.toList());
+        System.out.println("La lista tiene estos valores");
+        customersWithMoreThan100Points.forEach(t ->
+        {
+            System.out.println("Los valores del filtro son" + t);
+        });
+        ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
+        tblHistorial.setItems(empleados);
+        tblHistorial.refresh();
+    }
+
+    public void actualizarDatosSoloEntradaAntes()//solo tiene el segundo con datos
+    {
+        Date FRE = rangoSalida();
+        List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
+                  .stream().filter(t -> t.getFechaIngreso().before(FRE))
+                  .collect(Collectors.toList());
+        System.out.println("La lista tiene estos valores");
+        customersWithMoreThan100Points.forEach(t ->
+        {
+            System.out.println("Los valores del filtro son" + t);
+        });
+        ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
+        tblHistorial.setItems(empleados);
+        tblHistorial.refresh();
+    }
+
+    public void actualizarDatosFiltroEntrada()//los dos dptpicker tienen datos
+    {
+
+        Date FRE = rangoEntrada();
+        Date FRS = rangoSalida();
+        List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
+                  .stream().filter(t -> t.getFechaIngreso().after(FRE) && t.getFechaIngreso().before(FRS))
+                  .collect(Collectors.toList());
+        System.out.println("La lista tiene estos valores");
+        customersWithMoreThan100Points.forEach(t ->
+        {
+            System.out.println("Los valores del filtro son" + t);
+        });
+        ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
+        tblHistorial.setItems(empleados);
+        tblHistorial.refresh();
+    }
+
+    public void actualizarDatosFiltroSalida()//Metodo para filtrar las varas completas de Salida
+    {
+        Date FRE = rangoEntrada();
+        Date FRS = rangoSalida();
+        List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
+                  .stream().filter(t -> t.getFechaSalida().after(FRE) && t.getFechaSalida().before(FRS))
+                  .collect(Collectors.toList());
+        System.out.println("La lista tiene estos valores");
+        customersWithMoreThan100Points.forEach(t ->
+        {
+            System.out.println("Los valores del filtro son" + t);
+        });
+        ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
+        tblHistorial.setItems(empleados);
+        tblHistorial.refresh();
+    }
+
+    public void actualizarDatosSoloSalidaDespues()
+    {
+        Date FRE = rangoEntrada();
+        List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
+                  .stream().filter(t -> t.getFechaSalida().after(FRE))
+                  .collect(Collectors.toList());
+        ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
+        tblHistorial.setItems(empleados);
+        tblHistorial.refresh();
+    }
+
+    public void actualizarDatosSoloSalidaAntes()
+    {
+        Date FRE = rangoSalida();
+        List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
+                  .stream().filter(t -> t.getFechaSalida().before(FRE))
+                  .collect(Collectors.toList());
+        ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
     }
@@ -109,27 +211,94 @@ public class ViewHistorialesController extends Controller implements Initializab
     }
 
     @FXML
-    private void click(ActionEvent event) throws IOException
+    private void changename(ActionEvent event)
     {
+        if(chkES.isSelected())
+        {
+            chkES.setText("Entrada");
+        }
+        else
+        {
+            chkES.setText("Salida");
+        }
+
+    }
+
+    @FXML
+    private void click(ActionEvent event)
+    {
+        if(event.getSource() == btnFilter)
+        {
+            if(chkES.isSelected() == true)
+            {
+
+                if(dtpEntrdadaR.getValue() == null && dtpSalidaR.getValue() == null)
+                {
+                    actualizarDatosInicales();
+                }
+                else if(dtpEntrdadaR.getValue() != null && dtpSalidaR.getValue() != null)
+                {
+                    actualizarDatosFiltroEntrada();
+                }
+                else if(dtpEntrdadaR.getValue() != null && dtpSalidaR.getValue() == null)
+                {
+                    actualizarDatosSoloEntradaDespues();
+                }
+                else if(dtpEntrdadaR.getValue() == null && dtpSalidaR.getValue() != null)
+                {
+                    actualizarDatosSoloEntradaAntes();
+                }
+            }
+            else
+            {
+
+                if(dtpEntrdadaR.getValue() == null && dtpSalidaR.getValue() == null)
+                {
+                    actualizarDatosInicales();
+                }
+                else if(dtpEntrdadaR.getValue() != null && dtpSalidaR.getValue() != null)
+                {
+                    actualizarDatosFiltroSalida();
+                }
+                else if(dtpEntrdadaR.getValue() != null && dtpSalidaR.getValue() == null)
+                {
+                    actualizarDatosSoloSalidaDespues();
+                }
+                else if(dtpEntrdadaR.getValue() == null && dtpSalidaR.getValue() != null)
+                {
+                    actualizarDatosSoloSalidaAntes();
+                }
+            }
+            dtpEntrdadaR.setValue(null);
+            dtpSalidaR.setValue(null);
+        }
         if(event.getSource() == btnEditar)
         {
             if(tblHistorial.getSelectionModel().getSelectedItem() != null)
             {
-                setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
-                RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
-                System.out.println("El valor seleccionado es " + reg.toString());
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setOpacity(1);
-                Scene scene = new Scene(root , 647 , 474);
-                stage.setScene(scene);
-                stage.resizableProperty().set(false);
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(btnEditar.getScene().getWindow());
-                stage.centerOnScreen();
-                stage.showAndWait();
-                x();
+                try
+                {
+                    setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
+                    RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
+                    System.out.println("El valor seleccionado es " + reg.toString());
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setOpacity(1);
+                    Scene scene = new Scene(root , 647 , 474);
+                    stage.setScene(scene);
+                    stage.resizableProperty().set(false);
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initOwner(btnEditar.getScene().getWindow());
+                    stage.centerOnScreen();
+                    stage.showAndWait();
+                    actualizarDatosInicales();
+                }
+                catch(IOException ex)
+                {
+                    Logger.getLogger(ViewHistorialesController.class.getName()).log(Level.SEVERE , null , ex);
+                }
+
             }
             else
             {
@@ -153,4 +322,5 @@ public class ViewHistorialesController extends Controller implements Initializab
             FlowController.getInstance().goVistas("MenuAdmin");
         }
     }
+
 }

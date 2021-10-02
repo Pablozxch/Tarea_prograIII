@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import java.net.URL?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -14,5 +16,9 @@
       <JFXButton fx:id="btnEditar" layoutX="157.0" layoutY="350.0" onAction="#click" text="Editar" />
       <JFXButton fx:id="btnSalir" layoutX="388.0" layoutY="350.0" onAction="#click" text="Salir" />
       <JFXButton fx:id="btnEliminar" layoutX="253.0" layoutY="350.0" onAction="#click" text="Eliminar" />
+      <DatePicker fx:id="dtpEntrdadaR" layoutX="70.0" layoutY="10.0" promptText="Fecha Entrada" />
+      <DatePicker fx:id="dtpSalidaR" layoutX="340.0" layoutY="10.0" promptText="Fecha Salida" />
+      <JFXButton fx:id="btnFilter" layoutX="534.0" layoutY="10.0" onAction="#click" text="Filtrar" />
+      <JFXCheckBox fx:id="chkES" layoutX="253.0" layoutY="14.0" onAction="#changename" text="Entrada" />
    </children>
 </AnchorPane>

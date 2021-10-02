@@ -63,21 +63,17 @@ public class EditarMarcaController extends Controller implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        dtpFechaEntrada.setEditable(false);
-        dtpFechaSalida.setEditable(false);
-        dtpFechaEntrada.setConverter(new LocalDateStringConverter(FormatStyle.LONG));
-        dtpFechaSalida.setConverter(new LocalDateStringConverter(FormatStyle.LONG));
-        comboHEntrada.getItems().addAll("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11" , "12" , "13" , "14" , "15" , "16" , "17" , "18" , "19" , "20" , "21" , "22" , "23" , "24");
-        comboMEntrada.getItems().addAll("00" , "01" , "02" , "03" , "04" , "05" , "06" , "07" , "08" , "09" , "10" , "11" , "12" , "13" , "14" , "15" , "16" , "17" , "18" , "19" , "20" , "21" , "22" , "23" , "24" , "25" , "26" , "27" , "28" , "29" ,
-                  "30" , "31" , "32" , "33" , "34" , "35" , "36" , "37" , "38" , "39" , "40" , "41" , "42" , "43" , "44" , "45" , "46" , "47" , "48" , "49" , "50" , "51" , "52" , "53" , "54" , "55" , "56" , "57" , "58" , "59");
-        comboHSalida.getItems().addAll("1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9" , "10" , "11" , "12" , "13" , "14" , "15" , "16" , "17" , "18" , "19" , "20" , "21" , "22" , "23" , "24");
-        comboMSalida.getItems().addAll("00" , "01" , "02" , "03" , "04" , "05" , "06" , "07" , "08" , "09" , "10" , "11" , "12" , "13" , "14" , "15" , "16" , "17" , "18" , "19" , "20" , "21" , "22" , "23" , "24" , "25" , "26" , "27" , "28" , "29" ,
-                  "30" , "31" , "32" , "33" , "34" , "35" , "36" , "37" , "38" , "39" , "40" , "41" , "42" , "43" , "44" , "45" , "46" , "47" , "48" , "49" , "50" , "51" , "52" , "53" , "54" , "55" , "56" , "57" , "58" , "59");
+
+        insertartodo();
+        ajustarvalores();
 
 //         System.out.println("WELLCOME");
-        Respuesta res = registroService.getRegistrobyid(23L);
+    }
+
+    public void ajustarvalores()
+    {
+        Respuesta res = registroService.getRegistrobyid(getReg().getId());
         setReg((RegistroClienteDto) res.getResultado("Registro"));
-        System.out.println("EL valor es " + getReg().toString());
         /*
             Seleccionar entrada desde server
          */
@@ -102,17 +98,55 @@ public class EditarMarcaController extends Controller implements Initializable
         {
             comboMEntrada.valueProperty().set(String.valueOf(getReg().getFechaIngreso().getMinutes()));
         }
-       comboHSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getHours()));
-       if(b<10)
-       {
-           comboMSalida.valueProperty().set(String.valueOf("0"+getReg().getFechaSalida().getMinutes()));
-       }
-       else
-       {
-           comboMSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getMinutes()));
-       }
-        
-        
+        comboHSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getHours()));
+        if(b < 10)
+        {
+            comboMSalida.valueProperty().set(String.valueOf("0" + getReg().getFechaSalida().getMinutes()));
+        }
+        else
+        {
+            comboMSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getMinutes()));
+        }
+    }
+
+    public void insertartodo()
+    {
+        dtpFechaEntrada.setEditable(false);
+        dtpFechaSalida.setEditable(false);
+        dtpFechaEntrada.setConverter(new LocalDateStringConverter(FormatStyle.LONG));
+        dtpFechaSalida.setConverter(new LocalDateStringConverter(FormatStyle.LONG));
+        int Horas = 00;
+        for(int i = 0; i <= 24; i++)
+        {
+            if(Horas < 10)
+            {
+                comboHEntrada.getItems().add(String.valueOf(Horas));
+                comboHSalida.getItems().add(String.valueOf(Horas));
+            }
+            else
+            {
+                comboHEntrada.getItems().add(String.valueOf(Horas));
+                comboHSalida.getItems().add(String.valueOf(Horas));
+            }
+            Horas++;
+        }
+        int Minutos = 00;
+        for(int j = 0; j <= 59; j++)
+        {
+
+            if(Minutos < 10)
+            {
+                comboMSalida.getItems().add("0" + String.valueOf(Minutos));
+                comboMEntrada.getItems().add("0" + String.valueOf(Minutos));
+            }
+            else
+            {
+                comboMSalida.getItems().add(String.valueOf(Minutos));
+                comboMEntrada.getItems().add(String.valueOf(Minutos));
+            }
+            Minutos++;
+
+        }
 
     }
 
@@ -136,7 +170,7 @@ public class EditarMarcaController extends Controller implements Initializable
         System.out.println("El valor de la fecha entrada final es " + getReg().getFechaIngreso());
         System.out.println("El valor de la fecha salida final es " + getReg().getFechaSalida());
         registroService.saveRegistrobyid(getReg());
-        
+
     }
 
     @FXML
