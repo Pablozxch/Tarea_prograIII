@@ -26,7 +26,7 @@ public class EmpleadoService
             SoapWS port = service.getSoapWSPort();
             EmpleadoDto emp = (EmpleadoDto) port.empleadoFolio(folio);
             EmpleadoClienteDto empC = new EmpleadoClienteDto(emp);
-            System.out.println("El valor del empleado en el service es " + empC.toString());
+           // System.out.println("El valor del empleado en el service es " + empC.toString());
             return new Respuesta(true , "" , "" , "Empleado" , empC);
         }
         catch(Exception ex)

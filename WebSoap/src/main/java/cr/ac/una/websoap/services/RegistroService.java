@@ -141,9 +141,10 @@ public class RegistroService
             return new Respuesta(false , "Ocurrio un error al consultar el registro." , "getRegistro " + ex.getMessage());
         }
     }
+
     public Respuesta saveRegistro(RegistroDto registroDto)
     {
-       try
+        try
         {
             Registro registro;
             if(registroDto.getId() != null && registroDto.getId() > 0)
@@ -162,14 +163,42 @@ public class RegistroService
                 em.persist(registro);
             }
             em.flush();
-            System.out.println("El registro se guardo con exito"+registroDto.toString());
+
             return new Respuesta(true , "" , "" , "Registro" , new RegistroDto(registro));
         }
         catch(Exception ex)
         {
             LOG.log(Level.SEVERE , "Ocurrio un error al guardar el registro." , ex);
             return new Respuesta(false , "Ocurrio un error al guardar el registro." , "guardarRegistro " + ex.getMessage());
-        } 
+        }
+    }
+
+    public Respuesta eliminarRegistro(Long id)
+    {
+        try
+        {
+            Registro registro;
+            if(id != null && id > 0)
+            {
+                registro = em.find(Registro.class , id);
+                if(registro == null)
+                {
+                    return new Respuesta(false , "No se encrontró el registro a modificar." , "Eliminar NoResultException");
+                }
+                em.remove(registro);
+            }
+            else
+            {
+                return new Respuesta(false , "Error idk" , "Registro");
+            }
+            em.flush();
+            return new Respuesta(true , "Completado" , "Registro");
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al guardar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al guardar el registro." , "guardarRegistro " + ex.getMessage());
+        }
     }
 
 }

@@ -5,14 +5,19 @@
  */
 package cr.ac.una.tareaprogra3.controllers;
 
+import com.jfoenix.controls.*;
 import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
+import java.io.*;
 import java.net.URL;
 import java.util.*;
 import javafx.collections.*;
+import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.stage.*;
 
 /**
  * FXML Controller class
@@ -27,6 +32,12 @@ public class ViewHistorialesController extends Controller implements Initializab
     List<RegistroClienteDto> registroDto = new ArrayList<>();
     RegistroService service = new RegistroService();
     private Object resultado;
+    @FXML
+    private JFXButton btnEditar;
+    @FXML
+    private JFXButton btnSalir;
+    @FXML
+    private JFXButton btnEliminar;
 
     /**
      * Initializes the controller class.
@@ -60,6 +71,7 @@ public class ViewHistorialesController extends Controller implements Initializab
         tblHistorial.getColumns().add(diaci);
         tblHistorial.refresh();
         x();
+
     }
 
     public void x()
@@ -76,6 +88,51 @@ public class ViewHistorialesController extends Controller implements Initializab
     @Override
     public void initialize()
     {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    private void click(ActionEvent event) throws IOException
+    {
+        if(event.getSource() == btnEditar)
+        {
+            if(tblHistorial.getSelectionModel().getSelectedItem() != null)
+            {
+                setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
+                RegistroClienteDto reg=(RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
+                System.out.println("El valor seleccionado es "+reg.toString());
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setOpacity(1);
+                Scene scene = new Scene(root , 647 , 474);
+                stage.setScene(scene);
+                stage.resizableProperty().set(false);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(btnEditar.getScene().getWindow());
+                stage.centerOnScreen();
+                stage.showAndWait();
+            }
+            else
+            {
+                System.out.println("No selecciono nada, no sea idiota");
+            }
+
+        }
+        if(event.getSource() == btnEliminar)
+        {
+            if(tblHistorial.getSelectionModel().getSelectedItem() != null)
+            {
+               
+            }
+            else
+            {
+                System.out.println("No hay nada seleccionado para elimianr");
+            }
+        }
+        if(event.getSource() == btnSalir)
+        {
+            FlowController.getInstance().goVistas("MenuAdmin");
+        }
     }
 }

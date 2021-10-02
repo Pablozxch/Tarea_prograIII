@@ -41,7 +41,22 @@ public class RegistroService
         }
     }
 
-    public Respuesta getRegistrofindByFolio(String folioaBuscar)
+    public Respuesta getRegistrobyid(Long id)
+    {
+        try
+        {
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            RegistroDto emp = port.getRegistro(id);
+            return new Respuesta(true , "" , "" , "Registro" , new RegistroClienteDto(emp));
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getRegistrosfindByFolio(String folioaBuscar)
     {
         try
         {
@@ -54,10 +69,6 @@ public class RegistroService
 
                 registtroClienteDto.add(new RegistroClienteDto(empDto));
             });
-            registtroClienteDto.forEach(t ->
-            {
-                System.out.println("Los valores del del cliente en sus registros on " + t.toString());
-            });
             return new Respuesta(true , "" , "" , "Registro" , registtroClienteDto);
         }
         catch(Exception ex)
@@ -66,16 +77,34 @@ public class RegistroService
         }
     }
 
-    public Respuesta saveRegistro(RegistroClienteDto registroClienteDto,EmpleadoClienteDto emp)
+    public Respuesta saveRegistro(RegistroClienteDto registroClienteDto , EmpleadoClienteDto emp)
     {
         try
         {
-           
+
             SoapWS_Service service = new SoapWS_Service();
             SoapWS port = service.getSoapWSPort();
-            RegistroDto reg= registroClienteDto.getRegistroToService(emp);
-             System.out.println("Registro guardado con extio");
-             port.saveRegistro(reg);
+            RegistroDto reg = registroClienteDto.getRegistroToService(emp);
+            port.saveRegistro(reg);
+            return new Respuesta(true , "" , "" , "user" , reg);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
+        }
+    }
+
+    public Respuesta saveRegistrobyid(RegistroClienteDto registroClienteDto)
+    {
+        try
+        {
+
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            RegistroDto reg = new RegistroDto();   
+            reg = registroClienteDto.getRegistroToService();
+            System.out.println("El valor a gurdar es "+reg.getEmpId());
+            port.saveRegistro(reg);
             return new Respuesta(true , "" , "" , "user" , reg);
         }
         catch(Exception ex)

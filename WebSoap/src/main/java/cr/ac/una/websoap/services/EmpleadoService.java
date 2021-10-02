@@ -81,8 +81,6 @@ public class EmpleadoService
         }
     }
 
-
-
     public Respuesta getEmpleadoAdmin(String folio , String pass , String rol)
     {
 
@@ -142,5 +140,33 @@ public class EmpleadoService
             return new Respuesta(false , "Ocurrio un error al guardar el empleado." , "guardarEmpleado " + ex.getMessage());
         }
     }
+    public Respuesta eliminarEmpleado(Long id)
+    {
+        try
+        {
+            Empleado empleado;
+            if(id != null && id > 0)
+            {
+                empleado = em.find(Empleado.class , id);
+                if(empleado == null)
+                {
+                    return new Respuesta(false , "No se encrontró el empleado a modificar." , "Eliminar NoResultException");
+                }
+                em.remove(empleado);
+            }
+            else
+            {
+                return new Respuesta(false , "Error idk" , "Empleado");
+            }
+            em.flush();
+            return new Respuesta(true , "Completado" , "Empleado");
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al guardar el empleado." , ex);
+            return new Respuesta(false , "Ocurrio un error al guardar el empleado." , "guardarEmpleado " + ex.getMessage());
+        }
+    }
 
+   
 }

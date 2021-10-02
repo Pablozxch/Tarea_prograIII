@@ -55,10 +55,12 @@ public class SoapWS
     {
         Respuesta respuesta = empleadoService.guardarEmpleado(emp);
     }
+
     //guardar registro
     @WebMethod(operationName = "SaveRegistro")
-     public void saveRegistro(@WebParam(name = "reg") RegistroDto reg)
+    public void saveRegistro(@WebParam(name = "reg2") RegistroDto reg)
     {
+        System.out.println("El valor de es "+ reg.toString());
         Respuesta respuesta = registroService.saveRegistro(reg);
     }
 
@@ -84,7 +86,17 @@ public class SoapWS
 
     /**
      * Web service operation
+     * @param id
+     * @return 
      */
+    @WebMethod(operationName = "getRegistro")
+    public RegistroDto getRegistro(@WebParam(name = "id") Long id)
+    {
+        Respuesta respuesta = registroService.getRegistro(id);
+        registroDto= (RegistroDto) respuesta.getResultado("Registro");
+        return registroDto;
+    }
+
     @WebMethod(operationName = "regtodo")
     public List<RegistroDto> getregtodo()
     {
@@ -94,4 +106,17 @@ public class SoapWS
         registrolist = (List<RegistroDto>) respuesta.getResultado("Registro");
         return registrolist;
     }
+
+    @WebMethod(operationName = "deleteRegistro")
+    public void deleteRegistro(@WebParam(name = "id") Long id)
+    {
+        registroService.eliminarRegistro(id);
+    }
+
+    @WebMethod(operationName = "deleteEmpleado")
+    public void deleteEmpleado(@WebParam(name = "id") Long id)
+    {
+        empleadoService.eliminarEmpleado(id);
+    }
+
 }

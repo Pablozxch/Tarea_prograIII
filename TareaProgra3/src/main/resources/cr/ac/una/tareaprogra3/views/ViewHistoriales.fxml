@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.tareaprogra3.controllers.ViewHistorialesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.ViewHistorialesController">
     <stylesheets>
         <URL value="@/cr/ac/una/tareaprogra3/styles/viewhistoriales.css" />
     </stylesheets>
    <children>
       <TableView fx:id="tblHistorial" layoutX="13.0" layoutY="45.0" prefHeight="250.0" prefWidth="580.0" />
+      <JFXButton fx:id="btnEditar" layoutX="157.0" layoutY="350.0" onAction="#click" text="Editar" />
+      <JFXButton fx:id="btnSalir" layoutX="388.0" layoutY="350.0" onAction="#click" text="Salir" />
+      <JFXButton fx:id="btnEliminar" layoutX="253.0" layoutY="350.0" onAction="#click" text="Eliminar" />
    </children>
 </AnchorPane>

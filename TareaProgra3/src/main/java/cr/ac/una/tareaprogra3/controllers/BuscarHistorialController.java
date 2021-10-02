@@ -77,7 +77,7 @@ public class BuscarHistorialController implements Initializable
         if(event.getSource() == btnBuscar)
         {
             String folioaBuscar = lblFolio.getText();
-            Respuesta respuesta = service.getRegistrofindByFolio(folioaBuscar);
+            Respuesta respuesta = service.getRegistrosfindByFolio(folioaBuscar);
 
             registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
             ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);

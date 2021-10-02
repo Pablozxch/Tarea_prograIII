@@ -24,6 +24,18 @@
 
 <xs:element name="SaveRegistroResponse" type="tns:SaveRegistroResponse"/>
 
+<xs:element name="deleteEmpleado" type="tns:deleteEmpleado"/>
+
+<xs:element name="deleteEmpleadoResponse" type="tns:deleteEmpleadoResponse"/>
+
+<xs:element name="deleteRegistro" type="tns:deleteRegistro"/>
+
+<xs:element name="deleteRegistroResponse" type="tns:deleteRegistroResponse"/>
+
+<xs:element name="getRegistro" type="tns:getRegistro"/>
+
+<xs:element name="getRegistroResponse" type="tns:getRegistroResponse"/>
+
 <xs:element name="regtodo" type="tns:regtodo"/>
 
 <xs:element name="regtodoResponse" type="tns:regtodoResponse"/>
@@ -63,6 +75,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="deleteRegistro">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteRegistroResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="EmpleadoFolio">
 <xs:sequence>
 <xs:element name="folio" type="xs:string" minOccurs="0"/>
@@ -100,7 +122,7 @@
 
 <xs:complexType name="SaveRegistro">
 <xs:sequence>
-<xs:element name="reg" type="tns:registroDto" minOccurs="0"/>
+<xs:element name="reg2" type="tns:registroDto" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -117,6 +139,28 @@
 <xs:complexType name="RegistroFolioResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:registroDto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteEmpleado">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getRegistro">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRegistroResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:registroDto" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

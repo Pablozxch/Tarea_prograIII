@@ -52,7 +52,6 @@ public class LoginEmpleadoController extends Controller implements Initializable
             if(respuesta.getEstado())
             {
                 emp = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
-                System.out.println(emp.toString());
                 setEmp(emp);
                 FlowController.getInstance().goVistas("MenuEmpleado");
 

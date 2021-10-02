@@ -61,7 +61,6 @@ public class LoginAdminController extends Controller implements Initializable
                 Respuesta respuesta = service.getEmpleadobyFolio(username);
                 if(respuesta.getEstado())
                 {
-                    System.out.println("Enos dias");
                     empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
                     System.out.println(empleadoClienteDto.toString());
                     Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
@@ -84,7 +83,6 @@ public class LoginAdminController extends Controller implements Initializable
                 {
                     new Mensaje().showModal(Alert.AlertType.INFORMATION , "Usuario " , getStage() , "Usuario encontrado");
                     empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
-                    System.out.println(empleadoClienteDto.toString());
                     FlowController.getInstance().goVistas("MenuAdmin");
                 }
                 else

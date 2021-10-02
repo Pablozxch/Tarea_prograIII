@@ -29,8 +29,8 @@ public class App extends Application
         //stage.getIcons().add(new Image("/cr/ac/una/defender/resources/Logo.png"));
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
-        FlowController.getInstance().goMain();
-        //FlowController.getInstance().goVistas("MarcaEmpleados");
+        //FlowController.getInstance().goMain();
+        FlowController.getInstance().goVistas("EditarMarca");
         //FlowController.getInstance().goVistas("MenuAdmin");
     }
 
@@ -47,14 +47,6 @@ public class App extends Application
 
     public static void main(String[] args)
     {
-
-        Date date = new Date();
-        date.setHours(22);
-        date.setMinutes(20);
-        date.setSeconds(50);
-        DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
-        System.out.println("La fecha es "+hourFormat.format(date));
-
         launch();
     }
 }

@@ -21,12 +21,15 @@ public abstract class Controller
 
     private Stage stage;
     private String accion;
-    public static String Nfolio=new String();//Para obtener la imagen del admin es la parte del menu admin
-    public static EmpleadoClienteDto emp=new EmpleadoClienteDto();
+    public static String Nfolio = new String();//Para obtener la imagen del admin es la parte del menu admin
+    public static EmpleadoClienteDto emp = new EmpleadoClienteDto();
+    private static RegistroClienteDto reg = new RegistroClienteDto();
+
     public String getAccion()
     {
         return accion;
     }
+
     public String getNfolio()
     {
         return Nfolio;
@@ -96,4 +99,13 @@ public abstract class Controller
         this.emp = emp;
     }
 
+    public RegistroClienteDto getReg()
+    {
+        return reg;
+    }
+
+    public void setReg(RegistroClienteDto aReg)
+    {
+        this.reg = aReg;
+    }
 }

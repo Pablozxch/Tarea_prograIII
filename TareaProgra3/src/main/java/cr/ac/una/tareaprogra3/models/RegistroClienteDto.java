@@ -112,33 +112,69 @@ public class RegistroClienteDto
     public RegistroDto getRegistroToService(EmpleadoClienteDto emp)
     {
         RegistroDto reg = new RegistroDto();
-        GregorianCalendar fechaEntrada = new GregorianCalendar();
-        fechaEntrada.setTime(this.getFechaIngreso());
-        XMLGregorianCalendar datefechaEntrada;
+        GregorianCalendar fechaEntradaa = new GregorianCalendar();
+        fechaEntradaa.setTime(this.getFechaIngreso());
+        XMLGregorianCalendar datefechaEntradaa;
         try
         {
-            datefechaEntrada = DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaEntrada);
-            reg.setFechaIngreso(datefechaEntrada);
+            datefechaEntradaa = DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaEntradaa);
+            reg.setFechaIngreso(datefechaEntradaa);
 
         }
         catch(DatatypeConfigurationException ex)
         {
             Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
         }
-        GregorianCalendar fechaSalida = new GregorianCalendar();
-        fechaSalida.setTime(this.getFechaSalida());
-         XMLGregorianCalendar datefechaSalida;
+        GregorianCalendar fechaSalidaD = new GregorianCalendar();
+        fechaSalidaD.setTime(this.getFechaSalida());
+        XMLGregorianCalendar datefechaSalida;
         try
         {
-            datefechaSalida = DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSalida);
-            reg.setFechaIngreso(datefechaSalida);
+            datefechaSalida = DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSalidaD);
+            reg.setFechaSalida(datefechaSalida);
 
         }
         catch(DatatypeConfigurationException ex)
         {
             Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
         }
-        EmpleadoDto emp2=emp.getEmpleadoToService();
+        EmpleadoDto emp2 = emp.getEmpleadoToService();
+        reg.setEmpId(emp2);
+        return reg;
+
+    }
+
+    public RegistroDto getRegistroToService()
+    {
+        RegistroDto reg = new RegistroDto();
+        reg.setId(this.getId());
+        GregorianCalendar fechaEntradaa = new GregorianCalendar();
+        fechaEntradaa.setTime(this.getFechaIngreso());
+        XMLGregorianCalendar datefechaEntradaa;
+        try
+        {
+            datefechaEntradaa = DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaEntradaa);
+            reg.setFechaIngreso(datefechaEntradaa);
+
+        }
+        catch(DatatypeConfigurationException ex)
+        {
+            Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
+        }
+        GregorianCalendar fechaSalidaD = new GregorianCalendar();
+        fechaSalidaD.setTime(this.getFechaSalida());
+        XMLGregorianCalendar datefechaSalida;
+        try
+        {
+            datefechaSalida = DatatypeFactory.newInstance().newXMLGregorianCalendar(fechaSalidaD);
+            reg.setFechaSalida(datefechaSalida);
+
+        }
+        catch(DatatypeConfigurationException ex)
+        {
+            Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
+        }
+        EmpleadoDto emp2 = this.getEmpId().getEmpleadoToService();
         reg.setEmpId(emp2);
         return reg;
 
