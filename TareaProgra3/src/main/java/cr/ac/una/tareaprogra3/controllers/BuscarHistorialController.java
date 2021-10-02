@@ -16,6 +16,7 @@ import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.stage.*;
 
 /**
  * FXML Controller class
@@ -36,6 +37,12 @@ public class BuscarHistorialController implements Initializable
     private Object resultado;
     @FXML
     private JFXButton btnRegresar;
+    @FXML
+    private JFXButton btnEditar;
+    @FXML
+    private JFXButton btnAgregar;
+    @FXML
+    private JFXButton btnEliminar;
 
     /**
      * Initializes the controller class.
@@ -87,10 +94,8 @@ public class BuscarHistorialController implements Initializable
         }
         else if(event.getSource() == btnRegresar)
         {
-            resultado = tblHistorial.getSelectionModel().getSelectedItem();
-            RegistroClienteDto r = new RegistroClienteDto();
-            r = (RegistroClienteDto) resultado;
-            System.out.println("El resultado es " + r.toString());
+            Stage s= (Stage)btnAgregar.getScene().getWindow();
+            s.close();
         }
 
     }

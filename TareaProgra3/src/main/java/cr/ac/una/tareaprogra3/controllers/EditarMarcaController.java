@@ -77,7 +77,7 @@ public class EditarMarcaController extends Controller implements Initializable
 //         System.out.println("WELLCOME");
         Respuesta res = registroService.getRegistrobyid(23L);
         setReg((RegistroClienteDto) res.getResultado("Registro"));
-        System.out.println("EL valor es "+getReg().toString());
+        System.out.println("EL valor es " + getReg().toString());
         /*
             Seleccionar entrada desde server
          */
@@ -91,17 +91,28 @@ public class EditarMarcaController extends Controller implements Initializable
         Instant instant2 = getReg().getFechaSalida().toInstant();
         LocalDate localDate2 = instant2.atZone(defaultZoneId).toLocalDate();
         dtpFechaSalida.setValue(localDate2);
-
+        int a = getReg().getFechaIngreso().getMinutes();//minutos fecha entrada
+        int b = getReg().getFechaSalida().getMinutes();//minutos fecha salida
         comboHEntrada.valueProperty().set(String.valueOf(getReg().getFechaIngreso().getHours()));
-        comboMEntrada.valueProperty().set(String.valueOf(getReg().getFechaIngreso().getMinutes()));
-
-        System.out.println("Horas entrada " + getReg().getFechaIngreso().getHours());
-        System.out.println("Minutos entrada " + getReg().getFechaIngreso().getMinutes());
-        System.out.println("Horas Salida " + getReg().getFechaSalida().getHours());
-        System.out.println("Minutos entrada " + getReg().getFechaSalida().getMinutes());
-
-        comboHSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getHours()));
-        comboMSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getMinutes()));
+        if(a < 10)
+        {
+            comboMEntrada.valueProperty().set(String.valueOf("0" + getReg().getFechaIngreso().getMinutes()));
+        }
+        else
+        {
+            comboMEntrada.valueProperty().set(String.valueOf(getReg().getFechaIngreso().getMinutes()));
+        }
+       comboHSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getHours()));
+       if(b<10)
+       {
+           comboMSalida.valueProperty().set(String.valueOf("0"+getReg().getFechaSalida().getMinutes()));
+       }
+       else
+       {
+           comboMSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getMinutes()));
+       }
+        
+        
 
     }
 
@@ -125,6 +136,7 @@ public class EditarMarcaController extends Controller implements Initializable
         System.out.println("El valor de la fecha entrada final es " + getReg().getFechaIngreso());
         System.out.println("El valor de la fecha salida final es " + getReg().getFechaSalida());
         registroService.saveRegistrobyid(getReg());
+        
     }
 
     @FXML

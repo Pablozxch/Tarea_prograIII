@@ -79,6 +79,23 @@ public class ViewHistorialesController extends Controller implements Initializab
         Respuesta respuesta = service.getAll();
 
         registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
+        ArrayList<ArrayList<Object>> lista1 = new ArrayList<>();//lista principal
+        ArrayList<Object> lista2 = new ArrayList();
+
+        registroDto.forEach(t ->
+        {
+            ArrayList<Object> a = new ArrayList<Object>();
+            a.add(t.getEmpId().getFolio());
+            a.add(t.getFechaIngreso());
+            a.add(t.getFechaSalida());
+            a.add(t.getCompletado());
+            lista1.add(a);
+            System.out.println("Registro completado e ingresado");
+
+        });
+
+        System.out.println("El valor en es " + lista1.get(0).get(0));
+        System.out.println("El valor en es " + lista1.get(1).get(0));
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);
 
         tblHistorial.setItems(empleados);
@@ -99,8 +116,8 @@ public class ViewHistorialesController extends Controller implements Initializab
             if(tblHistorial.getSelectionModel().getSelectedItem() != null)
             {
                 setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
-                RegistroClienteDto reg=(RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
-                System.out.println("El valor seleccionado es "+reg.toString());
+                RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
+                System.out.println("El valor seleccionado es " + reg.toString());
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = new Stage();
@@ -112,6 +129,7 @@ public class ViewHistorialesController extends Controller implements Initializab
                 stage.initOwner(btnEditar.getScene().getWindow());
                 stage.centerOnScreen();
                 stage.showAndWait();
+                x();
             }
             else
             {
@@ -123,7 +141,7 @@ public class ViewHistorialesController extends Controller implements Initializab
         {
             if(tblHistorial.getSelectionModel().getSelectedItem() != null)
             {
-               
+
             }
             else
             {

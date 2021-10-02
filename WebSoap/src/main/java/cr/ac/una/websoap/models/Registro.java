@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.*;
 @XmlRootElement
 @NamedQueries(
 {
-    @NamedQuery(name = "Registro.findAll" , query = "SELECT r FROM Registro r") ,
+    @NamedQuery(name = "Registro.findAll" , query = "SELECT r FROM Registro r" , hints = @QueryHint(name = "eclipselink.refresh", value = "true")),
     @NamedQuery(name = "Registro.findByRegId" , query = "SELECT r FROM Registro r WHERE r.regId = :regId") ,
     @NamedQuery(name = "Registro.findByRegEntrada" , query = "SELECT r FROM Registro r WHERE r.regEntrada = :regEntrada") ,
     @NamedQuery(name = "Registro.findByRegSalida" , query = "SELECT r FROM Registro r WHERE r.regSalida = :regSalida") ,
