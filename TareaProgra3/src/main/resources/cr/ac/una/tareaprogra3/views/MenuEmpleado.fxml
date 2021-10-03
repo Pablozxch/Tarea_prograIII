@@ -23,8 +23,11 @@
             </ImageView>
          </graphic></JFXButton>
       <Label fx:id="lblnombreEmpleado" layoutX="23.0" layoutY="19.0" prefHeight="25.0" prefWidth="148.0" text="Nombre Empleado" />
-      <Label fx:id="lblDate" layoutX="502.0" layoutY="10.0" prefHeight="25.0" prefWidth="84.0" text="0" />
-      <Label fx:id="lblFecha" layoutX="345.0" layoutY="14.0" prefHeight="17.0" prefWidth="84.0" text="0" />
+      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" layoutX="502.0" layoutY="10.0" prefHeight="25.0" prefWidth="84.0" text="0">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic></Label>
+      <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="20.0" prefHeight="17.0" prefWidth="84.0" text="0" />
       <JFXButton fx:id="btnSalir" layoutX="257.0" layoutY="329.0" onAction="#click" prefHeight="44.0" prefWidth="94.0" text="Salir" textFill="WHITE">
          <font>
             <Font size="23.0" />

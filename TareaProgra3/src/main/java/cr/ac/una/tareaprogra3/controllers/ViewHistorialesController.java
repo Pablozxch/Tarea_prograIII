@@ -111,6 +111,7 @@ public class ViewHistorialesController extends Controller implements Initializab
     {
         Respuesta respuesta = service.getAll();
         registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
+       service.generarExcel(registroDto);
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();

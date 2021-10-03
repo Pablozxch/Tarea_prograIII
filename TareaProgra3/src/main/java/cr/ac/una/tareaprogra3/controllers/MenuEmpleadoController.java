@@ -45,6 +45,9 @@ public class MenuEmpleadoController extends Controller implements Initializable
     private Label lblnombreEmpleado;
     @FXML
     private Label lblDate;
+    @FXML
+    private JFXButton btnSalir;
+    Thread thread;
 
     @Override
     public void initialize(URL url , ResourceBundle rb)
@@ -90,9 +93,38 @@ public class MenuEmpleadoController extends Controller implements Initializable
                 System.out.println(reg);
                 Respuesta r = service.saveRegistro(reg , getEmp());
                 new Mensaje().showModal(Alert.AlertType.INFORMATION , "Empleado" + reg.empId.getName() , getStage() , "Saliendo del sistema");
+                thread.stop();
                 FlowController.getInstance().goVistas("LoginEmpleado");
 
             }
+        }
+        if(event.getSource() == btnSalir)
+        {
+
+            if(new Mensaje().showConfirmation("Saliendo del sistema" , getStage() , "¿Esta seguro que desea salir del sistema?"))
+            {
+                if(reg.getFechaIngreso() == null)
+                {
+                    thread.stop();
+                    FlowController.getInstance().goVistas("LoginEmpleado");
+                }
+                else
+                {
+                    Date fS = new Date();
+                    reg.setFechaSalida(fS);
+                    asignarcompletado();
+                    Respuesta r = service.saveRegistro(reg , getEmp());
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION , "Empleado" + reg.empId.getName() , getStage() , "Saliendo del sistema");
+                    thread.stop();
+                    FlowController.getInstance().goVistas("LoginEmpleado");
+                }
+
+            }
+            else
+            {
+
+            }
+
         }
     }
 
@@ -112,7 +144,7 @@ public class MenuEmpleadoController extends Controller implements Initializable
     public void timecount()// este metodo se encarga de evaluar siempre la lista de mobs para ver si ya atacaron
     {
 
-        Thread thread = new Thread(() ->
+        thread = new Thread(() ->
         {
 
             for(int i = 0; i < 2;)
