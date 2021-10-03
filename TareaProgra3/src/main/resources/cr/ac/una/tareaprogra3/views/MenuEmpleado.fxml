@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.tareaprogra3.controllers.MenuEmpleadoController">
-    <stylesheets>
-        <URL value="@/cr/ac/una/tareaprogra3/styles/menuempleado.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../styles/menuempleado.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.MenuEmpleadoController">
    <children>
-      <JFXButton fx:id="btn_startstop" layoutX="266.0" layoutY="188.0" onAction="#click" text="Iniciar Jornada" />
-      <Label fx:id="lbl_nombreEmpleado" layoutX="22.0" layoutY="22.0" prefHeight="17.0" prefWidth="148.0" text="Nombre Empleado" />
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="151.0" layoutY="81.0" style="-fx-opacity: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/954231.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnstartstop" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="221.0" layoutY="109.0" onAction="#click" prefHeight="102.0" prefWidth="116.0" text="Iniciar Jornada" textOverrun="CENTER_WORD_ELLIPSIS">
+         <graphic>
+            <ImageView fx:id="imvSS" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Play.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <Label fx:id="lblnombreEmpleado" layoutX="23.0" layoutY="19.0" prefHeight="25.0" prefWidth="148.0" text="Nombre Empleado" />
+      <Label fx:id="lblDate" layoutX="502.0" layoutY="10.0" prefHeight="25.0" prefWidth="84.0" text="0" />
+      <Label fx:id="lblFecha" layoutX="345.0" layoutY="14.0" prefHeight="17.0" prefWidth="84.0" text="0" />
    </children>
 </AnchorPane>

@@ -35,6 +35,8 @@ public class LoginEmpleadoController extends Controller implements Initializable
      */
     EmpleadoClienteDto emp;
     EmpleadoService service = new EmpleadoService();
+    @FXML
+    private JFXButton btnRegresar;
 
     @Override
     public void initialize(URL url , ResourceBundle rb)
@@ -56,6 +58,10 @@ public class LoginEmpleadoController extends Controller implements Initializable
                 FlowController.getInstance().goVistas("MenuEmpleado");
 
             }
+        }
+        if(event.getSource()==btnRegresar)
+        {
+            FlowController.getInstance().goMain();
         }
     }
 
