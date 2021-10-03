@@ -5,20 +5,70 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.ViewHistorialesController">
-    <stylesheets>
-        <URL value="@/cr/ac/una/tareaprogra3/styles/viewhistoriales.css" />
-    </stylesheets>
    <children>
-      <TableView fx:id="tblHistorial" layoutX="13.0" layoutY="45.0" prefHeight="250.0" prefWidth="580.0" />
-      <JFXButton fx:id="btnEditar" layoutX="157.0" layoutY="350.0" onAction="#click" text="Editar" />
-      <JFXButton fx:id="btnSalir" layoutX="388.0" layoutY="350.0" onAction="#click" text="Salir" />
-      <JFXButton fx:id="btnEliminar" layoutX="253.0" layoutY="350.0" onAction="#click" text="Eliminar" />
-      <DatePicker fx:id="dtpEntrdadaR" layoutX="70.0" layoutY="10.0" promptText="Fecha Entrada" />
-      <DatePicker fx:id="dtpSalidaR" layoutX="340.0" layoutY="10.0" promptText="Fecha Salida" />
-      <JFXButton fx:id="btnFilter" layoutX="534.0" layoutY="10.0" onAction="#click" text="Filtrar" />
-      <JFXCheckBox fx:id="chkES" layoutX="253.0" layoutY="14.0" onAction="#changename" text="Entrada" />
+      <ImageView fitHeight="400.0" fitWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/920308.jpg" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblHistorial" layoutX="5.0" layoutY="64.0" prefHeight="250.0" prefWidth="580.0" />
+      <JFXButton fx:id="btnEditar" alignment="CENTER" contentDisplay="RIGHT" layoutX="150.0" layoutY="321.0" onAction="#click" prefHeight="57.0" prefWidth="100.0" text="Editar">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="32.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Edit.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnSalir" contentDisplay="RIGHT" layoutX="424.0" layoutY="321.0" onAction="#click" prefHeight="57.0" prefWidth="130.0" text="Regresar">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Back.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnEliminar" contentDisplay="RIGHT" layoutX="295.0" layoutY="321.0" onAction="#click" prefHeight="57.0" prefWidth="100.0" text="Eliminar">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Delete.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <DatePicker fx:id="dtpEntrdadaR" layoutX="14.0" layoutY="16.0" prefHeight="30.0" prefWidth="130.0" promptText="Fecha Entrada" AnchorPane.topAnchor="16.0" />
+      <DatePicker fx:id="dtpSalidaR" layoutX="158.0" layoutY="16.0" prefHeight="30.0" prefWidth="130.0" promptText="Fecha Salida" />
+      <JFXButton fx:id="btnFilter" alignment="CENTER" contentDisplay="RIGHT" layoutX="493.0" layoutY="11.0" onAction="#click" prefHeight="40.0" prefWidth="100.0" text="Filtrar">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Filter.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
+      <JFXCheckBox fx:id="chkEntrada" layoutX="300.0" layoutY="1.0" onAction="#changename" prefHeight="30.0" prefWidth="53.0" text="Entrada" textFill="WHITE" />
+      <JFXCheckBox fx:id="chkSalida" layoutX="300.0" layoutY="31.0" onAction="#changename" prefHeight="30.0" prefWidth="66.0" text="Salida" textFill="WHITE" />
+      <JFXButton fx:id="btnClear" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="381.0" layoutY="14.0" onAction="#click" prefHeight="48.0" prefWidth="87.0" text="Limpiar">
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Clear.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
+   <stylesheets>
+      <URL value="@../styles/viewhistoriales.css" />
+      <URL value="@../styles/viewhistoriales.css" />
+   </stylesheets>
 </AnchorPane>

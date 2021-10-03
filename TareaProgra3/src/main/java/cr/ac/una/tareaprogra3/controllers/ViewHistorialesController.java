@@ -49,7 +49,12 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private JFXButton btnFilter;
     @FXML
-    private JFXCheckBox chkES;
+    private JFXCheckBox chkEntrada;
+    @FXML
+    private JFXCheckBox chkSalida;
+    @FXML
+    private JFXButton btnClear;
+    int op = 0;
 
     /**
      * Initializes the controller class.
@@ -57,7 +62,6 @@ public class ViewHistorialesController extends Controller implements Initializab
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        chkES.setSelected(true);
         TableColumn<RegistroClienteDto , String> idEmp = new TableColumn<>("Folio");
         idEmp.setPrefWidth(50);
         idEmp.setCellValueFactory(cd -> cd.getValue().empId.get().folio);
@@ -106,13 +110,11 @@ public class ViewHistorialesController extends Controller implements Initializab
     public void actualizarDatosInicales()
     {
         Respuesta respuesta = service.getAll();
-
         registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
-
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);
-
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 1;
     }
 
     public void actualizarDatosSoloEntradaDespues()//solo tienen el primero con datos
@@ -121,14 +123,10 @@ public class ViewHistorialesController extends Controller implements Initializab
         List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
                   .stream().filter(t -> t.getFechaIngreso().after(FRE))
                   .collect(Collectors.toList());
-        System.out.println("La lista tiene estos valores");
-        customersWithMoreThan100Points.forEach(t ->
-        {
-            System.out.println("Los valores del filtro son" + t);
-        });
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 2;
     }
 
     public void actualizarDatosSoloEntradaAntes()//solo tiene el segundo con datos
@@ -137,14 +135,10 @@ public class ViewHistorialesController extends Controller implements Initializab
         List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
                   .stream().filter(t -> t.getFechaIngreso().before(FRE))
                   .collect(Collectors.toList());
-        System.out.println("La lista tiene estos valores");
-        customersWithMoreThan100Points.forEach(t ->
-        {
-            System.out.println("Los valores del filtro son" + t);
-        });
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 3;
     }
 
     public void actualizarDatosFiltroEntrada()//los dos dptpicker tienen datos
@@ -155,14 +149,10 @@ public class ViewHistorialesController extends Controller implements Initializab
         List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
                   .stream().filter(t -> t.getFechaIngreso().after(FRE) && t.getFechaIngreso().before(FRS))
                   .collect(Collectors.toList());
-        System.out.println("La lista tiene estos valores");
-        customersWithMoreThan100Points.forEach(t ->
-        {
-            System.out.println("Los valores del filtro son" + t);
-        });
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 4;
     }
 
     public void actualizarDatosFiltroSalida()//Metodo para filtrar las varas completas de Salida
@@ -172,14 +162,10 @@ public class ViewHistorialesController extends Controller implements Initializab
         List<RegistroClienteDto> customersWithMoreThan100Points = registroDto
                   .stream().filter(t -> t.getFechaSalida().after(FRE) && t.getFechaSalida().before(FRS))
                   .collect(Collectors.toList());
-        System.out.println("La lista tiene estos valores");
-        customersWithMoreThan100Points.forEach(t ->
-        {
-            System.out.println("Los valores del filtro son" + t);
-        });
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 5;
     }
 
     public void actualizarDatosSoloSalidaDespues()
@@ -191,6 +177,7 @@ public class ViewHistorialesController extends Controller implements Initializab
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 6;
     }
 
     public void actualizarDatosSoloSalidaAntes()
@@ -202,6 +189,7 @@ public class ViewHistorialesController extends Controller implements Initializab
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(customersWithMoreThan100Points);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
+        op = 7;
     }
 
     @Override
@@ -213,13 +201,28 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private void changename(ActionEvent event)
     {
-        if(chkES.isSelected())
+        if(event.getSource() == chkEntrada)
         {
-            chkES.setText("Entrada");
+            if(chkEntrada.isSelected())
+            {
+                chkSalida.disableProperty().set(true);
+            }
+            else
+            {
+                chkSalida.disableProperty().set(false);
+            }
         }
-        else
+        if(event.getSource() == chkSalida)
         {
-            chkES.setText("Salida");
+            if(chkSalida.isSelected())
+            {
+                chkEntrada.disableProperty().set(true);
+
+            }
+            else
+            {
+                chkEntrada.disableProperty().set(false);
+            }
         }
 
     }
@@ -227,9 +230,14 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private void click(ActionEvent event)
     {
+        if(event.getSource() == btnClear)
+        {
+            dtpEntrdadaR.setValue(null);
+            dtpSalidaR.setValue(null);
+        }
         if(event.getSource() == btnFilter)
         {
-            if(chkES.isSelected() == true)
+            if(chkEntrada.isSelected() == true)// le dio a entrada
             {
 
                 if(dtpEntrdadaR.getValue() == null && dtpSalidaR.getValue() == null)
@@ -269,55 +277,85 @@ public class ViewHistorialesController extends Controller implements Initializab
                     actualizarDatosSoloSalidaAntes();
                 }
             }
-            dtpEntrdadaR.setValue(null);
-            dtpSalidaR.setValue(null);
         }
-        if(event.getSource() == btnEditar)
+        if(tblHistorial.getSelectionModel().getSelectedItem() != null)
         {
-            if(tblHistorial.getSelectionModel().getSelectedItem() != null)
+            if(event.getSource() == btnEditar)
             {
-
-                try
+                if(tblHistorial.getSelectionModel().getSelectedItem() != null)
                 {
-                    setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
-                    RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
-                    System.out.println("El valor seleccionado es " + reg.toString());
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setOpacity(1);
-                    Scene scene = new Scene(root , 647 , 474);
-                    stage.setScene(scene);
-                    stage.resizableProperty().set(false);
-                    stage.initModality(Modality.WINDOW_MODAL);
-                    stage.initOwner(btnEditar.getScene().getWindow());
-                    stage.centerOnScreen();
-                    stage.showAndWait();
-                    actualizarDatosInicales();
+
+                    try
+                    {
+                        setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
+                        RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
+                        System.out.println("El valor seleccionado es " + reg.toString());
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setOpacity(1);
+                        Scene scene = new Scene(root , 647 , 474);
+                        stage.setScene(scene);
+                        stage.resizableProperty().set(false);
+                        stage.initModality(Modality.WINDOW_MODAL);
+                        stage.initOwner(btnEditar.getScene().getWindow());
+                        stage.centerOnScreen();
+                        stage.showAndWait();
+                        actualizarDatosInicales();
+                    }
+                    catch(IOException ex)
+                    {
+                        Logger.getLogger(ViewHistorialesController.class.getName()).log(Level.SEVERE , null , ex);
+                    }
+
                 }
-                catch(IOException ex)
+                else
                 {
-                    Logger.getLogger(ViewHistorialesController.class.getName()).log(Level.SEVERE , null , ex);
+                    System.out.println("No selecciono nada, no sea idiota");
                 }
 
             }
-            else
+            if(event.getSource() == btnEliminar)
             {
-                System.out.println("No selecciono nada, no sea idiota");
+                System.out.println("Eliminando Empleado");
+                Respuesta res = service.eliminarRegistro((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
+                if(res.getEstado())
+                {
+                    new Mensaje().show(Alert.AlertType.CONFIRMATION , "Registro Eliminado" , "Correctamente");
+                    switch(op)
+                    {
+                        case 1:
+                            actualizarDatosInicales();
+                            break;
+                        case 2:
+                            actualizarDatosSoloEntradaDespues();
+                            break;
+                        case 3:
+                            actualizarDatosSoloEntradaAntes();
+                            break;
+                        case 4:
+                            actualizarDatosFiltroEntrada();
+                            break;
+                        case 5:
+                            actualizarDatosFiltroSalida();
+                            break;
+                        case 6:
+                            actualizarDatosSoloSalidaDespues();
+                            break;
+                        case 7:
+                            actualizarDatosSoloSalidaAntes();
+                            break;
+                        case 8:
+                            break;
+                    }
+                }
+                else
+                {
+                    new Mensaje().show(Alert.AlertType.ERROR , "Registro Eliminado" , "Incorrectamente");
+                }
             }
-
         }
-        if(event.getSource() == btnEliminar)
-        {
-            if(tblHistorial.getSelectionModel().getSelectedItem() != null)
-            {
 
-            }
-            else
-            {
-                System.out.println("No hay nada seleccionado para elimianr");
-            }
-        }
         if(event.getSource() == btnSalir)
         {
             FlowController.getInstance().goVistas("MenuAdmin");

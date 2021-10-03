@@ -26,7 +26,7 @@ public class EmpleadoService
             SoapWS port = service.getSoapWSPort();
             EmpleadoDto emp = (EmpleadoDto) port.empleadoFolio(folio);
             EmpleadoClienteDto empC = new EmpleadoClienteDto(emp);
-           // System.out.println("El valor del empleado en el service es " + empC.toString());
+            // System.out.println("El valor del empleado en el service es " + empC.toString());
             return new Respuesta(true , "" , "" , "Empleado" , empC);
         }
         catch(Exception ex)
@@ -70,16 +70,19 @@ public class EmpleadoService
         }
     }
 
-//    public Respuesta eliminarEmpleado(String folio)
-//    {
-//        try
-//        {
-//             //return new Respuesta(true , "" , "" , "user" , EmpleadoClienteDto emp);
-//        }
-//        catch(Exception ex)
-//        {
-//            return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
-//        }
-//    }
+    public Respuesta eliminarEmpleado(EmpleadoClienteDto emp)
+    {
+        try
+        {
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            port.deleteEmpleado(emp.getId());
+            return new Respuesta(true , "" , "" , "User" , emp);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error al eliminar " , "Empleado " + ex.getMessage());
+        }
+    }
 
 }
