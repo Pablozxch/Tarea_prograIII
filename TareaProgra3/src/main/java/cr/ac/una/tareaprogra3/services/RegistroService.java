@@ -101,9 +101,9 @@ public class RegistroService
 
             SoapWS_Service service = new SoapWS_Service();
             SoapWS port = service.getSoapWSPort();
-            RegistroDto reg = new RegistroDto();   
+            RegistroDto reg = new RegistroDto();
             reg = registroClienteDto.getRegistroToService();
-            System.out.println("El valor a gurdar es "+reg.getEmpId());
+            System.out.println("El valor a gurdar es " + reg.getEmpId());
             port.saveRegistro(reg);
             return new Respuesta(true , "" , "" , "user" , reg);
         }
@@ -111,6 +111,23 @@ public class RegistroService
         {
             return new Respuesta(false , "Error gurdando el dato." , "getUser " + ex.getMessage());
         }
+    }
+
+    public Respuesta eliminarRegistro(RegistroClienteDto registroClienteDto)
+    {
+
+        try
+        {
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            port.deleteRegistro(registroClienteDto.getId());
+            return new Respuesta(true , "" , "" , "user" , registroClienteDto);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error al eliminar registro" , "deleteReg " + ex.getMessage());
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

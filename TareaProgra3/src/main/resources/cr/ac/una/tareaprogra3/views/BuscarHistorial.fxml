@@ -13,8 +13,8 @@
       <Label layoutX="241.0" layoutY="14.0" text="Historial del Empleado" />
       <JFXButton fx:id="btnBuscar" layoutX="189.0" layoutY="42.0" onAction="#click" text="Buscar" />
       <JFXButton fx:id="btnRegresar" layoutX="509.0" layoutY="360.0" onAction="#click" text="Regresar" />
-      <JFXButton fx:id="btnEditar" layoutX="428.0" layoutY="360.0" onAction="#click" text="Editar" />
-      <JFXButton fx:id="btnAgregar" layoutX="361.0" layoutY="360.0" onAction="#click" text="Agregar" />
-      <JFXButton fx:id="btnEliminar" layoutX="290.0" layoutY="360.0" onAction="#click" text="Eliminar" />
+      <JFXButton fx:id="btnEditar" layoutX="381.0" layoutY="360.0" onAction="#click" text="Editar" />
+      <JFXButton fx:id="btnAgregar" layoutX="172.0" layoutY="360.0" onAction="#click" text="Agregar" />
+      <JFXButton fx:id="btnEliminar" layoutX="39.0" layoutY="360.0" onAction="#click" text="Eliminar" />
    </children>
 </AnchorPane>

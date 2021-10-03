@@ -8,9 +8,13 @@
 }
 .button
 {
-    
+    -fx-background-radius:50;
+    -fx-background-color:#4e839f;
 }
-
+.button:hover
+{
+    -fx-background-color:#59a19f839f;
+}
 .table-view{
     -fx-background-color: transparent;
 }

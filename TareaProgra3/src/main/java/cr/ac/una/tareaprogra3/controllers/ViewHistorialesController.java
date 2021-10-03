@@ -276,6 +276,7 @@ public class ViewHistorialesController extends Controller implements Initializab
         {
             if(tblHistorial.getSelectionModel().getSelectedItem() != null)
             {
+
                 try
                 {
                     setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());

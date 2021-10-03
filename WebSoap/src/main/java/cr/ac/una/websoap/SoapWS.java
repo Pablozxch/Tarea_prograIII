@@ -60,7 +60,7 @@ public class SoapWS
     @WebMethod(operationName = "SaveRegistro")
     public void saveRegistro(@WebParam(name = "reg2") RegistroDto reg)
     {
-        System.out.println("El valor de es "+ reg.toString());
+        System.out.println("El valor de es " + reg.toString());
         Respuesta respuesta = registroService.saveRegistro(reg);
     }
 
@@ -86,14 +86,15 @@ public class SoapWS
 
     /**
      * Web service operation
+     *
      * @param id
-     * @return 
+     * @return
      */
     @WebMethod(operationName = "getRegistro")
     public RegistroDto getRegistro(@WebParam(name = "id") Long id)
     {
         Respuesta respuesta = registroService.getRegistro(id);
-        registroDto= (RegistroDto) respuesta.getResultado("Registro");
+        registroDto = (RegistroDto) respuesta.getResultado("Registro");
         return registroDto;
     }
 
@@ -117,6 +118,36 @@ public class SoapWS
     public void deleteEmpleado(@WebParam(name = "id") Long id)
     {
         empleadoService.eliminarEmpleado(id);
+    }
+
+    @WebMethod(operationName = "jasP")
+    public List<RegistroDto> jaspertodo()
+    {
+
+        Respuesta respuesta = registroService.getAll();
+        registrolist = (List<RegistroDto>) respuesta.getResultado("Registro");
+
+        ArrayList<ArrayList<Object>> lista1 = new ArrayList<>();//lista principal
+        ArrayList<Object> lista2 = new ArrayList();
+
+        registrolist.forEach(t ->
+        {
+            ArrayList<Object> a = new ArrayList<Object>();
+            a.add(t.getEmpId().getFolio());
+            a.add(t.getFechaIngreso());
+            a.add(t.getFechaSalida());
+            a.add(t.getCompletado());
+
+            lista1.add(a);
+            System.out.println("Registro completado e ingresado");
+
+        });
+        for(int i=0; i<lista1.size(); i++)
+        {
+            System.out.println("El valor en la posicion "+i+"es "+lista1.get(i).toString());
+        }
+        //!TOMAR LA lista1 y enviarla a algun lado para hacer el reporte o generar el reporte
+        return registrolist;
     }
 
 }
