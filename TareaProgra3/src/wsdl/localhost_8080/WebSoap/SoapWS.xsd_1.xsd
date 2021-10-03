@@ -75,16 +75,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="deleteRegistro">
-<xs:sequence>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="deleteRegistroResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="EmpleadoFolio">
 <xs:sequence>
 <xs:element name="folio" type="xs:string" minOccurs="0"/>
@@ -95,6 +85,16 @@
 <xs:sequence>
 <xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteRegistro">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteRegistroResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="EmpleadoAdmin">
@@ -152,6 +152,16 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="SaveEmpleado">
+<xs:sequence>
+<xs:element name="emp" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="getRegistro">
 <xs:sequence>
 <xs:element name="id" type="xs:long" minOccurs="0"/>
@@ -162,15 +172,5 @@
 <xs:sequence>
 <xs:element name="return" type="tns:registroDto" minOccurs="0"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="SaveEmpleado">
-<xs:sequence>
-<xs:element name="emp" type="tns:empleadoDto" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="SaveEmpleadoResponse">
-<xs:sequence/>
 </xs:complexType>
 </xs:schema>

@@ -86,13 +86,26 @@ public class MenuEmpleadoController extends Controller implements Initializable
                 flag = true;
                 Date fS = new Date();
                 reg.setFechaSalida(fS);
-                System.out.println("La fecha de entrada es " + fS);
-                System.out.println("EL empleado en esta sesion es " + getEmp());
+                asignarcompletado();
+                System.out.println(reg);
                 Respuesta r = service.saveRegistro(reg , getEmp());
                 new Mensaje().showModal(Alert.AlertType.INFORMATION , "Empleado" + reg.empId.getName() , getStage() , "Saliendo del sistema");
                 FlowController.getInstance().goVistas("LoginEmpleado");
 
             }
+        }
+    }
+
+    public void asignarcompletado()
+    {
+        if(reg.getFechaSalida().getTime() - reg.getFechaIngreso().getTime() > 28800000L)//comparacion de tiempo para poder colocar el completado e incompleto obteniendo los milisegundos desde 1 enero del 70
+        {
+            reg.setCompletado("C");
+        }
+        else
+        {
+            reg.setCompletado("I");
+
         }
     }
 

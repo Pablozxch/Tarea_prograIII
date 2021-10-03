@@ -12,7 +12,17 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
-#btnstartstop:focused
+#btnstartstop:hover
 {
-    -fx-background-color: transparent;
+    -fx-background-size: 60px;
+}
+#btnSalir
+{
+    -fx-background-radius:50;
+    -fx-background-color:#195883;
+}
+#btnSalir:hover
+{
+    -fx-font-size: 28px;
+    -fx-background-color: #1e6b83;
 }

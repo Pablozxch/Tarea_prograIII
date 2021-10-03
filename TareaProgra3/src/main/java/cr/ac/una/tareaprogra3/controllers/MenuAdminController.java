@@ -56,30 +56,6 @@ public class MenuAdminController extends Controller implements Initializable
     public void initialize(URL url , ResourceBundle rb)
     {
         llenarCentro();
-        //registroClienteDto = service.getRegistrosbyIdemp(1L);
-//        DateFormat hourdateFormat = new SimpleDateFormat("hh:mm:ss ");
-//        DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
-//        DateFormat horas = new SimpleDateFormat("hh");
-//        DateFormat minutos = new SimpleDateFormat("mm");
-//        DateFormat segundos = new SimpleDateFormat("ss");
-//        registroClienteDto.forEach((t) ->
-//        {
-//            System.out.println("Fehca Actual " + date.format(t.getFechaIngreso()));
-//            System.out.println("INGRESO: " + hourdateFormat.format(t.getFechaIngreso()));
-//            System.out.println("SALIDA: " + hourdateFormat.format(t.getFechaSalida()));
-//            Long resta = t.getFechaSalida().getTime() - t.getFechaIngreso().getTime();
-//            System.out.println("La resta es " + resta);
-//            if(t.getFechaSalida().getTime() - t.getFechaIngreso().getTime() > 28800000L)//comparacion de tiempo para poder colocar el completado e incompleto obteniendo los milisegundos desde 1 enero del 70
-//            {
-//                System.out.println("Incompleto");
-//            }
-//            else
-//            {
-//                System.out.println("Completado");
-//
-//            }
-//
-//        });
     }
 
     @Override

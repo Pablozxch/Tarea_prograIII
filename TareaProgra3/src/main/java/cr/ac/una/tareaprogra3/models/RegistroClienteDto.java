@@ -112,6 +112,7 @@ public class RegistroClienteDto
     public RegistroDto getRegistroToService(EmpleadoClienteDto emp)
     {
         RegistroDto reg = new RegistroDto();
+        reg.setId(this.getId());
         GregorianCalendar fechaEntradaa = new GregorianCalendar();
         fechaEntradaa.setTime(this.getFechaIngreso());
         XMLGregorianCalendar datefechaEntradaa;
@@ -138,6 +139,7 @@ public class RegistroClienteDto
         {
             Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
         }
+        reg.setCompletado(this.getCompletado());
         EmpleadoDto emp2 = emp.getEmpleadoToService();
         reg.setEmpId(emp2);
         return reg;
@@ -174,6 +176,7 @@ public class RegistroClienteDto
         {
             Logger.getLogger(EmpleadoClienteDto.class.getName()).log(Level.SEVERE , null , ex);
         }
+        reg.setCompletado(this.getCompletado());
         EmpleadoDto emp2 = this.getEmpId().getEmpleadoToService();
         reg.setEmpId(emp2);
         return reg;
