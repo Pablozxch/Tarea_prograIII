@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../styles/felizbird.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="cr.ac.una.tareaprogra3.controllers.FelizBirdController">
+   <children>
+      <ImageView fx:id="imgf" fitHeight="400.0" fitWidth="600.0" layoutX="10.0" layoutY="-61.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/fondoC.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblF2" alignment="CENTER" layoutX="14.0" layoutY="42.0" prefHeight="58.0" prefWidth="567.0" text="FELIZ CUMPLEAÑOS" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="57.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblF1" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="295.0" prefHeight="58.0" prefWidth="591.0" text="FELIZ CUMPLEAÑOS" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="46.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgCumplea" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/images.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgcake" fitHeight="150.0" fitWidth="200.0" layoutX="397.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/Cake.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

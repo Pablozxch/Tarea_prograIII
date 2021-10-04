@@ -60,6 +60,8 @@ public class BuscarHistorialController extends Controller implements Initializab
     @FXML
     private JFXButton btnClear;
     int op = 0;
+    @FXML
+    private JFXButton btnToExcel;
 
     /**
      * Initializes the controller class.
@@ -123,6 +125,7 @@ public class BuscarHistorialController extends Controller implements Initializab
         Date dateFE = Date.from(instant);
         return dateFE;
     }
+
     public void actualizarDatosSoloEntradaDespues()//solo tienen el primero con datos
     {
         Date FRE = rangoEntrada();
@@ -278,18 +281,30 @@ public class BuscarHistorialController extends Controller implements Initializab
                     setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
                     RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
                     System.out.println("El valor seleccionado es " + reg.toString());
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Stage stage = new Stage();
-                    stage.setOpacity(1);
-                    Scene scene = new Scene(root , 647 , 474);
-                    stage.setScene(scene);
-                    stage.resizableProperty().set(false);
-                    stage.initModality(Modality.WINDOW_MODAL);
-                    stage.initOwner(btnEditar.getScene().getWindow());
-                    stage.centerOnScreen();
-                    stage.showAndWait();
-                    search();
+//                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
+//                    Parent root = fxmlLoader.load();
+//                    Stage stage = new Stage();
+//                    stage.setOpacity(1);
+//                    Scene scene = new Scene(root , 647 , 474);
+//                    stage.setScene(scene);
+//                    stage.resizableProperty().set(false);
+//                    stage.initModality(Modality.WINDOW_MODAL);
+//                    stage.initOwner(btnEditar.getScene().getWindow());
+//                    stage.centerOnScreen();
+//                    stage.showAndWait();
+//                    search();
+                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/FelizBird.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setOpacity(1);
+                Scene scene = new Scene(root , 647 , 474);
+                stage.setScene(scene);
+                stage.setTitle("FELIZ CUMPLEAÑOS");
+                stage.resizableProperty().set(false);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(btnEditar.getScene().getWindow());
+                stage.centerOnScreen();
+                stage.showAndWait();
                 }
                 catch(IOException ex)
                 {
@@ -305,6 +320,7 @@ public class BuscarHistorialController extends Controller implements Initializab
                 {
                     new Mensaje().show(Alert.AlertType.CONFIRMATION , "Registro Eliminado" , "Correctamente");
                     System.out.println("El valor es " + op);
+                    registroDto = new ArrayList<>();
                     switch(op)
                     {
                         case 1:
@@ -381,6 +397,12 @@ public class BuscarHistorialController extends Controller implements Initializab
                 chkEntrada.disableProperty().set(false);
             }
         }
+    }
+
+    @FXML
+    private void btnToExcel(ActionEvent event)
+    {
+        service.generarExcel(registroDto);
     }
 
 }

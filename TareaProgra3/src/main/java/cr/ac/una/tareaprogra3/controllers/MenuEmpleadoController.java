@@ -9,16 +9,20 @@ import com.jfoenix.controls.*;
 import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
+import java.io.*;
 import static java.lang.Boolean.TRUE;
 import java.net.URL;
 import java.text.*;
 import java.util.*;
+import java.util.logging.*;
 import javafx.application.*;
 import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
+import javafx.stage.*;
 
 /**
  * FXML Controller class
@@ -55,12 +59,12 @@ public class MenuEmpleadoController extends Controller implements Initializable
         // TODO
         DateFormat daymyear = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
+
         lblFecha.setText(daymyear.format(date));
         timecount();
         String name = getEmp().getNombre();
-
-        System.out.println("El nombre es " + name);
         lblnombreEmpleado.setText(name);
+        asig();
 
     }
 
@@ -68,6 +72,38 @@ public class MenuEmpleadoController extends Controller implements Initializable
     public void initialize()
     {
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void asig()
+    {
+        Date date = new Date();
+        SimpleDateFormat dateemp = new SimpleDateFormat("dd/MM/YYYY");
+
+        String dateCumple = dateemp.format(getEmp().getNacimiento());
+        String dateactual = dateemp.format(date);
+        System.out.println(dateCumple);
+        System.out.println(dateactual);
+        if(dateCumple.equals(dateactual))
+        {
+            try
+            {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/cr/ac/una/tareaprogra3/views/FelizBird.fxml"));
+                stage.setOpacity(1);
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.resizableProperty().set(false);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+
+            }
+            catch(IOException ex)
+            {
+                Logger.getLogger(MenuEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
+            }
+
+        }
     }
 
     @FXML
@@ -118,10 +154,6 @@ public class MenuEmpleadoController extends Controller implements Initializable
                     thread.stop();
                     FlowController.getInstance().goVistas("LoginEmpleado");
                 }
-
-            }
-            else
-            {
 
             }
 

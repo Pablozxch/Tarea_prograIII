@@ -25,6 +25,7 @@ module cr.ac.una.tareaprogra
     requires java.xml.bind;
     requires poi;
     requires poi.ooxml;
+    requires AnimateFX;
     opens cr.ac.una.tareaprogra3.controllers to javafx.fxml;
     exports cr.ac.una.tareaprogra3.clases;
     exports cr.ac.una.tareaprogra3.models;

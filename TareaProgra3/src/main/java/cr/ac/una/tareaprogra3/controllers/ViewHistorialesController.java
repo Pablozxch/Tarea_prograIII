@@ -55,6 +55,8 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private JFXButton btnClear;
     int op = 0;
+    @FXML
+    private JFXButton btnToExcel;
 
     /**
      * Initializes the controller class.
@@ -111,7 +113,6 @@ public class ViewHistorialesController extends Controller implements Initializab
     {
         Respuesta respuesta = service.getAll();
         registroDto = (List<RegistroClienteDto>) respuesta.getResultado("Registro");
-       service.generarExcel(registroDto);
         ObservableList<RegistroClienteDto> empleados = FXCollections.observableList(registroDto);
         tblHistorial.setItems(empleados);
         tblHistorial.refresh();
@@ -361,6 +362,12 @@ public class ViewHistorialesController extends Controller implements Initializab
         {
             FlowController.getInstance().goVistas("MenuAdmin");
         }
+    }
+
+    @FXML
+    private void btnToExcel(ActionEvent event)
+    {
+        service.generarExcel(registroDto);
     }
 
 }

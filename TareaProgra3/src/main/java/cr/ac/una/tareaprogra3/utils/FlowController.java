@@ -28,57 +28,73 @@ import cr.ac.una.tareaprogra3.controllers.Controller;
  *
  * @author jp0151
  */
-
-public class FlowController {
+public class FlowController
+{
 
     private static FlowController INSTANCE = null;
     private static Stage mainStage;
     private static ResourceBundle idioma;
-    private static HashMap<String, FXMLLoader> loaders = new HashMap<>();
+    private static HashMap<String , FXMLLoader> loaders = new HashMap<>();
 
-    private FlowController() {
+    private FlowController()
+    {
     }
 
-    private static void createInstance() {
-        if (INSTANCE == null) {
-            synchronized (FlowController.class) {
-                if (INSTANCE == null) {
+    private static void createInstance()
+    {
+        if(INSTANCE == null)
+        {
+            synchronized(FlowController.class)
+            {
+                if(INSTANCE == null)
+                {
                     INSTANCE = new FlowController();
                 }
             }
         }
     }
 
-    public static FlowController getInstance() {
-        if (INSTANCE == null) {
+    public static FlowController getInstance()
+    {
+        if(INSTANCE == null)
+        {
             createInstance();
         }
         return INSTANCE;
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException
+    {
         throw new CloneNotSupportedException();
     }
 
-    public void InitializeFlow(Stage stage, ResourceBundle idioma) {
+    public void InitializeFlow(Stage stage , ResourceBundle idioma)
+    {
         getInstance();
         this.mainStage = stage;
         this.idioma = idioma;
     }
 
-    private FXMLLoader getLoader(String name) {
+    private FXMLLoader getLoader(String name)
+    {
         FXMLLoader loader = loaders.get(name);
-        if (loader == null) {
-            synchronized (FlowController.class) {
-                if (loader == null) {
-                    try {
-                        loader = new FXMLLoader(App.class.getResource("/cr/ac/una/tareaprogra3/views/" + name + ".fxml"), this.idioma);
+        if(loader == null)
+        {
+            synchronized(FlowController.class)
+            {
+                if(loader == null)
+                {
+                    try
+                    {
+                        loader = new FXMLLoader(App.class.getResource("/cr/ac/una/tareaprogra3/views/" + name + ".fxml") , this.idioma);
                         loader.load();
-                        loaders.put(name, loader);
-                    } catch (Exception ex) {
+                        loaders.put(name , loader);
+                    }
+                    catch(Exception ex)
+                    {
                         loader = null;
-                        java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Creando loader [" + name + "].", ex);
+                        java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE , "Creando loader [" + name + "]." , ex);
                     }
                 }
             }
@@ -86,34 +102,42 @@ public class FlowController {
         return loader;
     }
 
-    public void goMain() {
-        try {
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/tareaprogra3/views/Main.fxml"), this.idioma)));
+    public void goMain()
+    {
+        try
+        {
+            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/tareaprogra3/views/Main.fxml") , this.idioma)));
             this.mainStage.show();
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE, "Error inicializando la vista base.", ex);
+        }
+        catch(IOException ex)
+        {
+            java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE , "Error inicializando la vista base." , ex);
         }
     }
 
-    public void goView(String viewName) {
-        goView(viewName, "Center", null);
+    public void goView(String viewName)
+    {
+        goView(viewName , "Center" , null);
     }
 
-    public void goView(String viewName, String accion) {
-        goView(viewName, "Center", accion);
+    public void goView(String viewName , String accion)
+    {
+        goView(viewName , "Center" , accion);
     }
 
-    public void goView(String viewName, String location, String accion) {
+    public void goView(String viewName , String location , String accion)
+    {
         FXMLLoader loader = getLoader(viewName);
         Controller controller = loader.getController();
         controller.setAccion(accion);
         controller.initialize();
         Stage stage = controller.getStage();
-        if (stage == null) {
+        if(stage == null)
+        {
             stage = this.mainStage;
             controller.setStage(stage);
         }
-        switch (location) 
+        switch(location)
         {
             case "Center":
                 ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter()).getChildren().clear();
@@ -128,12 +152,13 @@ public class FlowController {
 
                 break;
             case "Left":
-  
+
             default:
                 break;
         }
     }
-   public void goVistas(String nombreVista)
+
+    public void goVistas(String nombreVista)
     {
         try
         {
@@ -146,21 +171,25 @@ public class FlowController {
             java.util.logging.Logger.getLogger(FlowController.class.getName()).log(Level.SEVERE , "Error inicializando la vista base." , ex);
         }
     }
-    public void goViewInStage(String viewName, Stage stage) {
+
+    public void goViewInStage(String viewName , Stage stage)
+    {
         FXMLLoader loader = getLoader(viewName);
         Controller controller = loader.getController();
         controller.setStage(stage);
         stage.getScene().setRoot(loader.getRoot());
     }
 
-    public void goViewInWindow(String viewName) {
+    public void goViewInWindow(String viewName)
+    {
         FXMLLoader loader = getLoader(viewName);
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
         stage.getIcons().add(new Image("unaplanilla2/resources/Agregar-48.png"));
         stage.setTitle("UNA PLANILLA");
-        stage.setOnHidden((WindowEvent event) -> {
+        stage.setOnHidden((WindowEvent event) ->
+        {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
         });
@@ -172,15 +201,15 @@ public class FlowController {
         stage.show();
     }
 
-    public void goViewInWindowModal(String viewName, Stage parentStage, Boolean resizable) {
+    public void goViewInWindowModal(String viewName , Stage parentStage , Boolean resizable)
+    {
         FXMLLoader loader = getLoader(viewName);
         Controller controller = loader.getController();
         controller.initialize();
         Stage stage = new Stage();
-        stage.getIcons().add(new Image("unaplanilla2/resources/Agregar-48.png"));
-        stage.setTitle("UNA PLANILLA");
         stage.setResizable(resizable);
-        stage.setOnHidden((WindowEvent event) -> {
+        stage.setOnHidden((WindowEvent event) ->
+        {
             controller.getStage().getScene().setRoot(new Pane());
             controller.setStage(null);
         });
@@ -195,19 +224,23 @@ public class FlowController {
 
     }
 
-    public Controller getController(String viewName) {
+    public Controller getController(String viewName)
+    {
         return getLoader(viewName).getController();
     }
 
-    public static void setIdioma(ResourceBundle idioma) {
+    public static void setIdioma(ResourceBundle idioma)
+    {
         FlowController.idioma = idioma;
     }
-    
-    public void initialize() {
+
+    public void initialize()
+    {
         this.loaders.clear();
     }
 
-    public void salir() {
+    public void salir()
+    {
         this.mainStage.close();
     }
 
