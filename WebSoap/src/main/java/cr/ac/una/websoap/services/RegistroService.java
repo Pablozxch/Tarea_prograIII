@@ -201,4 +201,8 @@ public class RegistroService
         }
     }
 
+    public void reporteALl()
+    {
+
+    }
 }

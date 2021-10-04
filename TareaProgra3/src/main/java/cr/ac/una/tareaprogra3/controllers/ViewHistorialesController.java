@@ -55,6 +55,7 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private JFXButton btnClear;
     int op = 0;
+    int totales = 0;
     @FXML
     private JFXButton btnToExcel;
 
