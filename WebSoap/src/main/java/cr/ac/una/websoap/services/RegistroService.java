@@ -5,17 +5,18 @@
  */
 package cr.ac.una.websoap.services;
 
+import cr.ac.una.websoap.*;
 import cr.ac.una.websoap.models.*;
-import cr.ac.una.websoap.utils.Respuesta;
-
+import cr.ac.una.websoap.utils.*;
+import java.io.*;
 import java.util.*;
 import java.util.logging.*;
 import javax.ejb.*;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import java.sql.*;
+import javax.sql.*;
+import javax.naming.*;
+import javax.persistence.*;
+import net.sf.jasperreports.engine.*;
 
 /**
  *
@@ -201,8 +202,58 @@ public class RegistroService
         }
     }
 
-    public void reporteALl()
+    public Respuesta reporteALl()
     {
+
+        try
+        {
+            InputStream x = SoapWS.class.getClassLoader().getResourceAsStream("/cr/ac/una/websoap/reportes/ReporteAll.jrxml");
+            JasperReport jasper = JasperCompileManager.compileReport(x);
+            InitialContext initialContext = new InitialContext();
+            DataSource dataSource = (DataSource) initialContext.lookup("jdbc/Reloj");
+            Connection connection = dataSource.getConnection();
+
+            HashMap<String , Object> map = new HashMap<>();
+            JasperPrint print = JasperFillManager.fillReport(jasper , map , connection);
+            String a = JasperExportManager.exportReportToXml(print);
+            System.out.println(a);
+            byte[] s = JasperExportManager.exportReportToPdf(print);
+            return new Respuesta(true , "" , "" , "Registro" , s);
+
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al guardar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al guardar el registro." , "guardarRegistro " + ex.getMessage());
+        }
+
+    }
+
+    public Respuesta reporteByFolio(String Ep)
+    {
+
+        try
+        {
+            InputStream x = SoapWS.class.getClassLoader().getResourceAsStream("/cr/ac/una/websoap/reportes/ReporteEmpFolio.jrxml");
+            JasperReport jasper = JasperCompileManager.compileReport(x);
+            InitialContext initialContext = new InitialContext();
+            DataSource dataSource = (DataSource) initialContext.lookup("jdbc/Reloj");
+            Connection connection = dataSource.getConnection();
+
+            HashMap<String , Object> map = new HashMap<>();
+            map.put("FBuscar" , Ep);
+            JasperPrint print = JasperFillManager.fillReport(jasper , map , connection);
+            String a = JasperExportManager.exportReportToXml(print);
+            System.out.println(a);
+            byte[] s = JasperExportManager.exportReportToPdf(print);
+            return new Respuesta(true , "" , "" , "Registro" , s);
+
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al guardar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al guardar el registro." , "guardarRegistro " + ex.getMessage());
+        }
 
     }
 }

@@ -281,4 +281,35 @@ public class RegistroService
         cell = row.createCell(3);
         cell.setCellValue(reg.getCompletado());
     }
+
+    public Respuesta obtenerJAll()
+    {
+        try
+        {
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            byte[] pdfJ = port.jasP();
+            return new Respuesta(true , "" , "" , "Registro" , pdfJ);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error al obtener registro" , "Registro obteniendo " + ex.getMessage());
+        }
+    }
+
+    public Respuesta obtenerJEmpF(String Epm)
+    {
+        try
+        {
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            byte[] pdfJ = port.jasPFolio(Epm);
+            return new Respuesta(true , "" , "" , "Registro" , pdfJ);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error al obtener registro" , "Registro obteniendo " + ex.getMessage());
+
+        }
+    }
 }

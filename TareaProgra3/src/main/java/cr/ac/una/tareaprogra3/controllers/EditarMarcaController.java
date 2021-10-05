@@ -49,6 +49,8 @@ public class EditarMarcaController extends Controller implements Initializable
     private JFXComboBox<String> comboHSalida;
     @FXML
     private JFXComboBox<String> comboMSalida;
+    @FXML
+    private JFXComboBox<String> comboCI;
     String fechaEn;
     String fechaSal;
 
@@ -65,7 +67,10 @@ public class EditarMarcaController extends Controller implements Initializable
     {
 
         insertartodo();
-        ajustarvalores();
+        if(getReg() != null)
+        {
+            ajustarvalores();
+        }
 
 //         System.out.println("WELLCOME");
     }
@@ -107,6 +112,7 @@ public class EditarMarcaController extends Controller implements Initializable
         {
             comboMSalida.valueProperty().set(String.valueOf(getReg().getFechaSalida().getMinutes()));
         }
+        comboCI.valueProperty().set(getReg().getCompletado());
     }
 
     public void insertartodo()
@@ -115,6 +121,7 @@ public class EditarMarcaController extends Controller implements Initializable
         dtpFechaSalida.setEditable(false);
         dtpFechaEntrada.setConverter(new LocalDateStringConverter(FormatStyle.LONG));
         dtpFechaSalida.setConverter(new LocalDateStringConverter(FormatStyle.LONG));
+        comboCI.getItems().addAll("C" , "I");
         int Horas = 00;
         for(int i = 0; i <= 24; i++)
         {
@@ -153,23 +160,51 @@ public class EditarMarcaController extends Controller implements Initializable
     @FXML
     private void onActionBtnAceptar(ActionEvent event)
     {
+        if(getReg() != null)
+        {
+            LocalDate localDate = dtpFechaEntrada.getValue();
+            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            Date dateFE = Date.from(instant);
+            dateFE.setHours(Integer.parseInt(comboHEntrada.getValue()));
+            dateFE.setMinutes(Integer.parseInt(comboMEntrada.getValue()));
 
-        LocalDate localDate = dtpFechaEntrada.getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date dateFE = Date.from(instant);
-        dateFE.setHours(Integer.parseInt(comboHEntrada.getValue()));
-        dateFE.setMinutes(Integer.parseInt(comboMEntrada.getValue()));
+            LocalDate localDate2 = dtpFechaSalida.getValue();
+            Instant instant2 = Instant.from(localDate2.atStartOfDay(ZoneId.systemDefault()));
+            Date dateFS = Date.from(instant2);
+            dateFS.setHours(Integer.parseInt(comboHSalida.getValue()));
+            dateFS.setMinutes(Integer.parseInt(comboMSalida.getValue()));
+            getReg().setFechaIngreso(dateFE);
+            getReg().setFechaSalida(dateFS);
+            getReg().setCompletado(comboCI.getValue());
+            System.out.println("El valor de la fecha entrada final es " + getReg().getFechaIngreso());
+            System.out.println("El valor de la fecha salida final es " + getReg().getFechaSalida());
+            registroService.saveRegistrobyid(getReg());
+        }
+        else
+        {
+            RegistroClienteDto reg = new RegistroClienteDto();
+            reg.setEmpId(getEmp());
+            LocalDate localDate = dtpFechaEntrada.getValue();
+            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            Date dateFE = Date.from(instant);
+            dateFE.setHours(Integer.parseInt(comboHEntrada.getValue()));
+            dateFE.setMinutes(Integer.parseInt(comboMEntrada.getValue()));
 
-        LocalDate localDate2 = dtpFechaSalida.getValue();
-        Instant instant2 = Instant.from(localDate2.atStartOfDay(ZoneId.systemDefault()));
-        Date dateFS = Date.from(instant2);
-        dateFS.setHours(Integer.parseInt(comboHSalida.getValue()));
-        dateFS.setMinutes(Integer.parseInt(comboMSalida.getValue()));
-        getReg().setFechaIngreso(dateFE);
-        getReg().setFechaSalida(dateFS);
-        System.out.println("El valor de la fecha entrada final es " + getReg().getFechaIngreso());
-        System.out.println("El valor de la fecha salida final es " + getReg().getFechaSalida());
-        registroService.saveRegistrobyid(getReg());
+            LocalDate localDate2 = dtpFechaSalida.getValue();
+            Instant instant2 = Instant.from(localDate2.atStartOfDay(ZoneId.systemDefault()));
+            Date dateFS = Date.from(instant2);
+            dateFS.setHours(Integer.parseInt(comboHSalida.getValue()));
+            dateFS.setMinutes(Integer.parseInt(comboMSalida.getValue()));
+            reg.setFechaIngreso(dateFE);
+            reg.setFechaSalida(dateFS);
+            reg.setCompletado(comboCI.getValue());
+            Respuesta ress = registroService.saveRegistrobyid(reg);
+            if(ress.getEstado())
+            {
+                new Mensaje().showModal(Alert.AlertType.INFORMATION , "Guardado " , getStage() , "Registro Guardado");
+            }
+
+        }
 
     }
 

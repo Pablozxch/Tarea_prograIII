@@ -36,6 +36,14 @@
 
 <xs:element name="getRegistroResponse" type="tns:getRegistroResponse"/>
 
+<xs:element name="jasP" type="tns:jasP"/>
+
+<xs:element name="jasPFolio" type="tns:jasPFolio"/>
+
+<xs:element name="jasPFolioResponse" type="tns:jasPFolioResponse"/>
+
+<xs:element name="jasPResponse" type="tns:jasPResponse"/>
+
 <xs:element name="regtodo" type="tns:regtodo"/>
 
 <xs:element name="regtodoResponse" type="tns:regtodoResponse"/>
@@ -75,6 +83,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="deleteRegistro">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteRegistroResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="EmpleadoFolio">
 <xs:sequence>
 <xs:element name="folio" type="xs:string" minOccurs="0"/>
@@ -85,16 +103,6 @@
 <xs:sequence>
 <xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="deleteRegistro">
-<xs:sequence>
-<xs:element name="id" type="xs:long" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="deleteRegistroResponse">
-<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="EmpleadoAdmin">
@@ -150,6 +158,28 @@
 
 <xs:complexType name="deleteEmpleadoResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="jasP">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="jasPResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jasPFolio">
+<xs:sequence>
+<xs:element name="EmpFolio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jasPFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="SaveEmpleado">

@@ -13,6 +13,7 @@ import javax.ejb.*;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import net.sf.jasperreports.engine.util.*;
 
 /**
  *
@@ -121,33 +122,20 @@ public class SoapWS
     }
 
     @WebMethod(operationName = "jasP")
-    public List<RegistroDto> jaspertodo()
+    public byte[] jaspertodo()
     {
+        Respuesta res = registroService.reporteALl();
+        byte[] a = (byte[]) res.getResultado("Registro");
+        return a;
 
-        Respuesta respuesta = registroService.getAll();
-        registrolist = (List<RegistroDto>) respuesta.getResultado("Registro");
+    }
 
-        ArrayList<ArrayList<Object>> lista1 = new ArrayList<>();//lista principal
-        ArrayList<Object> lista2 = new ArrayList();
-
-        registrolist.forEach(t ->
-        {
-            ArrayList<Object> a = new ArrayList<Object>();
-            a.add(t.getEmpId().getFolio());
-            a.add(t.getFechaIngreso());
-            a.add(t.getFechaSalida());
-            a.add(t.getCompletado());
-
-            lista1.add(a);
-            System.out.println("Registro completado e ingresado");
-
-        });
-        for(int i=0; i<lista1.size(); i++)
-        {
-            System.out.println("El valor en la posicion "+i+"es "+lista1.get(i).toString());
-        }
-        //!TOMAR LA lista1 y enviarla a algun lado para hacer el reporte o generar el reporte
-        return registrolist;
+    @WebMethod(operationName = "jasPFolio")
+    public byte[] reporteByFolio(@WebParam(name = "EmpFolio") String EmpFolio)
+    {
+        Respuesta res = registroService.reporteByFolio(EmpFolio);
+        byte[] a = (byte[]) res.getResultado("Registro");
+        return a;
     }
 
 }

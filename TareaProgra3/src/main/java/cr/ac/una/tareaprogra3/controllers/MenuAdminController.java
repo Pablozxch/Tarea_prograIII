@@ -78,15 +78,19 @@ public class MenuAdminController extends Controller implements Initializable
         }
         if(event.getSource() == btnMantenimiento)
         {
-             FlowController.getInstance().goVistas("AdminControl");
+            FlowController.getInstance().goVistas("AdminControl");
         }
-        if(event.getSource()==btnBuscarHistorial)
+        if(event.getSource() == btnBuscarHistorial)
         {
             FlowController.getInstance().goVistas("BuscarHistorial");
         }
-           if(event.getSource()==btnVerHistoriales)
+        if(event.getSource() == btnVerHistoriales)
         {
             FlowController.getInstance().goVistas("viewHistoriales");
+        }
+        if(event.getSource()==btnExportarMarcas)
+        {
+            FlowController.getInstance().goVistas("ExportarMarcas");
         }
     }
 
@@ -95,7 +99,7 @@ public class MenuAdminController extends Controller implements Initializable
         Respuesta respuesta = service2.getEmpleadobyFolio(Nfolio);
         if(respuesta.getEstado())
         {
-            empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");         
+            empleadoClienteDto = (EmpleadoClienteDto) respuesta.getResultado("Empleado");
             Image img2 = new Image(new ByteArrayInputStream(empleadoClienteDto.getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
             imgFotoAdmin.setImage(img2);
 

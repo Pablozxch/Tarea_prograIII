@@ -39,6 +39,7 @@ public class BuscarHistorialController extends Controller implements Initializab
     private JFXButton btnBuscar;
     List<RegistroClienteDto> registroDto = new ArrayList<>();
     RegistroService service = new RegistroService();
+    EmpleadoService empservice = new EmpleadoService();
     @FXML
     private JFXButton btnRegresar;
     @FXML
@@ -281,30 +282,18 @@ public class BuscarHistorialController extends Controller implements Initializab
                     setReg((RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem());
                     RegistroClienteDto reg = (RegistroClienteDto) tblHistorial.getSelectionModel().getSelectedItem();
                     System.out.println("El valor seleccionado es " + reg.toString());
-//                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
-//                    Parent root = fxmlLoader.load();
-//                    Stage stage = new Stage();
-//                    stage.setOpacity(1);
-//                    Scene scene = new Scene(root , 647 , 474);
-//                    stage.setScene(scene);
-//                    stage.resizableProperty().set(false);
-//                    stage.initModality(Modality.WINDOW_MODAL);
-//                    stage.initOwner(btnEditar.getScene().getWindow());
-//                    stage.centerOnScreen();
-//                    stage.showAndWait();
-//                    search();
-                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/FelizBird.fxml"));
-                Parent root = fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setOpacity(1);
-                Scene scene = new Scene(root , 647 , 474);
-                stage.setScene(scene);
-                stage.setTitle("FELIZ CUMPLEAÑOS");
-                stage.resizableProperty().set(false);
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(btnEditar.getScene().getWindow());
-                stage.centerOnScreen();
-                stage.showAndWait();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setOpacity(1);
+                    Scene scene = new Scene(root , 600 , 300);
+                    stage.setScene(scene);
+                    stage.resizableProperty().set(false);
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initOwner(btnEditar.getScene().getWindow());
+                    stage.centerOnScreen();
+                    stage.showAndWait();
+                    search();
                 }
                 catch(IOException ex)
                 {
@@ -354,10 +343,36 @@ public class BuscarHistorialController extends Controller implements Initializab
         }
         if(event.getSource() == btnAgregar)
         {
-            /*
-                @Crear una venta que sea la encarga de crear las fechas para agregarlas alusuario
-             */
-            //  FlowController.getInstance().goVistas("AgregarRegistro");
+            try
+            {
+                if(lblFolio.getText() != null)
+                {
+                    setReg(null);
+                    Respuesta res = empservice.getEmpleadobyFolio(lblFolio.getText());
+                    if(res.getEstado())
+                    {
+                        EmpleadoClienteDto emp = (EmpleadoClienteDto) res.getResultado("Empleado");
+                        setEmp(emp);
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cr/ac/una/tareaprogra3/views/EditarMarca.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setOpacity(1);
+                        Scene scene = new Scene(root , 600 , 300);
+                        stage.setScene(scene);
+                        stage.resizableProperty().set(false);
+                        stage.initModality(Modality.WINDOW_MODAL);
+                        stage.initOwner(btnEditar.getScene().getWindow());
+                        stage.centerOnScreen();
+                        stage.showAndWait();
+                        search();
+                    }
+                }
+
+            }
+            catch(IOException ex)
+            {
+                Logger.getLogger(BuscarHistorialController.class.getName()).log(Level.SEVERE , null , ex);
+            }
         }
         if(event.getSource() == btnRegresar)
         {

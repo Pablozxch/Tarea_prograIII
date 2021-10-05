@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="250.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.EditarMarcaController">
    <children>
@@ -103,6 +104,24 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="35.0" HBox.hgrow="ALWAYS">
                <children>
+                  <HBox alignment="BOTTOM_CENTER" prefHeight="55.0" prefWidth="162.0">
+                     <children>
+                        <VBox prefHeight="55.0" prefWidth="56.0">
+                           <children>
+                              <Label prefHeight="31.0" prefWidth="66.0" text="Dia">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="34.0" prefWidth="67.0">
+                           <children>
+                              <JFXComboBox fx:id="comboCI" prefHeight="32.0" prefWidth="59.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
                   <JFXButton fx:id="btnAceptar" onAction="#onActionBtnAceptar" text="Aceptar" />
                   <JFXButton fx:id="btnVolver" onAction="#onActionBtnVolver" text="Volver" />
                </children>
