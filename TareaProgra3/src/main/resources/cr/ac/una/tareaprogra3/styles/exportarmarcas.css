@@ -5,3 +5,24 @@
 .mainFxmlClass {
 
 }
+.button
+{
+    -fx-background-radius: 50;
+    -fx-background-color: #bd4aff;
+}
+.button:hover
+{
+    -fx-font-size: 15px;
+    -fx-background-color: #9b4eff;
+}
+
+.text-field 
+{
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}

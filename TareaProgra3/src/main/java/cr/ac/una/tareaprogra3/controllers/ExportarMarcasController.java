@@ -5,13 +5,16 @@
  */
 package cr.ac.una.tareaprogra3.controllers;
 
+import com.jfoenix.controls.*;
 import cr.ac.una.tareaprogra3.services.*;
 import cr.ac.una.tareaprogra3.utils.*;
 import java.io.*;
 import java.net.URL;
-import java.nio.charset.*;
 import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.stage.*;
 
 /**
  * FXML Controller class
@@ -22,6 +25,14 @@ public class ExportarMarcasController extends Controller implements Initializabl
 {
 
     RegistroService service = new RegistroService();
+    @FXML
+    private JFXButton btnMarcas;
+    @FXML
+    private JFXTextField txtFolio;
+    @FXML
+    private JFXButton btnGuardar;
+    @FXML
+    private JFXButton btnEmpleados;
 
     /**
      * Initializes the controller class.
@@ -29,42 +40,79 @@ public class ExportarMarcasController extends Controller implements Initializabl
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        // TODO
-        Respuesta res = service.obtenerJAll();
-        byte[] decoder = (byte[]) res.getResultado("Registro");
 
-        File file = new File("./test.pdf");
-
-        try(FileOutputStream fos = new FileOutputStream(file);)
-        {
-            fos.write(decoder);
-            System.out.println("PDF File Saved");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        Respuesta res2 = service.obtenerJEmpF("EP");
-        byte[] decoder2 = (byte[]) res2.getResultado("Registro");
-
-        File file2 = new File("./test2.pdf");
-
-        try(FileOutputStream fos = new FileOutputStream(file2);)
-        {
-            fos.write(decoder2);
-            System.out.println("PDF File2 Saved");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void initialize()
     {
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @FXML
+    private void onActionBtnMarcas(ActionEvent event)
+    {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF" , "*.pdf"));
+        fileChooser.setInitialFileName("*.pdf");
+        File selectedFile = fileChooser.showSaveDialog(new Stage());
+
+        if(selectedFile != null)
+        {
+            File file2 = new File(selectedFile.toPath().toString());
+            Respuesta res = service.obtenerJAll();
+            byte[] decoder = (byte[]) res.getResultado("Registro");
+            try(FileOutputStream fos = new FileOutputStream(file2);)
+            {
+                fos.write(decoder);
+                new Mensaje().show(Alert.AlertType.CONFIRMATION , "Guardado" , "Con exito");
+            }
+            catch(Exception e)
+            {
+            }
+        }
+    }
+
+
+    @FXML
+    private void onActionBtnGuardar(ActionEvent event) throws IOException
+    {
+        if(!txtFolio.getText().isEmpty())
+        {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF" , "*.pdf"));
+            fileChooser.setInitialFileName("*.pdf");
+            File selectedFile = fileChooser.showSaveDialog(new Stage());
+
+            if(selectedFile != null)
+            {
+                File file2 = new File(selectedFile.toPath().toString());
+                Respuesta res = service.obtenerJEmpF(txtFolio.getText());
+                byte[] decoder = (byte[]) res.getResultado("Registro");
+                try(FileOutputStream fos = new FileOutputStream(file2);)
+                {
+                    fos.write(decoder);
+                    new Mensaje().show(Alert.AlertType.CONFIRMATION , "Guardado" , "Con exito");
+                }
+                catch(Exception e)
+                {
+                }
+            }
+        }
+        else
+        {
+            new Mensaje().show(Alert.AlertType.WARNING , "ERROR" , "Folio No ingresado");
+        }
+
+    }
+
+    @FXML
+    private void onActionBtnEmpleados(ActionEvent event)
+    {
+
     }
 
 }

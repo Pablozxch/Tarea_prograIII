@@ -286,7 +286,7 @@ public class BuscarHistorialController extends Controller implements Initializab
                     Parent root = fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setOpacity(1);
-                    Scene scene = new Scene(root , 600 , 300);
+                    Scene scene = new Scene(root , 667 , 250);
                     stage.setScene(scene);
                     stage.resizableProperty().set(false);
                     stage.initModality(Modality.WINDOW_MODAL);
@@ -357,7 +357,7 @@ public class BuscarHistorialController extends Controller implements Initializab
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setOpacity(1);
-                        Scene scene = new Scene(root , 600 , 300);
+                        Scene scene = new Scene(root , 667 , 250);
                         stage.setScene(scene);
                         stage.resizableProperty().set(false);
                         stage.initModality(Modality.WINDOW_MODAL);

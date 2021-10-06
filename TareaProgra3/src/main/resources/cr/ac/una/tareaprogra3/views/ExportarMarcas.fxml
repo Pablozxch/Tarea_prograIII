@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.ExportarMarcasController">
-    <stylesheets>
-        <URL value="@/cr/ac/una/tareaprogra3/styles/exportarmarcas.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/exportarmarcas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.ExportarMarcasController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resources/958598.jpg" />
+         </image>
+      </ImageView>
+      <HBox layoutX="168.0" layoutY="194.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="86.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="btnMarcas" onAction="#onActionBtnMarcas" prefHeight="44.0" prefWidth="152.0" text="Reporte Marcas" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="45.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXTextField fx:id="txtFolio" promptText="Folio Empleado">
+                     <font>
+                        <Font size="13.0" />
+                     </font></JFXTextField>
+                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" prefHeight="35.0" prefWidth="149.0" text="Reporte por Folio" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="btnEmpleados" onAction="#onActionBtnEmpleados" prefHeight="40.0" prefWidth="137.0" text="Reporte Empleados" textFill="WHITE" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

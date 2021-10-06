@@ -30,8 +30,8 @@ public class App extends Application
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
         //FlowController.getInstance().goMain();
-        FlowController.getInstance().goVistas("ExportarMarcas");
-        //FlowController.getInstance().goVistas("ViewHistoriales");
+        //FlowController.getInstance().goVistas("ExportarMarcas");
+        FlowController.getInstance().goVistas("ViewHistoriales");
     }
 
     static void setRoot(String fxml) throws IOException

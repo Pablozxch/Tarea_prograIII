@@ -9,6 +9,7 @@ import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.utils.*;
 import java.io.*;
 import java.util.*;
+import javafx.stage.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -191,18 +192,41 @@ public class RegistroService
             styleI.setVerticalAlignment(VerticalAlignment.CENTER);
             styleI.setWrapText(true);
             //ESTILO DEL NORMAL IMPAR
+            //ESTILO ROJO TEXTO
+            CellStyle RED = workbook.createCellStyle();
+            RED.setAlignment(HorizontalAlignment.CENTER);
+            RED.setBorderTop(BorderStyle.MEDIUM);
+            RED.setBorderBottom(BorderStyle.MEDIUM);
+            RED.setBorderLeft(BorderStyle.MEDIUM);
+            RED.setBorderRight(BorderStyle.MEDIUM);
+            RED.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            RED.setFillForegroundColor(IndexedColors.RED.index);
+            RED.setVerticalAlignment(VerticalAlignment.CENTER);
+            //ESTILO ROJO TEXTO
             //ESTILO DE LA FECHA PAR
             CellStyle dateStyleP = workbook.createCellStyle();
             dateStyleP.setBorderTop(BorderStyle.MEDIUM);
             dateStyleP.setBorderBottom(BorderStyle.MEDIUM);
             dateStyleP.setBorderLeft(BorderStyle.MEDIUM);
             dateStyleP.setBorderRight(BorderStyle.MEDIUM);
-            dateStyleP.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            dateStyleP.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
             dateStyleP.setDataFormat(creationHelper.createDataFormat().getFormat("MM/dd/yyyy"));
             dateStyleP.setAlignment(HorizontalAlignment.CENTER);
+            dateStyleP.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            dateStyleP.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
             dateStyleP.setVerticalAlignment(VerticalAlignment.CENTER);
             //ESTILO DE LA FECHA PAR
+//            FECHA RED
+            CellStyle datered = workbook.createCellStyle();
+            datered.setBorderTop(BorderStyle.MEDIUM);
+            datered.setBorderBottom(BorderStyle.MEDIUM);
+            datered.setBorderLeft(BorderStyle.MEDIUM);
+            datered.setBorderRight(BorderStyle.MEDIUM);
+            datered.setDataFormat(creationHelper.createDataFormat().getFormat("MM/dd/yyyy"));
+            datered.setAlignment(HorizontalAlignment.CENTER);
+            datered.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            datered.setFillForegroundColor(IndexedColors.RED1.index);
+            datered.setVerticalAlignment(VerticalAlignment.CENTER);
+//               FECHA RED
             //ESTILO DE LA FECHA IMPAR
             CellStyle dateStyleI = workbook.createCellStyle();
             dateStyleI.setBorderTop(BorderStyle.MEDIUM);
@@ -223,13 +247,31 @@ public class RegistroService
                 CellStyle useDate = workbook.createCellStyle();
                 if(rownum % 2 == 0)
                 {
-                    use = styleP;
-                    useDate = dateStyleP;
+
+                    if("I".equals(i.getCompletado()))
+                    {
+                        use = RED;
+                        useDate = datered;
+                    }
+                    else
+                    {
+                        use = styleP;
+                        useDate = dateStyleP;
+                    }
                 }
                 else
                 {
-                    use = styleI;
-                    useDate = dateStyleI;
+
+                    if("I".equals(i.getCompletado()))
+                    {
+                        use = RED;
+                        useDate = datered;
+                    }
+                    else
+                    {
+                        use = styleI;
+                        useDate = dateStyleI;
+                    }
                 }
                 row.createCell(0).setCellValue(i.getEmpId().getFolio());
                 row.getCell(0).setCellStyle(use);
@@ -254,10 +296,19 @@ public class RegistroService
                 sh.autoSizeColumn(i);
             }
 
-            FileOutputStream fileOut = new FileOutputStream("Registros.xlsx");
-            workbook.write(fileOut);
-            fileOut.close();
-            workbook.close();
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("XLSX" , "*.xlsx"));
+            fileChooser.setInitialFileName("*.xlsx");
+            File selectedFile = fileChooser.showSaveDialog(new Stage());
+
+            if(selectedFile != null)
+            {
+                FileOutputStream fileOut = new FileOutputStream(selectedFile.toPath().toString());
+                workbook.write(fileOut);
+                fileOut.close();
+                workbook.close();
+            }
 
         }
         catch(Exception e)
