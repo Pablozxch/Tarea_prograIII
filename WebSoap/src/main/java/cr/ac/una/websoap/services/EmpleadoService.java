@@ -5,11 +5,18 @@
  */
 package cr.ac.una.websoap.services;
 
+import cr.ac.una.websoap.*;
 import cr.ac.una.websoap.models.*;
 import cr.ac.una.websoap.utils.*;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
 import java.util.logging.*;
 import javax.ejb.*;
+import javax.naming.*;
 import javax.persistence.*;
+import javax.sql.*;
+import net.sf.jasperreports.engine.*;
 
 /**
  *
@@ -140,6 +147,7 @@ public class EmpleadoService
             return new Respuesta(false , "Ocurrio un error al guardar el empleado." , "guardarEmpleado " + ex.getMessage());
         }
     }
+
     public Respuesta eliminarEmpleado(Long id)
     {
         try
@@ -168,5 +176,31 @@ public class EmpleadoService
         }
     }
 
-   
+    public Respuesta reporteALlE()
+    {
+
+        try
+        {
+            InputStream x = SoapWS.class.getClassLoader().getResourceAsStream("/cr/ac/una/websoap/reportes/ReportAllE.jrxml");
+            JasperReport jasper = JasperCompileManager.compileReport(x);
+            InitialContext initialContext = new InitialContext();
+            DataSource dataSource = (DataSource) initialContext.lookup("jdbc/Reloj");
+            Connection connection = dataSource.getConnection();
+
+            HashMap<String , Object> map = new HashMap<>();
+            JasperPrint print = JasperFillManager.fillReport(jasper , map , connection);
+            String a = JasperExportManager.exportReportToXml(print);
+            System.out.println(a);
+            byte[] s = JasperExportManager.exportReportToPdf(print);
+            return new Respuesta(true , "" , "" , "Empleado" , s);
+
+        }
+        catch(Exception ex)
+        {
+            LOG.log(Level.SEVERE , "Ocurrio un error al guardar el registro." , ex);
+            return new Respuesta(false , "Ocurrio un error al guardar el registro." , "guardarRegistro " + ex.getMessage());
+        }
+
+    }
+
 }

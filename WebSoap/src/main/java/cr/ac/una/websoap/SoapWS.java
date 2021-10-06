@@ -130,6 +130,15 @@ public class SoapWS
 
     }
 
+    @WebMethod(operationName = "jasPEmp")
+    public byte[] jaspertodoEmp()
+    {
+        Respuesta res = empleadoService.reporteALlE();
+        byte[] a = (byte[]) res.getResultado("Empleado");
+        return a;
+
+    }
+
     @WebMethod(operationName = "jasPFolio")
     public byte[] reporteByFolio(@WebParam(name = "EmpFolio") String EmpFolio)
     {

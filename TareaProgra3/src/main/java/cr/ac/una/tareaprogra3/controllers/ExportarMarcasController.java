@@ -25,6 +25,7 @@ public class ExportarMarcasController extends Controller implements Initializabl
 {
 
     RegistroService service = new RegistroService();
+    EmpleadoService empS = new EmpleadoService();
     @FXML
     private JFXButton btnMarcas;
     @FXML
@@ -33,6 +34,8 @@ public class ExportarMarcasController extends Controller implements Initializabl
     private JFXButton btnGuardar;
     @FXML
     private JFXButton btnEmpleados;
+    @FXML
+    private JFXButton btnSalir;
 
     /**
      * Initializes the controller class.
@@ -75,7 +78,6 @@ public class ExportarMarcasController extends Controller implements Initializabl
         }
     }
 
-
     @FXML
     private void onActionBtnGuardar(ActionEvent event) throws IOException
     {
@@ -112,7 +114,35 @@ public class ExportarMarcasController extends Controller implements Initializabl
     @FXML
     private void onActionBtnEmpleados(ActionEvent event)
     {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF" , "*.pdf"));
+        fileChooser.setInitialFileName("*.pdf");
+        File selectedFile = fileChooser.showSaveDialog(new Stage());
 
+        if(selectedFile != null)
+        {
+            File file2 = new File(selectedFile.toPath().toString());
+            Respuesta res = empS.obtenerJAllE();
+            byte[] decoder = (byte[]) res.getResultado("Empleado");
+            try(FileOutputStream fos = new FileOutputStream(file2);)
+            {
+                fos.write(decoder);
+                new Mensaje().show(Alert.AlertType.CONFIRMATION , "Guardado" , "Con exito");
+            }
+            catch(Exception e)
+            {
+            }
+        }
+    }
+
+    @FXML
+    private void click(ActionEvent event)
+    {
+        if(event.getSource() == btnSalir)
+        {
+            FlowController.getInstance().goVistas("MenuAdmin");
+        }
     }
 
 }

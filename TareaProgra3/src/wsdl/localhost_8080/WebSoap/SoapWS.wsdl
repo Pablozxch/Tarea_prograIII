@@ -10,47 +10,11 @@
 <message name="EmpleadoAdminResponse">
 <part name="parameters" element="tns:EmpleadoAdminResponse"/>
 </message>
-<message name="deleteRegistro">
-<part name="parameters" element="tns:deleteRegistro"/>
+<message name="RegistrosbyId">
+<part name="parameters" element="tns:RegistrosbyId"/>
 </message>
-<message name="deleteRegistroResponse">
-<part name="parameters" element="tns:deleteRegistroResponse"/>
-</message>
-<message name="deleteEmpleado">
-<part name="parameters" element="tns:deleteEmpleado"/>
-</message>
-<message name="deleteEmpleadoResponse">
-<part name="parameters" element="tns:deleteEmpleadoResponse"/>
-</message>
-<message name="jasP">
-<part name="parameters" element="tns:jasP"/>
-</message>
-<message name="jasPResponse">
-<part name="parameters" element="tns:jasPResponse"/>
-</message>
-<message name="EmpleadoFolio">
-<part name="parameters" element="tns:EmpleadoFolio"/>
-</message>
-<message name="EmpleadoFolioResponse">
-<part name="parameters" element="tns:EmpleadoFolioResponse"/>
-</message>
-<message name="regtodo">
-<part name="parameters" element="tns:regtodo"/>
-</message>
-<message name="regtodoResponse">
-<part name="parameters" element="tns:regtodoResponse"/>
-</message>
-<message name="SaveEmpleado">
-<part name="parameters" element="tns:SaveEmpleado"/>
-</message>
-<message name="SaveEmpleadoResponse">
-<part name="parameters" element="tns:SaveEmpleadoResponse"/>
-</message>
-<message name="jasPFolio">
-<part name="parameters" element="tns:jasPFolio"/>
-</message>
-<message name="jasPFolioResponse">
-<part name="parameters" element="tns:jasPFolioResponse"/>
+<message name="RegistrosbyIdResponse">
+<part name="parameters" element="tns:RegistrosbyIdResponse"/>
 </message>
 <message name="getRegistro">
 <part name="parameters" element="tns:getRegistro"/>
@@ -58,11 +22,35 @@
 <message name="getRegistroResponse">
 <part name="parameters" element="tns:getRegistroResponse"/>
 </message>
+<message name="jasPFolio">
+<part name="parameters" element="tns:jasPFolio"/>
+</message>
+<message name="jasPFolioResponse">
+<part name="parameters" element="tns:jasPFolioResponse"/>
+</message>
+<message name="deleteRegistro">
+<part name="parameters" element="tns:deleteRegistro"/>
+</message>
+<message name="deleteRegistroResponse">
+<part name="parameters" element="tns:deleteRegistroResponse"/>
+</message>
+<message name="SaveEmpleado">
+<part name="parameters" element="tns:SaveEmpleado"/>
+</message>
+<message name="SaveEmpleadoResponse">
+<part name="parameters" element="tns:SaveEmpleadoResponse"/>
+</message>
 <message name="SaveRegistro">
 <part name="parameters" element="tns:SaveRegistro"/>
 </message>
 <message name="SaveRegistroResponse">
 <part name="parameters" element="tns:SaveRegistroResponse"/>
+</message>
+<message name="deleteEmpleado">
+<part name="parameters" element="tns:deleteEmpleado"/>
+</message>
+<message name="deleteEmpleadoResponse">
+<part name="parameters" element="tns:deleteEmpleadoResponse"/>
 </message>
 <message name="RegistroFolio">
 <part name="parameters" element="tns:RegistroFolio"/>
@@ -70,60 +58,82 @@
 <message name="RegistroFolioResponse">
 <part name="parameters" element="tns:RegistroFolioResponse"/>
 </message>
-<message name="RegistrosbyId">
-<part name="parameters" element="tns:RegistrosbyId"/>
+<message name="jasP">
+<part name="parameters" element="tns:jasP"/>
 </message>
-<message name="RegistrosbyIdResponse">
-<part name="parameters" element="tns:RegistrosbyIdResponse"/>
+<message name="jasPResponse">
+<part name="parameters" element="tns:jasPResponse"/>
+</message>
+<message name="regtodo">
+<part name="parameters" element="tns:regtodo"/>
+</message>
+<message name="regtodoResponse">
+<part name="parameters" element="tns:regtodoResponse"/>
+</message>
+<message name="EmpleadoFolio">
+<part name="parameters" element="tns:EmpleadoFolio"/>
+</message>
+<message name="EmpleadoFolioResponse">
+<part name="parameters" element="tns:EmpleadoFolioResponse"/>
+</message>
+<message name="jasPEmp">
+<part name="parameters" element="tns:jasPEmp"/>
+</message>
+<message name="jasPEmpResponse">
+<part name="parameters" element="tns:jasPEmpResponse"/>
 </message>
 <portType name="SoapWS">
 <operation name="EmpleadoAdmin">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminRequest" message="tns:EmpleadoAdmin"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoAdminResponse" message="tns:EmpleadoAdminResponse"/>
 </operation>
-<operation name="deleteRegistro">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteRegistroRequest" message="tns:deleteRegistro"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteRegistroResponse" message="tns:deleteRegistroResponse"/>
-</operation>
-<operation name="deleteEmpleado">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteEmpleadoRequest" message="tns:deleteEmpleado"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteEmpleadoResponse" message="tns:deleteEmpleadoResponse"/>
-</operation>
-<operation name="jasP">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPRequest" message="tns:jasP"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPResponse" message="tns:jasPResponse"/>
-</operation>
-<operation name="EmpleadoFolio">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
-</operation>
-<operation name="regtodo">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/regtodoRequest" message="tns:regtodo"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/regtodoResponse" message="tns:regtodoResponse"/>
-</operation>
-<operation name="SaveEmpleado">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoRequest" message="tns:SaveEmpleado"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoResponse" message="tns:SaveEmpleadoResponse"/>
-</operation>
-<operation name="jasPFolio">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPFolioRequest" message="tns:jasPFolio"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPFolioResponse" message="tns:jasPFolioResponse"/>
+<operation name="RegistrosbyId">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdRequest" message="tns:RegistrosbyId"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdResponse" message="tns:RegistrosbyIdResponse"/>
 </operation>
 <operation name="getRegistro">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/getRegistroRequest" message="tns:getRegistro"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/getRegistroResponse" message="tns:getRegistroResponse"/>
 </operation>
+<operation name="jasPFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPFolioRequest" message="tns:jasPFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPFolioResponse" message="tns:jasPFolioResponse"/>
+</operation>
+<operation name="deleteRegistro">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteRegistroRequest" message="tns:deleteRegistro"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteRegistroResponse" message="tns:deleteRegistroResponse"/>
+</operation>
+<operation name="SaveEmpleado">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoRequest" message="tns:SaveEmpleado"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveEmpleadoResponse" message="tns:SaveEmpleadoResponse"/>
+</operation>
 <operation name="SaveRegistro">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveRegistroRequest" message="tns:SaveRegistro"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/SaveRegistroResponse" message="tns:SaveRegistroResponse"/>
+</operation>
+<operation name="deleteEmpleado">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteEmpleadoRequest" message="tns:deleteEmpleado"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/deleteEmpleadoResponse" message="tns:deleteEmpleadoResponse"/>
 </operation>
 <operation name="RegistroFolio">
 <input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioRequest" message="tns:RegistroFolio"/>
 <output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistroFolioResponse" message="tns:RegistroFolioResponse"/>
 </operation>
-<operation name="RegistrosbyId">
-<input wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdRequest" message="tns:RegistrosbyId"/>
-<output wsam:Action="http://websoap.una.ac.cr/SoapWS/RegistrosbyIdResponse" message="tns:RegistrosbyIdResponse"/>
+<operation name="jasP">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPRequest" message="tns:jasP"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPResponse" message="tns:jasPResponse"/>
+</operation>
+<operation name="regtodo">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/regtodoRequest" message="tns:regtodo"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/regtodoResponse" message="tns:regtodoResponse"/>
+</operation>
+<operation name="EmpleadoFolio">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioRequest" message="tns:EmpleadoFolio"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/EmpleadoFolioResponse" message="tns:EmpleadoFolioResponse"/>
+</operation>
+<operation name="jasPEmp">
+<input wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPEmpRequest" message="tns:jasPEmp"/>
+<output wsam:Action="http://websoap.una.ac.cr/SoapWS/jasPEmpResponse" message="tns:jasPEmpResponse"/>
 </operation>
 </portType>
 <binding name="SoapWSPortBinding" type="tns:SoapWS">
@@ -137,61 +147,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="deleteRegistro">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="deleteEmpleado">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="jasP">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="EmpleadoFolio">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="regtodo">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="SaveEmpleado">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="jasPFolio">
+<operation name="RegistrosbyId">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -209,7 +165,43 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="jasPFolio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="deleteRegistro">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="SaveEmpleado">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="SaveRegistro">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="deleteEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -227,7 +219,34 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="RegistrosbyId">
+<operation name="jasP">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="regtodo">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="EmpleadoFolio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="jasPEmp">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

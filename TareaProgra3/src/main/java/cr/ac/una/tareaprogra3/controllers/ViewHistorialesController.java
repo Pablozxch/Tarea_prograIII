@@ -297,7 +297,7 @@ public class ViewHistorialesController extends Controller implements Initializab
                         Parent root = fxmlLoader.load();
                         Stage stage = new Stage();
                         stage.setOpacity(1);
-                        Scene scene = new Scene(root , 647 , 474);
+                        Scene scene = new Scene(root , 667 , 250);
                         stage.setScene(scene);
                         stage.resizableProperty().set(false);
                         stage.initModality(Modality.WINDOW_MODAL);

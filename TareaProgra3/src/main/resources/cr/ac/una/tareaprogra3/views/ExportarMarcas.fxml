@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +17,7 @@
             <Image url="@../resources/958598.jpg" />
          </image>
       </ImageView>
-      <HBox layoutX="168.0" layoutY="194.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="BOTTOM_RIGHT" layoutX="168.0" layoutY="194.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="CENTER" prefHeight="400.0" prefWidth="86.0" HBox.hgrow="ALWAYS">
                <children>
@@ -29,12 +30,27 @@
                      <font>
                         <Font size="13.0" />
                      </font></JFXTextField>
-                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" prefHeight="35.0" prefWidth="149.0" text="Reporte por Folio" textFill="WHITE" />
+                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" prefHeight="44.0" prefWidth="152.0" text="Reporte por Folio" textFill="WHITE" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
-                  <JFXButton fx:id="btnEmpleados" onAction="#onActionBtnEmpleados" prefHeight="40.0" prefWidth="137.0" text="Reporte Empleados" textFill="WHITE" />
+                  <JFXButton fx:id="btnEmpleados" onAction="#onActionBtnEmpleados" prefHeight="44.0" prefWidth="152.0" text="Reporte Empleados" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="125.0" />
+                     </VBox.margin></JFXButton>
+                  <JFXButton fx:id="btnSalir" contentDisplay="RIGHT" onAction="#click" prefHeight="44.0" prefWidth="152.0" text="Regresar" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/Back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
                </children>
             </VBox>
          </children>

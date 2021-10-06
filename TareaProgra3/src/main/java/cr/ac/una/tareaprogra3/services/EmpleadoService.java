@@ -85,4 +85,18 @@ public class EmpleadoService
         }
     }
 
+    public Respuesta obtenerJAllE()
+    {
+        try
+        {
+            SoapWS_Service service = new SoapWS_Service();
+            SoapWS port = service.getSoapWSPort();
+            byte[] pdfJ = port.jasPEmp();
+            return new Respuesta(true , "" , "" , "Empleado" , pdfJ);
+        }
+        catch(Exception ex)
+        {
+            return new Respuesta(false , "Error al obtener registro" , "Registro obteniendo " + ex.getMessage());
+        }
+    }
 }
