@@ -33,5 +33,8 @@
             <Font size="23.0" />
          </font>
       </JFXButton>
+      <ImageView fx:id="imgWorker" fitHeight="150.0" fitWidth="187.0" layoutX="23.0" layoutY="60.0" pickOnBounds="true" />
+      <Label fx:id="marcaentrada" layoutX="282.0" layoutY="72.0" text="Label" />
+      <Label fx:id="marcasalida" layoutX="286.0" layoutY="274.0" text="Label" />
    </children>
 </AnchorPane>

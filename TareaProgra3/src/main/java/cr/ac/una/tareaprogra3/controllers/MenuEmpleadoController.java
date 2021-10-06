@@ -52,6 +52,12 @@ public class MenuEmpleadoController extends Controller implements Initializable
     @FXML
     private JFXButton btnSalir;
     Thread thread;
+    @FXML
+    private ImageView imgWorker;
+    @FXML
+    private Label marcaentrada;
+    @FXML
+    private Label marcasalida;
 
     @Override
     public void initialize(URL url , ResourceBundle rb)
@@ -59,12 +65,15 @@ public class MenuEmpleadoController extends Controller implements Initializable
         // TODO
         DateFormat daymyear = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-
+        marcaentrada.setVisible(false);
+        marcasalida.setVisible(false);
         lblFecha.setText(daymyear.format(date));
         timecount();
         String name = getEmp().getNombre();
         lblnombreEmpleado.setText(name);
-        asig();
+
+        Image img2 = new Image(new ByteArrayInputStream(getEmp().getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+        imgWorker.setImage(img2);
 
     }
 
@@ -74,38 +83,6 @@ public class MenuEmpleadoController extends Controller implements Initializable
         // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void asig()
-    {
-        Date date = new Date();
-        SimpleDateFormat dateemp = new SimpleDateFormat("dd/MM/YYYY");
-
-        String dateCumple = dateemp.format(getEmp().getNacimiento());
-        String dateactual = dateemp.format(date);
-        System.out.println(dateCumple);
-        System.out.println(dateactual);
-        if(dateCumple.equals(dateactual))
-        {
-            try
-            {
-                Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("/cr/ac/una/tareaprogra3/views/FelizBird.fxml"));
-                stage.setOpacity(1);
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.resizableProperty().set(false);
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.setScene(scene);
-                stage.showAndWait();
-
-            }
-            catch(IOException ex)
-            {
-                Logger.getLogger(MenuEmpleadoController.class.getName()).log(Level.SEVERE , null , ex);
-            }
-
-        }
-    }
-
     @FXML
     private void click(ActionEvent event)
     {
@@ -113,18 +90,25 @@ public class MenuEmpleadoController extends Controller implements Initializable
         {
             if(flag == true)
             {
+
                 imvSS.setImage(new Image("cr/ac/una/tareaprogra3/resources/Stop.png"));
                 flag = false;
                 Date fE = new Date();
                 reg.setFechaIngreso(fE);
-                System.out.println("La fecha de entrada es " + fE);
+                marcaentrada.setVisible(true);
+                SimpleDateFormat dateemp = new SimpleDateFormat("HH:mm:ss");
+                marcaentrada.setText("La entrada fue a las " + dateemp.format(fE));
                 btnstartstop.setText("Terminar Jornada");
             }
             else
             {
+
                 flag = true;
                 Date fS = new Date();
                 reg.setFechaSalida(fS);
+                marcasalida.setVisible(true);
+                SimpleDateFormat dateemp = new SimpleDateFormat("HH:mm:ss");
+                marcasalida.setText("La Salida fue a las " + dateemp.format(fS));
                 asignarcompletado();
                 System.out.println(reg);
                 Respuesta r = service.saveRegistro(reg , getEmp());

@@ -9,8 +9,10 @@ import cr.ac.una.tareaprogra3.models.*;
 import cr.ac.una.tareaprogra3.utils.*;
 import java.io.*;
 import java.util.*;
+import javafx.scene.control.*;
 import javafx.stage.*;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.util.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -308,6 +310,8 @@ public class RegistroService
                 workbook.write(fileOut);
                 fileOut.close();
                 workbook.close();
+                new Mensaje().show(Alert.AlertType.CONFIRMATION , "Guardado" , "Con exito");
+
             }
 
         }
