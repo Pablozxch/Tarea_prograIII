@@ -67,7 +67,7 @@ public class MenuAdminController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
-
+        clickB();
         if(event.getSource() == btnAgregarEmpleado)
         {
             FlowController.getInstance().goVistas("AgregarEmpleado");
@@ -86,9 +86,9 @@ public class MenuAdminController extends Controller implements Initializable
         }
         if(event.getSource() == btnVerHistoriales)
         {
-            FlowController.getInstance().goVistas("viewHistoriales");
+            FlowController.getInstance().goVistas("ViewHistoriales");
         }
-        if(event.getSource()==btnExportarMarcas)
+        if(event.getSource() == btnExportarMarcas)
         {
             FlowController.getInstance().goVistas("ExportarMarcas");
         }

@@ -55,7 +55,7 @@ public class ExportarMarcasController extends Controller implements Initializabl
     @FXML
     private void onActionBtnMarcas(ActionEvent event)
     {
-
+        clickB();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF" , "*.pdf"));
@@ -81,6 +81,7 @@ public class ExportarMarcasController extends Controller implements Initializabl
     @FXML
     private void onActionBtnGuardar(ActionEvent event) throws IOException
     {
+        clickB();
         if(!txtFolio.getText().isEmpty())
         {
             FileChooser fileChooser = new FileChooser();
@@ -114,6 +115,7 @@ public class ExportarMarcasController extends Controller implements Initializabl
     @FXML
     private void onActionBtnEmpleados(ActionEvent event)
     {
+        clickB();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF" , "*.pdf"));
@@ -139,6 +141,7 @@ public class ExportarMarcasController extends Controller implements Initializabl
     @FXML
     private void click(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == btnSalir)
         {
             FlowController.getInstance().goVistas("MenuAdmin");

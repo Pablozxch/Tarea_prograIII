@@ -69,6 +69,7 @@ public class AgregarEmpleadoController extends Controller implements Initializab
     @FXML
     private void click(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == chckAdmin)
         {
             String rol = chckAdmin.isSelected() ? "A" : "E";

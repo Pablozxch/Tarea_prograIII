@@ -26,7 +26,7 @@ public class App extends Application
     public void start(Stage stage) throws IOException
     {
         FlowController.getInstance().InitializeFlow(stage , null);
-        //stage.getIcons().add(new Image("/cr/ac/una/defender/resources/Logo.png"));
+        stage.getIcons().add(new Image("/cr/ac/una/tareaprogra3/resources/Icono.jpg"));
         stage.setTitle("Administrador de Empleados");
         stage.setResizable(false);
         FlowController.getInstance().goMain();

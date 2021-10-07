@@ -39,6 +39,7 @@ public class FelizBirdController  extends Controller implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
+        happyB();
         //new GlowBackground(lblF2 , Color.rgb(114 , 163 , 209) , Color.rgb(92 , 118 , 215) , 50).setCycleCount(400).play();
         new Shake(lblF2).setSpeed(0.2).setCycleCount(Integer.MAX_VALUE).play();
         new GlowText(lblF2 , Color.rgb(190 , 77 , 80) , Color.rgb(166 , 124 , 196)).setCycleCount(Integer.MAX_VALUE).play();

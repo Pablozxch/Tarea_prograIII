@@ -63,6 +63,7 @@ public class MenuEmpleadoController extends Controller implements Initializable
     public void initialize(URL url , ResourceBundle rb)
     {
         // TODO
+        musica.stop();
         DateFormat daymyear = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         marcaentrada.setVisible(false);
@@ -86,6 +87,7 @@ public class MenuEmpleadoController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == btnstartstop)
         {
             if(flag == true)

@@ -51,6 +51,7 @@ public class LoginEmpleadoController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
+         clickB();
         if(event.getSource() == btnContinuar)
         {
             String username = txtUser.getText();

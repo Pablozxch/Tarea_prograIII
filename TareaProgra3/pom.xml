@@ -173,6 +173,14 @@
             <artifactId>AnimateFX</artifactId>
             <version>1.2.1</version>
         </dependency> 
+        
+        
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>13</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <resources>

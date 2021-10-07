@@ -65,6 +65,11 @@ public class ViewHistorialesController extends Controller implements Initializab
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
+        llenar();
+    }
+
+    public void llenar()
+    {
         TableColumn<RegistroClienteDto , String> idEmp = new TableColumn<>("Folio");
         idEmp.setPrefWidth(50);
         idEmp.setCellValueFactory(cd -> cd.getValue().empId.get().folio);
@@ -91,7 +96,6 @@ public class ViewHistorialesController extends Controller implements Initializab
         tblHistorial.getColumns().add(diaci);
         tblHistorial.refresh();
         actualizarDatosInicales();
-
     }
 
     public Date rangoEntrada()
@@ -204,6 +208,7 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private void changename(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == chkEntrada)
         {
             if(chkEntrada.isSelected())
@@ -233,6 +238,7 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private void click(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == btnClear)
         {
             dtpEntrdadaR.setValue(null);
@@ -368,6 +374,7 @@ public class ViewHistorialesController extends Controller implements Initializab
     @FXML
     private void btnToExcel(ActionEvent event)
     {
+        clickB();
         service.generarExcel(registroDto);
     }
 

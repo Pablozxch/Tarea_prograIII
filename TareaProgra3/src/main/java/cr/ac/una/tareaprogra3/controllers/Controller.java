@@ -11,6 +11,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import javafx.scene.media.*;
 
 /**
  *
@@ -24,6 +25,7 @@ public abstract class Controller
     public static String Nfolio = new String();//Para obtener la imagen del admin es la parte del menu admin
     public static EmpleadoClienteDto emp = new EmpleadoClienteDto();
     private static RegistroClienteDto reg = new RegistroClienteDto();
+    public MediaPlayer musica;
 
     public String getAccion()
     {
@@ -107,5 +109,23 @@ public abstract class Controller
     public void setReg(RegistroClienteDto aReg)
     {
         this.reg = aReg;
+    }
+
+    public void clickB()
+    {
+        Media audio = new Media(this.getClass().getResource("/cr/ac/una/tareaprogra3/resources/clickBtton.mp3").toString());
+        musica = new MediaPlayer(audio);
+        musica.setCycleCount(1);
+        musica.setVolume(0.04);
+        musica.play();
+    }
+
+    public void happyB()
+    {
+        Media audio = new Media(this.getClass().getResource("/cr/ac/una/defender/resources/HB.mp3").toString());
+        musica = new MediaPlayer(audio);
+        musica.setCycleCount(1);
+        musica.setVolume(0.04);
+        musica.play();
     }
 }

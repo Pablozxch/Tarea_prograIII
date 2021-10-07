@@ -42,13 +42,16 @@ public class MainController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
+         clickB();
         if(event.getSource()==btnAdmin)
         {
+    
             FlowController.getInstance().goVistas("LoginAdmin");
             System.out.println("ADMINISTRADOR");
         }
         else if(event.getSource()==btnEmpleado)
         {
+            
             System.out.println("Empleado");
              FlowController.getInstance().goVistas("LoginEmpleado");
         }

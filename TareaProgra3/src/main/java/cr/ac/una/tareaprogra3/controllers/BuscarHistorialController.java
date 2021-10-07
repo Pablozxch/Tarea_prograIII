@@ -225,6 +225,7 @@ public class BuscarHistorialController extends Controller implements Initializab
     @FXML
     private void click(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == btnBuscar)
         {
             search();
@@ -389,6 +390,7 @@ public class BuscarHistorialController extends Controller implements Initializab
     @FXML
     private void changename(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == chkEntrada)
         {
             if(chkEntrada.isSelected())
@@ -417,6 +419,7 @@ public class BuscarHistorialController extends Controller implements Initializab
     @FXML
     private void btnToExcel(ActionEvent event)
     {
+        clickB();
         service.generarExcel(registroDto);
     }
 

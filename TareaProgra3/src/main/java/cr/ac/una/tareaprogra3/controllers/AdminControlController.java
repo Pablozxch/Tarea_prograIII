@@ -79,6 +79,7 @@ public class AdminControlController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
+        clickB();
         if(event.getSource() == chckAdmin)
         {
             rol = chckAdmin.isSelected() ? "A" : "E";

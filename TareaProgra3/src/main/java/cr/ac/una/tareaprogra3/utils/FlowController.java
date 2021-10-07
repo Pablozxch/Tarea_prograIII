@@ -163,8 +163,8 @@ public class FlowController
         try
         {
 
-            this.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/tareaprogra3/views/" + nombreVista + ".fxml") , this.idioma)));
-            this.mainStage.show();
+            FlowController.mainStage.setScene(new Scene(FXMLLoader.load(App.class.getResource("/cr/ac/una/tareaprogra3/views/" + nombreVista + ".fxml") , FlowController.idioma)));
+            FlowController.mainStage.show();
         }
         catch(IOException ex)
         {

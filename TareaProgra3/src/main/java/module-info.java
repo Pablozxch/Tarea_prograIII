@@ -11,7 +11,7 @@ module cr.ac.una.tareaprogra
     requires javafx.base;
     requires jakarta.activation;
     requires com.jfoenix;
-
+    requires javafx.media;
     requires java.logging;
 
     requires java.base;

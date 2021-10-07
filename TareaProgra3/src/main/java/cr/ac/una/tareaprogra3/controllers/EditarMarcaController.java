@@ -160,6 +160,7 @@ public class EditarMarcaController extends Controller implements Initializable
     @FXML
     private void onActionBtnAceptar(ActionEvent event)
     {
+        clickB();
         if(getReg() != null)
         {
             LocalDate localDate = dtpFechaEntrada.getValue();
@@ -211,6 +212,7 @@ public class EditarMarcaController extends Controller implements Initializable
     @FXML
     private void onActionBtnVolver(ActionEvent event)
     {
+        clickB();
         Stage s = (Stage) btnVolver.getScene().getWindow();
         s.close();
     }

@@ -52,6 +52,7 @@ public class LoginAdminController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
+         clickB();
         if(event.getSource() == btnContinuar)
         {
             if(!txtUser.getText().isEmpty())
