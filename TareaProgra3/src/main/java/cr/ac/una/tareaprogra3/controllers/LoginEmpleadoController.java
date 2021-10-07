@@ -51,7 +51,7 @@ public class LoginEmpleadoController extends Controller implements Initializable
     @FXML
     private void click(ActionEvent event)
     {
-         clickB();
+        clickB();
         if(event.getSource() == btnContinuar)
         {
             String username = txtUser.getText();
@@ -65,7 +65,7 @@ public class LoginEmpleadoController extends Controller implements Initializable
 
             }
         }
-        if(event.getSource()==btnRegresar)
+        if(event.getSource() == btnRegresar)
         {
             FlowController.getInstance().goMain();
         }
@@ -76,11 +76,11 @@ public class LoginEmpleadoController extends Controller implements Initializable
     {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public void asig()
     {
         Date date = new Date();
-        SimpleDateFormat dateemp = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat dateemp = new SimpleDateFormat("dd/MM");
 
         String dateCumple = dateemp.format(getEmp().getNacimiento());
         String dateactual = dateemp.format(date);
@@ -90,6 +90,7 @@ public class LoginEmpleadoController extends Controller implements Initializable
         {
             try
             {
+                happyB();
                 Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("/cr/ac/una/tareaprogra3/views/FelizBird.fxml"));
                 stage.setOpacity(1);
@@ -97,9 +98,10 @@ public class LoginEmpleadoController extends Controller implements Initializable
                 stage.setScene(scene);
                 stage.resizableProperty().set(false);
                 stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner((Stage)btnContinuar.getScene().getWindow());
+                stage.initOwner((Stage) btnContinuar.getScene().getWindow());
                 stage.setScene(scene);
                 stage.showAndWait();
+                musica.stop();
 
             }
             catch(IOException ex)

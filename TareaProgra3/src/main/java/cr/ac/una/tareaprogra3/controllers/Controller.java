@@ -122,7 +122,7 @@ public abstract class Controller
 
     public void happyB()
     {
-        Media audio = new Media(this.getClass().getResource("/cr/ac/una/defender/resources/HB.mp3").toString());
+        Media audio = new Media(this.getClass().getResource("/cr/ac/una/tareaprogra3/resources/HB.mp3").toString());
         musica = new MediaPlayer(audio);
         musica.setCycleCount(1);
         musica.setVolume(0.04);

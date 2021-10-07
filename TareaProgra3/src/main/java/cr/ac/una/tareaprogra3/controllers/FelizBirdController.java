@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import animatefx.animation.*;
+import cr.ac.una.tareaprogra3.models.*;
+import java.io.*;
 import javafx.scene.image.*;
 import javafx.scene.paint.*;
 import javafx.util.*;
@@ -19,7 +21,7 @@ import javafx.util.*;
  *
  * @author jp015
  */
-public class FelizBirdController  extends Controller implements Initializable
+public class FelizBirdController extends Controller implements Initializable
 {
 
     @FXML
@@ -39,16 +41,19 @@ public class FelizBirdController  extends Controller implements Initializable
     @Override
     public void initialize(URL url , ResourceBundle rb)
     {
-        happyB();
+
+        Image img2 = new Image(new ByteArrayInputStream(getEmp().getFoto()));//crea un objeto imagen, transforma el byte[] a un buffered imagen
+        imgCumplea.setImage(img2);
+
         //new GlowBackground(lblF2 , Color.rgb(114 , 163 , 209) , Color.rgb(92 , 118 , 215) , 50).setCycleCount(400).play();
         new Shake(lblF2).setSpeed(0.2).setCycleCount(Integer.MAX_VALUE).play();
         new GlowText(lblF2 , Color.rgb(190 , 77 , 80) , Color.rgb(166 , 124 , 196)).setCycleCount(Integer.MAX_VALUE).play();
 
         new SlideInRight(imgCumplea).setSpeed(0.4).setCycleCount(1).play();
         new Shake(imgCumplea).setDelay(Duration.seconds(2)).setSpeed(0.2).setCycleCount(Integer.MAX_VALUE).play();
-        
+
         new LightSpeedIn(imgf).setSpeed(0.2).setCycleCount(1).play();
-        
+
         new SlideInLeft(imgcake).setSpeed(0.4).setCycleCount(1).play();
         new Shake(imgcake).setDelay(Duration.seconds(2)).setSpeed(0.2).setCycleCount(Integer.MAX_VALUE).play();
 
@@ -60,7 +65,7 @@ public class FelizBirdController  extends Controller implements Initializable
     @Override
     public void initialize()
     {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
