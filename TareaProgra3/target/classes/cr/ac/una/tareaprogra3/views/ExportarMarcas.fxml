@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/exportarmarcas.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.ExportarMarcasController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resources/958598.jpg" />
+         </image>
+      </ImageView>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="168.0" layoutY="194.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="400.0" prefWidth="86.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="btnMarcas" onAction="#onActionBtnMarcas" prefHeight="44.0" prefWidth="152.0" text="Reporte Marcas" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="45.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXTextField fx:id="txtFolio" promptText="Folio Empleado">
+                     <font>
+                        <Font size="13.0" />
+                     </font></JFXTextField>
+                  <JFXButton fx:id="btnGuardar" onAction="#onActionBtnGuardar" prefHeight="44.0" prefWidth="152.0" text="Reporte por Folio" textFill="WHITE" />
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <JFXButton fx:id="btnEmpleados" onAction="#onActionBtnEmpleados" prefHeight="44.0" prefWidth="152.0" text="Reporte Empleados" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="125.0" />
+                     </VBox.margin></JFXButton>
+                  <JFXButton fx:id="btnSalir" contentDisplay="RIGHT" onAction="#click" prefHeight="44.0" prefWidth="152.0" text="Regresar" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/Back.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

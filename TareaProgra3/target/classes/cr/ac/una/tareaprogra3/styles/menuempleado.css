@@ -1,0 +1,28 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.label
+{
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+#btnstartstop:hover
+{
+    -fx-background-size: 60px;
+}
+#btnSalir
+{
+    -fx-background-radius:50;
+    -fx-background-color:#195883;
+}
+#btnSalir:hover
+{
+    -fx-font-size: 28px;
+    -fx-background-color: #1e6b83;
+}

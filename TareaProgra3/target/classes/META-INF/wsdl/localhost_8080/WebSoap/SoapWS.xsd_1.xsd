@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3.payara-p5 (2.4.3.payara-maintenance-5307578; 2021-04-22T12:36:46+0100) JAXWS-RI/2.3.2.payara-p4 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://websoap.una.ac.cr/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://websoap.una.ac.cr/">
+
+<xs:element name="EmpleadoAdmin" type="tns:EmpleadoAdmin"/>
+
+<xs:element name="EmpleadoAdminResponse" type="tns:EmpleadoAdminResponse"/>
+
+<xs:element name="EmpleadoFolio" type="tns:EmpleadoFolio"/>
+
+<xs:element name="EmpleadoFolioResponse" type="tns:EmpleadoFolioResponse"/>
+
+<xs:element name="RegistroFolio" type="tns:RegistroFolio"/>
+
+<xs:element name="RegistroFolioResponse" type="tns:RegistroFolioResponse"/>
+
+<xs:element name="RegistrosbyId" type="tns:RegistrosbyId"/>
+
+<xs:element name="RegistrosbyIdResponse" type="tns:RegistrosbyIdResponse"/>
+
+<xs:element name="SaveEmpleado" type="tns:SaveEmpleado"/>
+
+<xs:element name="SaveEmpleadoResponse" type="tns:SaveEmpleadoResponse"/>
+
+<xs:element name="SaveRegistro" type="tns:SaveRegistro"/>
+
+<xs:element name="SaveRegistroResponse" type="tns:SaveRegistroResponse"/>
+
+<xs:element name="deleteEmpleado" type="tns:deleteEmpleado"/>
+
+<xs:element name="deleteEmpleadoResponse" type="tns:deleteEmpleadoResponse"/>
+
+<xs:element name="deleteRegistro" type="tns:deleteRegistro"/>
+
+<xs:element name="deleteRegistroResponse" type="tns:deleteRegistroResponse"/>
+
+<xs:element name="getRegistro" type="tns:getRegistro"/>
+
+<xs:element name="getRegistroResponse" type="tns:getRegistroResponse"/>
+
+<xs:element name="jasP" type="tns:jasP"/>
+
+<xs:element name="jasPEmp" type="tns:jasPEmp"/>
+
+<xs:element name="jasPEmpResponse" type="tns:jasPEmpResponse"/>
+
+<xs:element name="jasPFolio" type="tns:jasPFolio"/>
+
+<xs:element name="jasPFolioResponse" type="tns:jasPFolioResponse"/>
+
+<xs:element name="jasPResponse" type="tns:jasPResponse"/>
+
+<xs:element name="regtodo" type="tns:regtodo"/>
+
+<xs:element name="regtodoResponse" type="tns:regtodoResponse"/>
+
+<xs:complexType name="EmpleadoFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="empleadoDto">
+<xs:sequence>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="foto" type="xs:base64Binary" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="nacimiento" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="rol" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="regtodo">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="regtodoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:registroDto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="registroDto">
+<xs:sequence>
+<xs:element name="completado" type="xs:string" minOccurs="0"/>
+<xs:element name="empId" type="tns:empleadoDto" minOccurs="0"/>
+<xs:element name="fechaIngreso" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaSalida" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveRegistro">
+<xs:sequence>
+<xs:element name="reg2" type="tns:registroDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveRegistroResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="RegistroFolio">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegistroFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:registroDto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteEmpleado">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getRegistro">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRegistroResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:registroDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegistrosbyId">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="RegistrosbyIdResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:registroDto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteRegistro">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteRegistroResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoAdmin">
+<xs:sequence>
+<xs:element name="folio" type="xs:string" minOccurs="0"/>
+<xs:element name="pas" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EmpleadoAdminResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jasPEmp">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="jasPEmpResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jasPFolio">
+<xs:sequence>
+<xs:element name="EmpFolio" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jasPFolioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="jasP">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="jasPResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveEmpleado">
+<xs:sequence>
+<xs:element name="emp" type="tns:empleadoDto" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveEmpleadoResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>

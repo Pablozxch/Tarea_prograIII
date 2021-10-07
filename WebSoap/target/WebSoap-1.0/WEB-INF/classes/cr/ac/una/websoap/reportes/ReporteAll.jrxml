@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteAll" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="270a6510-3414-4656-9342-36f6b9e7f696">
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[IkNUUkxfUkVHSVNUUk8iIEFTICw1MCw1NCw1OGU3Mjk4MC0zMjkzLTQzYzItOGEwOS1iZDc0NzI3
+NWI5OTg7IkNUUkxfRU1QTEVBRE8iIEFTICwyMTcsODUsMmU3NDgzMGItY2E5Yy00YTg0LWE4MWMt
+Yzc1Nzg2MzZkYjEzOw==]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBS.xml"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT "CTRL_REGISTRO"."EMP_ID",
+	"CTRL_REGISTRO"."REG_SALIDA",
+	"CTRL_REGISTRO"."REG_COMPLETADO",
+	"CTRL_REGISTRO"."REG_ENTRADA",
+	"CTRL_EMPLEADO"."EMP_FOLIO"
+FROM "CTRL_REGISTRO"
+	INNER JOIN "CTRL_EMPLEADO" ON 
+	 "CTRL_REGISTRO"."EMP_ID" = "CTRL_EMPLEADO"."EMP_ID"]]>
+	</queryString>
+	<field name="REG_SALIDA" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="REG_SALIDA"/>
+		<property name="com.jaspersoft.studio.field.label" value="REG_SALIDA"/>
+	</field>
+	<field name="REG_COMPLETADO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="REG_COMPLETADO"/>
+		<property name="com.jaspersoft.studio.field.label" value="REG_COMPLETADO"/>
+	</field>
+	<field name="REG_ENTRADA" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="REG_ENTRADA"/>
+		<property name="com.jaspersoft.studio.field.label" value="REG_ENTRADA"/>
+	</field>
+	<field name="EMP_FOLIO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="EMP_FOLIO"/>
+		<property name="com.jaspersoft.studio.field.label" value="EMP_FOLIO"/>
+	</field>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{REG_SALIDA}]]></groupExpression>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{REG_COMPLETADO}]]></groupExpression>
+	</group>
+	<group name="REG_ENTRADA">
+		<groupExpression><![CDATA[$F{REG_ENTRADA}]]></groupExpression>
+	</group>
+	<group name="EMP_FOLIO">
+		<groupExpression><![CDATA[$F{EMP_FOLIO}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="200" height="30" uuid="4b6fa4d3-e318-4da5-ac89-cc6851c5fc99"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Algerian" size="20"/>
+				</textElement>
+				<text><![CDATA[Reporte General]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="30" width="380" height="20" uuid="face1120-c170-4710-9b4a-3a87a0b98379"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Reporte generado por medio de Jasper Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="80" height="30" backcolor="#72DBDA" uuid="2235106b-5a58-4a58-b8d8-891bd4487649"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Algerian" size="14"/>
+				</textElement>
+				<text><![CDATA[EmpFolio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="200" height="30" forecolor="#FFFFFF" backcolor="#927CCF" uuid="3b7b4af4-e616-45ca-8e75-b54a3f9fed24"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Algerian" size="13"/>
+				</textElement>
+				<text><![CDATA[Fecha Ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="0" width="199" height="30" backcolor="#72DBDA" uuid="229bbf30-dbd1-49d3-925c-7af17835fac3"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Algerian" size="13"/>
+				</textElement>
+				<text><![CDATA[Fecha Salida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="479" y="0" width="73" height="30" forecolor="#FFFFFF" backcolor="#927CCF" uuid="c6b9886a-77f7-4aa2-9e97-95162afe5c20"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Algerian" size="11"/>
+				</textElement>
+				<text><![CDATA[Dia Completado]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="30" width="555" height="1" uuid="e333df44-9887-45d8-a569-1c4607976a27"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="552" height="20" uuid="1c2e8aab-bec0-49cb-8cb6-b17e7e5199b9"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField>
+					<reportElement x="0" y="1" width="80" height="20" uuid="3171e766-2a15-4c5f-9856-196358d5686e">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac245a79-5e9f-4879-8dd3-774c6ee0b5da"/>
+					</reportElement>
+					<box>
+						<rightPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{EMP_FOLIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="1" width="199" height="20" uuid="0cf6525b-0581-4517-b4d1-82c5ba207b79">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="38e70b4b-d39f-4973-b303-16180489595c"/>
+					</reportElement>
+					<box>
+						<rightPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{REG_ENTRADA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="280" y="1" width="200" height="20" uuid="86bf4199-7c2a-4f47-a1d4-d60dde9cc8be">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0952a21b-a159-48a0-83e3-c5aae1b686f1"/>
+					</reportElement>
+					<box>
+						<rightPen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{REG_SALIDA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="480" y="1" width="70" height="20" uuid="1fce0e5d-30b2-4cb0-8761-6ca21c1aa39a">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3b27c55-63d0-49fd-9532-99551a9b0d86"/>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{REG_COMPLETADO}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="433509ef-2a34-4797-9cd1-684511ae022d"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="27402784-6be1-4e60-b9c7-c3664ea17454"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="e16da2cc-f2dd-4b0a-a299-981148326ee6"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

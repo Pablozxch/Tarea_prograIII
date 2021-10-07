@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" stylesheets="@../styles/menuempleado.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.tareaprogra3.controllers.MenuEmpleadoController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="151.0" layoutY="81.0" style="-fx-opacity: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/954231.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnstartstop" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="221.0" layoutY="109.0" onAction="#click" prefHeight="102.0" prefWidth="116.0" text="Iniciar Jornada" textOverrun="CENTER_WORD_ELLIPSIS">
+         <graphic>
+            <ImageView fx:id="imvSS" fitHeight="150.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Play.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <Label fx:id="lblnombreEmpleado" layoutX="23.0" layoutY="19.0" prefHeight="25.0" prefWidth="148.0" text="Nombre Empleado" />
+      <Label fx:id="lblDate" alignment="CENTER" contentDisplay="CENTER" layoutX="502.0" layoutY="10.0" prefHeight="25.0" prefWidth="84.0" text="0">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic></Label>
+      <Label fx:id="lblFecha" alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="20.0" prefHeight="17.0" prefWidth="84.0" text="0" />
+      <JFXButton fx:id="btnSalir" layoutX="257.0" layoutY="329.0" onAction="#click" prefHeight="44.0" prefWidth="94.0" text="Salir" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </JFXButton>
+      <ImageView fx:id="imgWorker" fitHeight="150.0" fitWidth="187.0" layoutX="23.0" layoutY="60.0" pickOnBounds="true" />
+      <Label fx:id="marcaentrada" layoutX="282.0" layoutY="72.0" text="Label" />
+      <Label fx:id="marcasalida" layoutX="286.0" layoutY="274.0" text="Label" />
+   </children>
+</AnchorPane>

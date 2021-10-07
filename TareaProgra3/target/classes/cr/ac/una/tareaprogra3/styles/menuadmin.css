@@ -1,0 +1,21 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.button
+{
+    -fx-font-family: monospace;
+    -fx-background-radius: 80;  
+    -fx-text-fill: black;
+    -fx-font-size: 2rem;
+    -fx-background-color: #FFFFE0;
+    -fx-pref-width: 230;
+    -fx-pref-height: 80;
+    
+}
+.button:hover
+{
+    /*cambiar color del hover*/
+    -fx-font-size: 14px;
+    -fx-background-color: #FFF000;
+}

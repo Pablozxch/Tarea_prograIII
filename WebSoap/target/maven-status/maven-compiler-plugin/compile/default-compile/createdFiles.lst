@@ -1,0 +1,9 @@
+cr\ac\una\websoap\models\EmpleadoDto.class
+cr\ac\una\websoap\models\RegistroDto.class
+cr\ac\una\websoap\services\RegistroService.class
+cr\ac\una\websoap\models\Registro.class
+module-info.class
+cr\ac\una\websoap\models\Empleado.class
+cr\ac\una\websoap\services\EmpleadoService.class
+cr\ac\una\websoap\utils\Respuesta.class
+cr\ac\una\websoap\SoapWS.class
